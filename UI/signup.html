@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bus Ticket Booking WebApp">
+  <meta name="keywords" content="bus, ticket, booking, travel">
+  <meta name="author" content="nignanthomas">
+  <title>WayFarer | Sign Up</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://kit.fontawesome.com/680b9cf05c.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div id="branding">
+        <img src="./images/bus-logo.png" alt="">
+        <h3>WayFarer</h3>
+      </div>
+      <nav>
+        <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <div class="subnav" id="trips">
+          <ul>
+            <a href="all-trips.html"><li class="all-trips">All Trips</li></a>
+            <a href="my-trips.html"><li class="my-trips">My Trips</li></a>
+          </ul>
+        </div>
+        <div class="subnav" id="signs">
+          <ul>
+            <a href="signup.html"><li class="signup">Sign Up</li></a>
+            <a href="signin.html"><li class="signin">Sign In</li></a>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="main">
+    <div class="">
+      <div class="main-box">
+        <form action="" id="login-form" onsubmit="event.preventDefault(); login();">
+          <img src="./images/avatar.png" alt="">
+          <div class="forms">
+            <div class="formgroup" id="email-form">
+              <label for="name">Email*</label>
+              <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
+            </div>
+            <div class="formgroup" id="fname-form">
+              <label for="fname">First Name*</label>
+              <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off">
+            </div>
+            <div class="formgroup" id="lname-form">
+              <label for="lname">Last Name*</label>
+              <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
+            </div>
+            <div class="formgroup" id="password-form">
+              <label for="password">Password*</label>
+              <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
+            </div>
+            <div class="formgroup" id="confirm-form">
+              <label for="confirm">Password*</label>
+              <input type="password" id="confirm" name="confirm" required placeholder="confirm" autocomplete="off">
+            </div>
+            <input type="submit" value="Sign Up">
+            <div class="form-bottom">
+              Already have an account? <a href="signin.html">Sign In!</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="main-text">
+        <h1>Book | Pay | Travel</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit mollis ultricies ultrices.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+      </div>
+      <div class="copy">
+        <p>WayFarer, Copyright &copy; 2019</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/scripts.js"></script>
+  <script src="./js/signup.js"></script>
+</body>
+</html>
