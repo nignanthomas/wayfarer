@@ -43,7 +43,7 @@
   <section class="main">
     <div class="">
       <div class="main-box">
-        <form action="post">
+        <form action="" id="login-form" onsubmit="event.preventDefault(); login();">
           <img src="./images/avatar.png" alt="">
           <div class="forms">
             <div class="formgroup" id="email-form">
@@ -58,11 +58,11 @@
               <label for="lname">Last Name*</label>
               <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
             </div>
-            <div class="formgroup" id="password">
+            <div class="formgroup" id="password-form">
               <label for="password">Password*</label>
               <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
             </div>
-            <div class="formgroup" id="confirm">
+            <div class="formgroup" id="confirm-form">
               <label for="confirm">Password*</label>
               <input type="password" id="confirm" name="confirm" required placeholder="confirm" autocomplete="off">
             </div>
@@ -96,5 +96,6 @@
   </footer>
 
   <script src="./js/scripts.js"></script>
+  <script src="./js/signup.js"></script>
 </body>
 </html>
