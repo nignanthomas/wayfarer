@@ -1,4 +1,4 @@
-function login() {
+const signUp = () => {
   const email = document.querySelector("#email").value;
   const fname = document.querySelector("#fname").value;
   const lname = document.querySelector("#lname").value;

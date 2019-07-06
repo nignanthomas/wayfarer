@@ -47,6 +47,9 @@ header #hamburger{
   margin: 6px 0;
   transition: 0.4s;
 }
+.bar2{
+  background-color: #e8491d;
+}
 .change .bar1 {
   -webkit-transform: rotate(-45deg) translate(-9px, 6px);
   transform: rotate(-45deg) translate(-9px, 6px);
@@ -151,8 +154,11 @@ header nav li{
   cursor: pointer;
 }
 /* Footer */
+footer{
+  background-color: #e8491d;
+}
 footer a{
-  color: #000000;
+  color: #ffffff;
 }
 footer li{
   float: left;
@@ -161,6 +167,7 @@ footer li{
 }
 footer .copy{
   float: right;
+  color: #ffffff;
 }
 
 
