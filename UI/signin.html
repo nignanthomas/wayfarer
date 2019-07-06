@@ -6,7 +6,7 @@
   <meta name="description" content="Bus Ticket Booking WebApp">
   <meta name="keywords" content="bus, ticket, booking, travel">
   <meta name="author" content="nignanthomas">
-  <title>WayFarer | Sign Up</title>
+  <title>WayFarer | Sign In</title>
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -42,32 +42,20 @@
   <section class="main">
     <div class="">
       <div class="main-box">
-        <form action="" id="login-form" onsubmit="event.preventDefault(); signUp();">
+        <form action="" id="login-form" onsubmit="event.preventDefault(); signIn();">
           <img src="./images/avatar.png" alt="">
           <div class="forms">
             <div class="formgroup" id="email-form">
               <label for="name">Email*</label>
               <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
             </div>
-            <div class="formgroup" id="fname-form">
-              <label for="fname">First Name*</label>
-              <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off">
-            </div>
-            <div class="formgroup" id="lname-form">
-              <label for="lname">Last Name*</label>
-              <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
-            </div>
             <div class="formgroup" id="password-form">
               <label for="password">Password*</label>
               <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
             </div>
-            <div class="formgroup" id="confirm-form">
-              <label for="confirm">Password*</label>
-              <input type="password" id="confirm" name="confirm" required placeholder="confirm" autocomplete="off">
-            </div>
-            <input type="submit" value="Sign Up">
+            <input type="submit" value="Sign In">
             <div class="form-bottom">
-              Already have an account? <a href="signin.html">Sign In!</a>
+              Don't you have an account? <a href="signup.html">Sign Up!</a>
             </div>
           </div>
         </form>
@@ -95,6 +83,6 @@
   </footer>
 
   <script src="./js/scripts.js"></script>
-  <script src="./js/signup.js"></script>
+  <script src="./js/signin.js"></script>
 </body>
 </html>
