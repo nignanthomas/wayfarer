@@ -1,0 +1,33 @@
+.div-box{
+  width: 100%;
+}
+.main-box form{
+  width: 150%;
+}
+#from-form, #date-form, #seats-form{
+  float: left;
+  margin-left: 160px;
+}
+input{
+  width: 200px;
+}
+
+/* Media Queries */
+@media(max-width: 768px){
+  #from-form, #date-form, #seats-form{
+    float: none;
+    margin-left: 0;
+  }
+  .main{
+    width: auto;
+  }
+  .div-box{
+    width: auto;
+  }
+  .main-box form{
+    width: 60%;
+  }
+  /* input{
+    width: auto;
+  } */
+}

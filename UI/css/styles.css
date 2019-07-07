@@ -128,7 +128,7 @@ header nav li{
   border: 2px solid #f4f4f4;
   border-radius: 20px;
   height: 30px;
-  width: 60%;
+  /* width: 60%; */
   margin: 5px;
   padding-left: 2px;
 }
