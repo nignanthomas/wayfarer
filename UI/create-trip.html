@@ -6,8 +6,9 @@
   <meta name="description" content="Bus Ticket Booking WebApp">
   <meta name="keywords" content="bus, ticket, booking, travel">
   <meta name="author" content="nignanthomas">
-  <title>WayFarer | Sign Up</title>
+  <title>WayFarer | Create Trip</title>
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/create-trip.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -40,42 +41,51 @@
   </header>
 
   <section class="main">
-    <div class="">
+    <div class="div-box">
       <div class="main-box">
-        <form action="" id="login-form" onsubmit="event.preventDefault(); signUp();">
+        <form action="" id="login-form" onsubmit="event.preventDefault(); signIn();">
           <img src="./images/avatar.png" alt="">
           <div class="forms">
-            <div class="formgroup" id="email-form">
-              <label for="email">Email*</label>
-              <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
+            <div class="formgroup" id="from-form">
+              <label for="from">From</label>
+              <input type="text" id="from" name="from" required placeholder="Origin" autocomplete="off">
             </div>
-            <div class="formgroup" id="fname-form">
-              <label for="fname">First Name*</label>
-              <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off">
+            <div class="formgroup" id="destination-form">
+              <label for="destination">To</label>
+              <input type="text" id="destination" name="destination" required placeholder="Destination" autocomplete="off">
             </div>
-            <div class="formgroup" id="lname-form">
-              <label for="lname">Last Name*</label>
-              <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
+            <div class="formgroup" id="date-form">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required placeholder="Date" autocomplete="off">
             </div>
-            <div class="formgroup" id="password-form">
-              <label for="password">Password*</label>
-              <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
+            <div class="formgroup" id="time-form">
+              <label for="time">Time</label>
+              <input type="number" id="time" name="time" required placeholder="Time" autocomplete="off">
             </div>
-            <div class="formgroup" id="confirm-form">
-              <label for="confirm">Password*</label>
-              <input type="password" id="confirm" name="confirm" required placeholder="confirm" autocomplete="off">
+            <div class="formgroup" id="seats-form">
+              <label for="seats">Seats</label>
+              <input type="number" id="seats" name="seats" required placeholder="Seats" autocomplete="off">
             </div>
-            <input type="submit" value="Sign Up">
-            <div class="form-bottom">
-              Already have an account? <a href="signin.html">Sign In!</a>
+            <div class="formgroup" id="plate-form">
+              <label for="plate">Plate</label>
+              <input type="text" id="plate" name="plate" required placeholder="Plate" autocomplete="off">
             </div>
+            <div class="formgroup" id="price-form">
+              <label for="price">Price</label>
+              <input type="number" id="price" name="price" required placeholder="Price" autocomplete="off">
+            </div>
+            <div class="formgroup" id="extras-form">
+              <label for="extras">Extras</label>
+              <textarea name="extras" rows="2" cols="20" placeholder="Extras"></textarea>
+            </div>
+            <input type="submit" value="Create Trip">
           </div>
         </form>
       </div>
-      <div class="main-text">
+      <!-- <div class="main-text">
         <h1>Book | Pay | Travel</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit mollis ultricies ultrices.</p>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -95,6 +105,6 @@
   </footer>
 
   <script src="./js/scripts.js"></script>
-  <script src="./js/signup.js"></script>
+  <script src="./js/create-trip.js"></script>
 </body>
 </html>
