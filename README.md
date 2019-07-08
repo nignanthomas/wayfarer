@@ -3,6 +3,8 @@ WayFarer is a public bus transportation booking service.
 
 An Andela Bootcamp Challenge.
 
+# Live Link
+https://nignanthomas.github.io/wayfarer/
 
 # Features
 1. User can sign up.
@@ -22,7 +24,7 @@ bookings.
 - Users can specify their seat numbers when making a booking.
 
 # Prerequisites
-- Clone this project with `git clone https://github.com/nignanthomas/wafarer.git`.
+- Clone this project with `git clone https://github.com/nignanthomas/wayfarer.git`.
 - These are HTML and CSS based pages that can be run directly in your browser.
 
 # Technologies Stack

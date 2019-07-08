@@ -1,0 +1,218 @@
+body{
+  font: 15px/1.5 "Trebuchet MS", Helvetica, sans-serif;
+  padding:0;
+  margin:0;
+  background-color: #f4f4f4;
+}
+/* Global */
+.container{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+/* Header */
+header{
+  background: #f4f4f4;
+  padding-top: 20px;
+  min-height: 60px;
+  border-bottom: #e8491d 3px solid;
+}
+header a{
+  text-decoration: none;
+  color: #000000;
+}
+header li{
+  float: left;
+  display: inline;
+  padding: 0 20px 0 20px;
+}
+header #branding{
+  float: left;
+  margin-right: 2rem;
+}
+header #branding h3{
+  float: right;
+}
+header #hamburger{
+  display: none;
+  cursor: pointer;
+}
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+.bar2{
+  background-color: #e8491d;
+}
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+header #signs{
+  float: right;
+}
+header #signs a{
+  color: #e8491d;
+}
+header nav{
+  margin-top: 1.2rem;
+}
+header #trips li{
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+header #signs li{
+  border: 2px solid #e8491d;
+  border-radius: 10px;
+}
+header #trips a:hover{
+  background-color: #000000;
+  color: #ffffff;
+}
+header nav li{
+  margin-left: 1rem;
+}
+/* Main */
+.main{
+  border-bottom: #000000 3px solid;
+}
+.main-text{
+  background: url(../images/background.png) no-repeat 500px -20px, #573280;
+  background-size: cover;
+  min-height: 300px;
+  color: #ffffff;
+  margin-bottom: -80px;
+  padding-top: 20px;
+  border-bottom-left-radius: 500px;
+  border-bottom-right-radius: 500px;
+}
+.centered-text{
+  font-size: 20px;
+}
+.centered-text h1{
+  font-size: 40px;
+}
+.main-box, .price-box{
+  margin: 0 auto;
+  z-index: -1;
+  margin-left: 100px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 60%;
+  min-height: 200px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.voyage{
+  padding-top: 20px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.origin, .arrow, .destination{
+  /* padding-left: 50px; */
+  float: left;
+}
+.price-box{
+  margin-top: 0;
+  min-height: 75px;
+  margin-bottom: 50px;
+  border-top: 2px dashed #a9a9a9;
+}
+.price-box .more{
+  padding-top: 20px;
+  float: left;
+}
+.price-box .more button{
+  background-color: #e8491d;
+  color: #ffffff;
+  font-size: 20px;
+  width: auto;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.30), 0 7px 6px rgba(0,0,0,0.22);
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.price-box .more button:active{
+  transform: translateY(4px);
+}
+.price-box .more button:hover{
+  cursor: pointer;
+}
+.price-box .price{
+  padding-top: 20px;
+  float: right;
+  font-size: 20px
+}
+/* Footer */
+footer{
+  background-color: #e8491d;
+}
+footer a{
+  color: #ffffff;
+}
+footer li{
+  float: left;
+  display: inline;
+  padding: 0 10px 0 10px;
+}
+footer .copy{
+  float: right;
+  color: #ffffff;
+}
+
+
+/* Media Queries */
+@media(max-width: 768px){
+  header{
+    padding-top: 10px;
+  }
+  header #hamburger{
+    display: inline-block;
+    float: right;
+  }
+  header .subnav{
+    display: none;
+  }
+  header nav .display-menu{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  .main{
+    background: none;
+    background: url(../images/van.gif) no-repeat 0 300px;
+    background-size: contain;
+  }
+  .main .main-text{
+    display: none;
+  }
+  .main .main-box{
+    width: 100%;
+    /* margin-left: 10px; */
+    background: none;
+  }
+  .main .main-box form{
+    width: auto;
+    margin-top: 15px;
+    margin-left: 30px;
+    padding: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
