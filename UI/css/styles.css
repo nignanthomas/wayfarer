@@ -154,6 +154,10 @@ header nav li{
 .more-box .more button:hover{
   cursor: pointer;
 }
+.more-box .more a{
+  color: #ffffff;
+  text-decoration: none;
+}
 .more-box .price{
   padding-top: 20px;
   float: right;
@@ -199,7 +203,7 @@ footer .copy{
     background-color: #573280;
     min-height: 200px;
     border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
+    /* border-bottom-right-radius: 100px; */
   }
   .main-text .centered-text p{
     display: none;
@@ -211,7 +215,17 @@ footer .copy{
     width: 100%;
   }
   .main-box{
-    width: 100%;
-    margin: 0px 0 50px 50px;
+    width: 90%;
+    margin: 0px 0px 50px 35px;
+    margin-bottom: 0;
+  }
+  .more-box{
+    width: 90%;
+    margin: 0px 0px 50px 35px;
+    margin-top: 0;
+  }
+  .main-box, .more-box{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
