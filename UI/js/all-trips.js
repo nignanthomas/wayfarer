@@ -25,5 +25,34 @@ const trips = [
 console.log(trips[0].id);
 
 
-const tripsDiv = document.querySelector(".main-trips .container");
+const tripsDiv = document.querySelector("#trips-container");
+
+trips.forEach((trip,i)=>{
+  newTrip = document.createElement("div");
+  newTrip.classList.add("one-trip");
+  newTrip.innerHTML= `<div class="main-box">
+    <div class="container">
+      <div class="voyage">
+        <div class="origin">${trips[i].origin}</div>
+        <div class="arrow"><img src="./images/arrow.png" alt=""></div>
+        <div class="destination">${trips[i].destination}</div>
+      </div>
+      <div class="date">${trips[i].tripDate}</div>
+      <div class="time">${trips[i].tripTime}</div>
+      <div class="bus-type">43 Seater</div>
+    </div>
+  </div>
+  <div class="more-box">
+    <div class="container">
+      <div class="more"><button type="button" name="button">Details</button></div>
+      <div class="price">$${trips[i].fare}</div>
+    </div>
+  </div>`;
+
+  tripsDiv.appendChild(newTrip);
+});
+
+
+
+
 console.log(tripsDiv);
