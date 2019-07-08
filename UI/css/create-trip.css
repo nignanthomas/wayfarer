@@ -1,12 +1,6 @@
-.div-box{
-  width: 100%;
-}
-.main-box form{
-  width: 150%;
-}
 #from-form, #date-form, #seats-form{
   float: left;
-  margin-left: 160px;
+  margin-left: 50px;
 }
 input{
   width: 200px;
@@ -23,8 +17,5 @@ input{
   }
   .div-box{
     width: auto;
-  }
-  .main-box form{
-    width: 60%;
   }
 }
