@@ -98,7 +98,7 @@ header nav li{
   margin-bottom: -80px;
   padding-top: 20px;
   border-bottom-left-radius: 500px;
-  border-bottom-right-radius: 500px;
+  /* border-bottom-right-radius: 500px; */
 }
 .centered-text{
   font-size: 20px;
