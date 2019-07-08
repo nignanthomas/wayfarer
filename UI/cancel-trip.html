@@ -9,6 +9,7 @@
   <title>WayFarer | Create Trip</title>
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/one-trip.css">
+  <link rel="stylesheet" href="./css/cancel-trip.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -63,32 +64,13 @@
             <div class="bus-type">Bus Type: 43 Seater</div>
             <div class="free-seats">Availabale seats: 14</div>
             <div class="extras">Extras: Lorem Ipsum. Lorem Ipsum.</div>
+            <div class="extras">Created On: Mon, 12th May 2019</div>
           </div>
         </div>
         <div class="more-box">
           <div class="container">
-            <div class="more"><button type="button" name="button" onclick="showBook();">Book a seat</button></div>
+            <div class="more"><button type="button" name="button" onclick="cancelTrip();">Cancel Trip</button></div>
             <!-- <div class="price"><button type="button" name="button">Choose Seat</button></div> -->
-            <div class="book-info">
-              <h3>Passenger Details</h3>
-              <form action="" id="passenger-form" onsubmit="event.preventDefault();">
-                <div class="forms">
-                  <div class="formgroup" id="name-form">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" name="name" required placeholder="e.g Thomas Nignan" autocomplete="off">
-                  </div>
-                  <div class="formgroup" id="phone-form">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" id="phone" name="phone" required placeholder="e.g +250712345678" autocomplete="off">
-                  </div>
-                  <div class="formgroup" id="id-form">
-                    <label for="id-number">ID/Passport:</label>
-                    <input type="text" id="id-number" name="id-number" required placeholder="e.g A1234567" autocomplete="off">
-                  </div>
-                  <input type="submit" value="Book">
-                </div>
-              </form>
-            </div>
           </div>
         </div>
 
@@ -112,6 +94,6 @@
   </footer>
 
   <script src="./js/scripts.js"></script>
-  <script src="./js/one-trip.js"></script>
+  <script src="./js/cancel-trip.js"></script>
 </body>
 </html>
