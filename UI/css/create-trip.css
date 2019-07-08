@@ -1,0 +1,21 @@
+#from-form, #date-form, #seats-form{
+  float: left;
+  margin-left: 50px;
+}
+input{
+  width: 200px;
+}
+
+/* Media Queries */
+@media(max-width: 768px){
+  #from-form, #date-form, #seats-form{
+    float: none;
+    margin-left: 0;
+  }
+  .main{
+    width: auto;
+  }
+  .div-box{
+    width: auto;
+  }
+}

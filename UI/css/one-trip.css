@@ -1,0 +1,53 @@
+
+.more-box form{
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 50px;
+}
+.more-box label{
+  display: none;
+}
+.more-box input{
+  border: 2px solid #f4f4f4;
+  border-radius: 20px;
+  height: 30px;
+  /* width: 60%; */
+  margin: 5px;
+  padding-left: 2px;
+  float: right: ;
+}
+.more-box input:focus{
+  outline: none;
+  border-color: #9932CC;
+}
+.more-box input[type='submit']{
+  background-color: #e8491d;
+  color: #ffffff;
+  font-size: 20px;
+  width: 40%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  margin-bottom: 10px;
+}
+.more-box input[type='submit']:active{
+  transform: translateY(4px);
+}
+.more-box input[type='submit']:hover{
+  cursor: pointer;
+}
+.more-box .more{
+  float: none;
+}
+.book-info{
+  display: none;
+}
+#name-form, #phone-form, #id-form{
+  float: left;
+}
+.show-book{
+  display: block;
+}
