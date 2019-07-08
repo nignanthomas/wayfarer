@@ -2,7 +2,6 @@ body{
   font: 15px/1.5 "Trebuchet MS", Helvetica, sans-serif;
   padding:0;
   margin:0;
-  background-color: #f4f4f4;
 }
 /* Global */
 .container{
@@ -88,76 +87,71 @@ header nav li{
 }
 /* Main */
 .main{
+  background: url(../images/background.png) no-repeat 250px 100px, #573280;
+  background-size: cover;
+  min-height: 500px;
   border-bottom: #000000 3px solid;
 }
-.main-text{
-  background: url(../images/background.png) no-repeat 500px -20px, #573280;
-  background-size: cover;
-  min-height: 300px;
-  color: #ffffff;
-  margin-bottom: -80px;
-  padding-top: 20px;
-  border-bottom-left-radius: 500px;
-  border-bottom-right-radius: 500px;
+.main-box{
+  background: #ffffff;
+  float: left;
+  width: 40%;
+  min-height: 500px;
+  text-align: center;
+  border-top-right-radius: 30%;
+  border-bottom-right-radius: 30%;
 }
-.centered-text{
-  font-size: 20px;
-}
-.centered-text h1{
-  font-size: 40px;
-}
-.main-box, .price-box{
-  margin: 0 auto;
-  z-index: -1;
-  margin-left: 100px;
+.main-box form{
+  margin-top: 50px;
+  margin-left: 250px;
   background-color: #ffffff;
   border-radius: 10px;
-  width: 60%;
-  min-height: 200px;
+  width: 80%;
+  min-height: 350px;
+  bottom: 50px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
-.voyage{
-  padding-top: 20px;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
+.main-box form .forms{
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-.origin, .arrow, .destination{
-  /* padding-left: 50px; */
-  float: left;
+.main-box label{
+  display: none;
 }
-.price-box{
-  margin-top: 0;
-  min-height: 75px;
-  margin-bottom: 50px;
-  border-top: 2px dashed #a9a9a9;
+.main-text{
+  float: right;
+  width: 40%;
+  color: #ffffff;
+  margin-top: 100px;
 }
-.price-box .more{
-  padding-top: 20px;
-  float: left;
+.main-box input, textarea{
+  border: 2px solid #f4f4f4;
+  border-radius: 20px;
+  height: 30px;
+  /* width: 60%; */
+  margin: 5px;
+  padding-left: 2px;
 }
-.price-box .more button{
+.main-box input:focus, textarea:focus{
+  outline: none;
+  border-color: #9932CC;
+}
+.main-box input[type='submit']{
   background-color: #e8491d;
   color: #ffffff;
   font-size: 20px;
-  width: auto;
+  width: 40%;
   height: 40px;
   border-radius: 5px;
   border: none;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.30), 0 7px 6px rgba(0,0,0,0.22);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   margin-bottom: 10px;
-  margin-left: 10px;
 }
-.price-box .more button:active{
+.main-box input[type='submit']:active{
   transform: translateY(4px);
 }
-.price-box .more button:hover{
+.main-box input[type='submit']:hover{
   cursor: pointer;
-}
-.price-box .price{
-  padding-top: 20px;
-  float: right;
-  font-size: 20px
 }
 /* Footer */
 footer{
