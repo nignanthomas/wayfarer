@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/one-trip.css">
   <link rel="stylesheet" href="../css/cancel-trip.css">
+  <link rel="stylesheet" href="../css/search-form.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -52,33 +53,59 @@
     </div>
     <div class="main-trips">
       <div class="container"  id="trips-container">
-        <div class="main-box">
-          <div class="container">
-            <div class="">Booking Code: #WF001001</div>
-            <div class="">Trip ID: 001</div>
-            <hr>
-            <div class="passenger">
-              <div>Name: Raphael Katana</div>
-              <div>Contact: +254712345678</div>
+        <div class="search-bar">
+          <div class="main-box">
+            <div class="container">
+              <form action="" id="search-form" onsubmit="event.preventDefault();">
+                <h3>Filter bookings by...</h3>
+                <div class="forms">
+                  <div class="formgroup" id="origin-form">
+                    <label for="origin">From:</label>
+                    <input type="text" id="origin" name="origin" placeholder="From" autocomplete="off">
+                  </div>
+                  <div class="formgroup" id="destination-form">
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" name="destination" placeholder="To" autocomplete="off">
+                  </div>
+                  <div class="formgroup" id="date-form">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" placeholder="" autocomplete="off">
+                  </div>
+                  <input type="submit" value="Search">
+                </div>
+              </form>
             </div>
-            <hr>
-            <div class="voyage">
-              <!-- Kigali<img src="../images/arrow.png" alt="">Nairobi -->
-              <div class="origin">Kigali</div>
-              <div class="arrow"><img src="../images/arrow.png" alt=""></div>
-              <div class="destination">Nairobi</div>
-            </div>
-            <div class="date">Trip Date: Sun, 7th Jul 2019</div>
-            <div class="time">Trip Time: 09:00pm</div>
-            <!-- <div class="bus-type">Bus Type: 43 Seater</div>
-            <div class="extras">Extras: Lorem Ipsum. Lorem Ipsum.</div> -->
-            <div class="date-booked">Booked On: Mon, 12th May 2019</div>
           </div>
         </div>
-        <div class="more-box">
-          <div class="container">
-            <div class="price">Total: $50</div>
-          </div>
+        <div class="one-trip">
+          <div class="main-box">
+            <div class="container">
+              <div class="">Booking Code: #WF001001</div>
+              <div class="">Trip ID: 001</div>
+              <hr>
+              <div class="passenger">
+                <div>Name: Raphael Katana</div>
+                <div>Contact: +254712345678</div>
+              </div>
+              <hr>
+              <div class="voyage">
+                <!-- Kigali<img src="../images/arrow.png" alt="">Nairobi -->
+                <div class="origin">Kigali</div>
+                <div class="arrow"><img src="../images/arrow.png" alt=""></div>
+                <div class="destination">Nairobi</div>
+              </div>
+              <div class="date">Trip Date: Sun, 7th Jul 2019</div>
+              <div class="time">Trip Time: 09:00pm</div>
+              <!-- <div class="bus-type">Bus Type: 43 Seater</div>
+                <div class="extras">Extras: Lorem Ipsum. Lorem Ipsum.</div> -->
+                <div class="date-booked">Booked On: Mon, 12th May 2019</div>
+              </div>
+            </div>
+            <div class="more-box">
+              <div class="container">
+                <div class="price">Total: $50</div>
+              </div>
+            </div>
         </div>
 
       </div>
