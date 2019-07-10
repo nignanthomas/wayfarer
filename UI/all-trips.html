@@ -8,6 +8,8 @@
   <meta name="author" content="nignanthomas">
   <title>WayFarer | All Trips</title>
   <link rel="stylesheet" href="./css/styles.css">
+  <!-- <link rel="stylesheet" href="./css/signup.css"> -->
+  <link rel="stylesheet" href="./css/search-form.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -50,6 +52,30 @@
     </div>
     <div class="main-trips">
       <div class="container" id="trips-container">
+        <div class="search-bar">
+          <div class="main-box">
+            <div class="container">
+              <form action="" id="search-form" onsubmit="event.preventDefault();">
+                <h3>I would like to travel...</h3>
+                <div class="forms">
+                  <div class="formgroup" id="origin-form">
+                    <label for="origin">From:</label>
+                    <input type="text" id="origin" name="origin" placeholder="From" autocomplete="off">
+                  </div>
+                  <div class="formgroup" id="destination-form">
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" name="destination" placeholder="To" autocomplete="off">
+                  </div>
+                  <div class="formgroup" id="date-form">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" placeholder="" autocomplete="off">
+                  </div>
+                  <input type="submit" value="Search">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
         <div class="one-trip">
           <div class="main-box">
             <div class="container">
