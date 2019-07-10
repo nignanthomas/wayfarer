@@ -121,6 +121,8 @@ header nav li{
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  font-size: 30px;
+  text-align: center;
 }
 .origin, .arrow, .destination{
   /* padding-left: 50px; */
@@ -201,28 +203,31 @@ footer .copy{
   .main-text{
     background: none;
     background-color: #573280;
-    min-height: 200px;
+    min-height: 275px;
     border-bottom-left-radius: 100px;
     /* border-bottom-right-radius: 100px; */
   }
   .main-text .centered-text p{
-    display: none;
+    /* display: none; */
+    font-size: 16px;
   }
   .main-text .centered-text h1{
-    font-size: 20px;
+    font-size: 25px;
   }
   .main-trips .container{
     width: 100%;
   }
   .main-box{
-    width: 90%;
+    width: 87.5%;
     margin: 0px 0px 50px 35px;
     margin-bottom: 0;
+    padding-left: 10px;
   }
   .more-box{
-    width: 90%;
+    width: 87.5%;
     margin: 0px 0px 50px 35px;
     margin-top: 0;
+    padding-right: 10px;
   }
   .main-box, .more-box{
     border-top-right-radius: 0;

@@ -22,8 +22,6 @@ const trips = [
     status: 1
   },
 ]
-console.log(trips[0].id);
-
 
 const tripsDiv = document.querySelector("#trips-container");
 
@@ -51,8 +49,3 @@ trips.forEach((trip,i)=>{
 
   tripsDiv.appendChild(newTrip);
 });
-
-
-
-
-console.log(tripsDiv);
