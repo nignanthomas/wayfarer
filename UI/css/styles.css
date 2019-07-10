@@ -79,12 +79,24 @@ header #signs li{
   border: 2px solid #e8491d;
   border-radius: 10px;
 }
-header #trips a:hover{
+#trips li:hover{
   background-color: #000000;
+  color: #ffffff;
+}
+#signs li:hover{
+  background-color: #e8491d;
   color: #ffffff;
 }
 header nav li{
   margin-left: 1rem;
+}
+#trips .current{
+  color: #ffffff;
+  background-color: #000000;
+}
+#signs .current{
+  color: #ffffff;
+  background-color: #e8491d;
 }
 /* Main */
 .main{
