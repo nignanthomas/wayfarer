@@ -38,7 +38,7 @@ describe('Trips Tests', () => {
       .get('/api/v1/trips')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.be.a('array');
+        res.body.should.be.a('object');
         done();
       });
   });
