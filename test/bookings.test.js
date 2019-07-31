@@ -14,6 +14,7 @@ describe('Bookings Tests', () => {
       id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
+      seat_number: 12,
       create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     chai
@@ -43,6 +44,7 @@ describe('Bookings Tests', () => {
       id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
+      seat_number: 12,
       create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     const bookingId = BookingModel.book(booking).id;
@@ -61,6 +63,7 @@ describe('Bookings Tests', () => {
       id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
+      seat_number: 12,
       create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     const bookingId = BookingModel.book(booking).id;
@@ -71,6 +74,7 @@ describe('Bookings Tests', () => {
         id: BookingModel.getAllBookings().length + 1,
         trip_id: 2,
         user_id: 2,
+        seat_number: 12,
         create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       })
       .end((err, res) => {
@@ -85,6 +89,7 @@ describe('Bookings Tests', () => {
       id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
+      seat_number: 12,
       create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     const bookingId = BookingModel.book(booking).id;

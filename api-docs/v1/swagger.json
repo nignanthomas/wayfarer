@@ -180,6 +180,7 @@
         "description" : "Returns an updated booking",
         "operationId" : "updateBooking",
         "produces" : [ "application/json" ],
+        "consumes" : [ "application/json" ],
         "parameters" : [ {
           "name" : "bookingId",
           "in" : "path",
@@ -187,12 +188,21 @@
           "required" : true,
           "type" : "integer",
           "format" : "int64"
+        },
+        {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Trip object to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UpdateSeat"
+          }
         } ],
         "responses" : {
           "200" : {
             "description" : "Booking successfully updated",
             "schema" : {
-              "$ref" : "#/definitions/UpdateSeat"
+              "$ref" : "#/definitions/Booking"
             }
           },
           "400" : {
@@ -301,6 +311,7 @@
         "summary" : "Update a trip by ID",
         "description" : "Returns an updated trip",
         "operationId" : "updateTrip",
+        "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "tripId",
@@ -309,6 +320,15 @@
           "required" : true,
           "type" : "integer",
           "format" : "int64"
+        },
+        {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Trip object to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Trip"
+          }
         } ],
         "responses" : {
           "200" : {

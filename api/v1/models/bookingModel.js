@@ -11,13 +11,15 @@ class Booking {
         id: 1,
         trip_id: 2,
         user_id: 1,
-        create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+        seat_number: 12,
+        created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       },
       {
         id: 2,
         trip_id: 1,
         user_id: 2,
-        create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+        seat_number: 32,
+        created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       },
     ];
   }
@@ -31,7 +33,8 @@ class Booking {
       id: this.bookings.length + 1,
       trip_id: data.trip_id,
       user_id: data.user_id,
-      create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+      seat_number: data.seat_number,
+      created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     this.bookings.push(newBooking);
     return newBooking;
@@ -64,7 +67,8 @@ class Booking {
       id: booking.id,
       trip_id: data.trip_id || booking.trip_id,
       user_id: data.user_id || booking.user_id,
-      create_on: data.create_on || booking.create_on,
+      seat_number: data.seat_number || booking.seat_number,
+      created_on: data.created_on || booking.created_on,
     };
     return this.bookings[index];
   }
