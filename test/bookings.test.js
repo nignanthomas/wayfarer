@@ -92,8 +92,8 @@ describe('Bookings Tests', () => {
       .request(app)
       .delete(`/api/v1/bookings/${bookingId}`)
       .end((err, res) => {
-        res.should.have.status(204);
-        res.body.shoud.be.a('object');
+        res.should.have.status(200);
+        res.body.should.be.a('object');
         done();
       });
   });

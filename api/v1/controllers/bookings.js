@@ -57,5 +57,20 @@ const Booking = {
     return res.status(404).json({ status: 'error', error: `Cannot find booking of id: ${bookingId}` });
   },
 
+  /**
+  * @param {object} req
+  * @param {object} res
+  * @returns {messgae} message Booking deleted
+  */
+  deleteBooking(req, res) {
+    const bookingId = parseInt(req.params.bookingId, 10);
+    const oneBooking = BookingModel.getOneBooking(bookingId);
+    if (oneBooking) {
+      BookingModel.deleteBooking(bookingId);
+      return res.send({ status: 'success', data: { message: 'Booking Deleted Successfully!' } });
+    }
+    return res.status(404).json({ status: 'error', error: `Cannot find booking of id: ${bookingId}` });
+  },
+
 };
 export default Booking;
