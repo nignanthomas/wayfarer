@@ -51,7 +51,7 @@ class Trip {
   }
 
   /**
-  * @param {uuid} id
+  * @param {id} id
   * @returns {object} trip object
   */
   getOneTrip(id) {
@@ -67,7 +67,7 @@ class Trip {
 
   /**
   *
-  * @param {uuid} id
+  * @param {id} id
   * @param {object} data
   */
   updateTrip(id, data) {
@@ -88,7 +88,7 @@ class Trip {
 
   /**
   *
-  * @param {uuid} id
+  * @param {id} id
   */
   deleteTrip(id) {
     const trip = this.getOneTrip(id);

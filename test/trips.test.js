@@ -113,7 +113,7 @@ describe('Trips Tests', () => {
       .request(app)
       .delete(`/api/v1/trips/${tripId}`)
       .end((err, res) => {
-        res.should.have.status(204);
+        res.should.have.status(200);
         res.body.should.be.a('object');
         done();
       });
