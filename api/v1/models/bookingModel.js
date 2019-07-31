@@ -59,13 +59,14 @@ class Booking {
   */
   updateBooking(id, data) {
     const booking = this.getOneBooking(id);
-    const index = this.bookins.indexOf(booking);
+    const index = this.bookings.indexOf(booking);
     this.bookings[index] = {
+      id: booking.id,
       trip_id: data.trip_id || booking.trip_id,
       user_id: data.user_id || booking.user_id,
       create_on: data.create_on || booking.create_on,
     };
-    return booking;
+    return this.bookings[index];
   }
 
   /**

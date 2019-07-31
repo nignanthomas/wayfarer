@@ -42,5 +42,20 @@ const Booking = {
     return res.status(404).json({ status: 'error', error: `Cannot find booking of id: ${bookingId}` });
   },
 
+  /**
+  * @param {object} req
+  * @param {object} res
+  * @returns {object} updated booking object
+  */
+  updateBooking(req, res) {
+    const bookingId = parseInt(req.params.bookingId, 10);
+    const oneBooking = BookingModel.getOneBooking(bookingId);
+    if (oneBooking) {
+      const updatedBooking = BookingModel.updateBooking(bookingId, req.body);
+      return res.status(200).json({ status: 'success', data: { message: 'Booking Updated Successfully!', data: updatedBooking } });
+    }
+    return res.status(404).json({ status: 'error', error: `Cannot find booking of id: ${bookingId}` });
+  },
+
 };
 export default Booking;
