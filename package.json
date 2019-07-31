@@ -4,14 +4,15 @@
   "description": "WayFarer is a public bus transportation booking service. (API)",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --exec babel-node ./api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nignanthomas/wayfarer-api.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "nignanthomas",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nignanthomas/wayfarer-api/issues"
@@ -29,6 +30,12 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "@babel/runtime": "^7.5.5",
-    "babel-loader": "^8.0.6"
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2"
   }
 }
