@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/nignanthomas/wayfarer.svg?branch=develop)](https://travis-ci.org/nignanthomas/wayfarer)
+[![Coverage Status](https://coveralls.io/repos/github/nignanthomas/wayfarer/badge.svg?branch=develop)](https://coveralls.io/github/nignanthomas/wayfarer?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8c4c61983f337376392e/maintainability)](https://codeclimate.com/github/nignanthomas/wayfarer/maintainability)
+
 # WayFarer
 WayFarer is a public bus transportation booking service.
 
