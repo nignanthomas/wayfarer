@@ -1,9 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import uuid from 'uuid';
 import moment from 'moment';
 import app from '../api/server';
-import Booking from '../api/v1/models/bookingModel';
+import BookingModel from '../api/v1/models/bookingModel';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -12,10 +11,10 @@ chai.use(chaiHttp);
 describe('Bookings Tests', () => {
   it('POST /api/v1/bookings Should create a new booking object', (done) => {
     const booking = {
-      id: uuid.v4(),
+      id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
-      create_on: moment.now(),
+      create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     chai
       .request(app)
@@ -34,19 +33,19 @@ describe('Bookings Tests', () => {
       .get('/api/v1/bookings')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.be.a('array');
+        res.body.should.be.a('object');
         done();
       });
   });
 
   it('GET /api/v1/bookings/:id Should return a specific booking', (done) => {
     const booking = {
-      id: uuid.v4(),
+      id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
-      create_on: moment.now(),
+      create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
-    const bookingId = Booking.book(booking).id;
+    const bookingId = BookingModel.book(booking).id;
     chai
       .request(app)
       .get(`/api/v1/bookings/${bookingId}`)
@@ -59,20 +58,20 @@ describe('Bookings Tests', () => {
 
   it('PATCH /api/v1/bookings/:id Should update a given booking', (done) => {
     const booking = {
-      id: uuid.v4(),
+      id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
-      create_on: moment.now(),
+      create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
-    const bookingId = Booking.book(booking).id;
+    const bookingId = BookingModel.book(booking).id;
     chai
       .request(app)
       .patch(`/api/v1/bookings/${bookingId}`)
       .send({
-        id: uuid.v4(),
+        id: BookingModel.getAllBookings().length + 1,
         trip_id: 2,
         user_id: 2,
-        create_on: moment.now(),
+        create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       })
       .end((err, res) => {
         res.should.have.status(200);
@@ -83,12 +82,12 @@ describe('Bookings Tests', () => {
 
   it('DELETE /api/v1/bookings/:id Should delete a given booking', (done) => {
     const booking = {
-      id: uuid.v4(),
+      id: BookingModel.getAllBookings().length + 1,
       trip_id: 1,
       user_id: 2,
-      create_on: moment.now(),
+      create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
-    const bookingId = Booking.book(booking).id;
+    const bookingId = BookingModel.book(booking).id;
     chai
       .request(app)
       .delete(`/api/v1/bookings/${bookingId}`)

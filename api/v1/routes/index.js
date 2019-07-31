@@ -1,6 +1,7 @@
 import express from 'express';
 import Trip from '../controllers/trips';
 import User from '../controllers/users';
+import Booking from '../controllers/bookings';
 
 const router = express.Router();
 
@@ -15,6 +16,9 @@ router.get('/trips/:tripId', Trip.getOneTrip);
 router.patch('/trips/:tripId', Trip.updateTrip);
 router.patch('/trips/:tripId/cancel', Trip.cancelTrip);
 router.delete('/trips/:tripId', Trip.deleteTrip);
+
+// Bookings routes
+router.get('/bookings', Booking.getAllBookings);
 
 
 export default router;
