@@ -16,5 +16,19 @@ const User = {
     return res.status(200).json({ status: 'success', data: users });
   },
 
+  /**
+  * @param {object} req
+  * @param {object} res
+  * @returns {object} user object
+  */
+  getOneUser(req, res) {
+    const userId = parseInt(req.params.userId, 10);
+    const user = UserModel.getOneUser(userId);
+    if (user) {
+      return res.status(200).json({ status: 'success', data: user });
+    }
+    return res.status(404).json({ status: 'error', error: `Cannot find user of id: ${userId}` });
+  },
+
 };
 export default User;
