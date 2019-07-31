@@ -19,6 +19,7 @@ router.delete('/trips/:tripId', Trip.deleteTrip);
 
 // Bookings routes
 router.get('/bookings', Booking.getAllBookings);
+router.get('/bookings/:bookingId', Booking.getOneBooking);
 
 
 export default router;
