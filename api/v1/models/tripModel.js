@@ -41,9 +41,9 @@ class Trip {
       bus_license_number: data.bus_license_number,
       origin: data.origin,
       destination: data.destination,
-      trip_date: data.trip_date,
+      trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       fare: data.fare,
-      status: data.status || 1,
+      status: 1,
     };
     this.trips.push(newTrip);
     return newTrip;

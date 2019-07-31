@@ -1,4 +1,5 @@
 import TripModel from '../models/tripModel';
+import tripValidation from '../helpers/tripValidators';
 
 const Trip = {
   /**
@@ -9,8 +10,12 @@ const Trip = {
   createTrip(req, res) {
     const { body } = req;
     // eslint-disable-next-line max-len
-    if (!body.seating_capacity || !body.bus_license_number || !body.origin || !body.destination || !body.trip_date || !body.fare) {
-      return res.status(400).json({ status: 'error', error: 'Bad Request! All trip fields are required!' });
+    // if (!body.seating_capacity || !body.bus_license_number || !body.origin || !body.destination || !body.fare) {
+    //   return res.status(400).json({ status: 'error', error: 'Bad Request! All trip fields are required!' });
+    // }
+    const { error } = tripValidation.validateNewTrip(body);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: error.details[0].message });
     }
     const trip = TripModel.createTrip(body);
     return res.status(201).json({ status: 'success', data: trip });
