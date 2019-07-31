@@ -6,7 +6,7 @@ import app from '../api/server';
 const should = chai.should();
 chai.use(chaiHttp);
 
-describe('Sgin In', () => {
+describe('Sign In', () => {
   it('POST /api/v1/auth/signin Should log in a user', (done) => {
     const user = {
       email: 'nignanthomas@gmail.com',
