@@ -1,5 +1,3 @@
-import uuid from 'uuid';
-
 class User {
   /**
   * class constructor
@@ -32,7 +30,7 @@ class User {
   */
   createUser(data) {
     const newUser = {
-      id: uuid.v4(),
+      id: this.trips.length + 1,
       email: data.email || '',
       first_name: data.first_name || '',
       last_name: data.last_name || '',
@@ -44,7 +42,7 @@ class User {
   }
 
   /**
-  * @param {uuid} id
+  * @param {id} id
   * @returns {object} user object
   */
   getOneUser(id) {
@@ -60,7 +58,7 @@ class User {
 
   /**
   *
-  * @param {uuid} id
+  * @param {id} id
   * @param {object} data
   */
   updateUser(id, data) {
@@ -79,7 +77,7 @@ class User {
 
   /**
   *
-  * @param {uuid} id
+  * @param {id} id
   */
   deleteUser(id) {
     const user = this.getOneUser(id);

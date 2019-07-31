@@ -1,7 +1,11 @@
 import express from 'express';
 import Trip from '../controllers/trips';
+import User from '../controllers/users';
 
 const router = express.Router();
+
+// User routes
+router.get('/users', User.getAllUsers);
 
 // Trips routes
 router.post('/trips', Trip.createTrip);

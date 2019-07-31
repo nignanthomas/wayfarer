@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import uuid from 'uuid';
 import moment from 'moment';
 import app from '../api/server';
 import Trip from '../api/v1/models/tripModel';
@@ -81,7 +80,6 @@ describe('Trips Tests', () => {
       .request(app)
       .patch(`/api/v1/trips/${tripId}`)
       .send({
-        // id: uuid.v4(),
         seating_capacity: 45,
         bus_license_number: 'KC8 219',
         origin: 'Ouagadougou',
