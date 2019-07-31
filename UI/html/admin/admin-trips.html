@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>WayFarer Admin Dashboard</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-		<link rel="stylesheet" href="../css/admin.css">
+		<link rel="stylesheet" href="../../css/admin.css">
 	</head>
 	<body>
 		<div class="header">
@@ -29,13 +29,13 @@
 							<span>Create Trip</span>
 						</a>
 					</li>
-					<li>
+					<li class="active">
 						<a href="#">
 							<span><i class="fa fa-bus"></i></span>
 							<span>Trips</span>
 						</a>
 					</li>
-					<li class="active">
+					<li>
 						<a href="admin-bookings.html">
 							<span><i class="fas fa-ticket-alt"></i></span>
 							<span>Bookings</span>
@@ -52,27 +52,36 @@
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Admin Dashboard: //All Bookings
+				Admin Dashboard: //All Trips
 			</div>
 			<div class="main">
-        <div class="container">
-          <h2 class="trip-head">Booking Details</h2>
-          <hr>
+        <div class="container one-trip">
           <div class="trip-details">
-            <h2 class="trip-title">Ouagadougou = Kigali</h2>
-            <p class="trip-date"><span class="trip-cat">Date: </span>Sunday 24th of July</p>
-            <p class="trip-passenger"><span class="trip-cat">Passenger: </span>Harry Zona</p>
-            <p class="trip-boarding"><span class="trip-cat">Boarding Time: </span>4:30pm</p>
-            <p class="trip-time"><span class="trip-cat">Departure Time: </span>5:00pm</p>
-            <p class="trip-available"><span class="trip-cat">Seat Number: </span>21</p>
+            <h3>Ouagadougou  ==>  Kigali</h3>
+            <p>Sunday, 24th of July</p>
+            <p><b>@ 5:00pm</b></p>
+            <p><b>24</b> seats available</p>
           </div>
           <div class="trip-more">
             <p><b>$100</b></p>
-            <button class="red" type="button" name="button" onclick="deleteBook();">Delete</button>
+            <a href="admin-trip.html"><button type="button" name="button">More</button></a>
+          </div>
+        </div>
+        <hr>
+        <div class="container one-trip">
+          <div class="trip-details">
+            <h3>Ouagadougou  ==>  Kigali</h3>
+            <p>Sunday, 24th of July</p>
+            <p><b>@ 5:00pm</b></p>
+            <p><b>24</b> seats available</p>
+          </div>
+          <div class="trip-more">
+            <p><b>$100</b></p>
+						<a href="admin-trip.html"><button type="button" name="button">More</button></a>
           </div>
         </div>
 			</div>
 		</div>
-		<script src="../js/admin.js"></script>
+		<script src="../../js/admin.js"></script>
 	</body>
 </html>

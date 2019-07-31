@@ -7,18 +7,19 @@
     <meta name="keywords" content="bus, ticket, booking, travel">
     <meta name="author" content="nignanthomas">
     <title>WayFarer | Homepage</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/one-trip.css">
-    <link rel="stylesheet" href="./css/seat.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/search-form.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-    <link rel="icon" href="./images/bus-icon.png">
+    <link rel="icon" href="../images/bus-icon.png">
   </head>
   <body>
     <header>
     <div class="container">
       <div id="branding">
-        <img src="./images/bus-logo.png" alt="">
-        <h3>WayFarer</h3>
+        <a href="index.html">
+          <img src="../images/bus-logo.png" alt="">
+          <h3>WayFarer</h3>
+        </a>
       </div>
       <nav>
         <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
@@ -29,7 +30,7 @@
         <div class="subnav" id="trips">
           <ul>
             <a href="index.html"><li class="all-trips">All Trips</li></a>
-            <a href="my-trips.html"><li class="my-trips">My Trips</li></a>
+            <a href="my-trips.html"><li class="my-trips current">My Trips</li></a>
           </ul>
         </div>
         <div class="subnav" id="signs">
@@ -55,31 +56,53 @@
 
     <div class="main-body">
       <div class="container">
-        <div class="container">
-          <div class="main-content">
-            <div class="container">
-              <h2 class="trip-head">Booking Details</h2>
-              <hr>
-              <div class="trip-details">
-                <h2 class="trip-title">Ouagadougou = Kigali</h2>
-                <p class="trip-date"><span class="trip-cat">Date: </span>Sunday 24th of July</p>
-                <p class="trip-passenger"><span class="trip-cat">Passenger: </span>Harry Zona</p>
-                <p class="trip-boarding"><span class="trip-cat">Boarding Time: </span>4:30pm</p>
-                <p class="trip-time"><span class="trip-cat">Departure Time: </span>5:00pm</p>
-                <p class="trip-available"><span class="trip-cat">Seat Number: </span>21</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h3><i class="fas fa-ticket-alt"></i> My Bookings</h3>
+        <div class="container trips-list">
+          <div class="">
+              <div class="container one-trip">
+                <img src="../images/barcode.png" alt="">
+                <div class="trip-details">
+                  <h3>Ouagadougou  ==>  Kigali</h3>
+                  <p>Sunday, 24th of July</p>
+                  <p><b>@ 5:00pm</b></p>
+                  <p>Seat number: <b>24</b></p>
+                  <p>Passenger: <b>Jin Kazama</b></p>
+                </div>
+                <div class="trip-more">
+                  <p><b>$100</b></p>
+                  <a href="one-booking.html"><button type="button" name="button">More</button></a>
+                </div>
               </div>
-              <div class="trip-more">
-                <p><b>$100</b></p>
-                <button type="button" name="button" onclick="deleteBook();">Delete</button>
               </div>
-            </div>
+          </div>
+
+        <div class="container trips-list">
+          <div class="">
+              <div class="container one-trip">
+                <img src="../images/barcode.png" alt="">
+                <div class="trip-details">
+                  <h3>Ouagadougou  ==>  Kigali</h3>
+                  <p>Sunday, 24th of July</p>
+                  <p><b>@ 5:00pm</b></p>
+                  <p>Seat number: <b>24</b></p>
+                  <p>Passenger: <b>Jin Kazama</b></p>
+                </div>
+                <div class="trip-more">
+                  <p><b>$100</b></p>
+                  <a href="one-booking.html"><button type="button" name="button">More</button></a>
+                </div>
+              </div>
+              </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </section>
-
 
   <section class="pre-footer">
 
@@ -104,7 +127,7 @@
       </div>
     </footer>
 
-    <script src="./js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
 
 
   </body>
