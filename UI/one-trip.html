@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bus Ticket Booking WebApp">
-  <meta name="keywords" content="bus, ticket, booking, travel">
-  <meta name="author" content="nignanthomas">
-  <title>WayFarer | Trip Details</title>
-  <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/one-trip.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bus Ticket Booking WebApp">
+    <meta name="keywords" content="bus, ticket, booking, travel">
+    <meta name="author" content="nignanthomas">
+    <title>WayFarer | Homepage</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/one-trip.css">
+    <link rel="stylesheet" href="./css/seat.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+    <link rel="icon" href="./images/bus-icon.png">
+  </head>
+  <body>
+    <header>
     <div class="container">
       <div id="branding">
-        <img src="./images/bus-logo.png" alt="">
-        <h3>WayFarer</h3>
+        <a href="index.html">
+          <img src="./images/bus-logo.png" alt="">
+          <h3>WayFarer</h3>
+        </a>
       </div>
       <nav>
         <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
@@ -34,6 +38,7 @@
           <ul>
             <a href="signup.html"><li class="signup">Sign Up</li></a>
             <a href="signin.html"><li class="signin">Sign In</li></a>
+            <a href="./admin/admin-trips.html">Admin</a>
           </ul>
         </div>
       </nav>
@@ -42,76 +47,303 @@
 
   <section class="main">
     <div class="main-text">
-      <div class="container">
-        <div class="centered-text">
+      <div class="main-shadow">
+        <div class="container">
           <h1>Book | Pay | Travel</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
         </div>
       </div>
     </div>
-    <div class="main-trips">
-      <div class="container">
-        <div class="main-box">
-          <div class="container">
-            <div class="voyage">
-              <div class="origin">Kigali</div>
-              <div class="arrow"><img src="./images/arrow.png" alt=""></div>
-              <div class="destination">Nairobi</div>
-            </div>
-            <div class="date">Date: Sun, 7th Jul 2019</div>
-            <div class="time">Time: 09:00pm</div>
-            <div class="bus-type">Bus Type: 43 Seater</div>
-            <div class="free-seats">Availabale seats: 14</div>
-            <div class="extras">Extras: Lorem Ipsum. Lorem Ipsum.</div>
-          </div>
-        </div>
-        <div class="more-box">
-          <div class="container">
-            <div class="more"><button type="button" name="button" onclick="showBook();">Book a seat</button></div>
-            <!-- <div class="price"><button type="button" name="button">Choose Seat</button></div> -->
-            <div class="book-info">
-              <h3>Passenger Details</h3>
-              <form action="" id="passenger-form" onsubmit="event.preventDefault();">
-                <div class="forms">
-                  <div class="formgroup" id="name-form">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" name="name" required placeholder="e.g Thomas Nignan" autocomplete="off">
-                  </div>
-                  <div class="formgroup" id="phone-form">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" id="phone" name="phone" required placeholder="e.g +250712345678" autocomplete="off">
-                  </div>
-                  <div class="formgroup" id="id-form">
-                    <label for="id-number">ID/Passport:</label>
-                    <input type="text" id="id-number" name="id-number" required placeholder="e.g A1234567" autocomplete="off">
-                  </div>
-                  <input type="submit" value="Book">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
 
+    <div class="main-body">
+      <div class="container">
+        <div class="container">
+          <div class="main-content">
+            <div class="container">
+              <h2 class="trip-head">Trip Details</h2>
+              <hr>
+              <div class="trip-details">
+                <h2 class="trip-title">Ouagadougou => Kigali</h2>
+                <p class="trip-date"><span class="trip-cat">Date: </span>Sunday 24th of July</p>
+                <p class="trip-boarding"><span class="trip-cat">Boarding Time: </span>4:30pm</p>
+                <p class="trip-time"><span class="trip-cat">Departure Time: </span>5:00pm</p>
+                <p class="trip-capacity"><span class="trip-cat">Seating Capacity: </span>45 seats</p>
+                <p class="trip-available"><span class="trip-cat">Available Seats: </span>21 seats</p>
+              </div>
+              <div class="trip-more">
+                <p><b>$100</b></p>
+                <button type="button" name="button" onclick="displayBook();">Book</button>
+              </div>
+            </div>
+            <br>
+            <div class="container seat-block">
+              <div>
+                <div class="seat-selector">
+                  <h2>Choose A Seat</h2>
+                  <div class="left-row">
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="1A" disabled>
+                        <br>
+                        <label for="1A">1A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="2A">
+                        <br>
+                        <label for="2A">2A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="3A" checked>
+                        <br>
+                        <label for="3A">3A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="4A">
+                        <br>
+                        <label for="4A">4A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="5A">
+                        <br>
+                        <label for="5A">5A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="6A">
+                        <br>
+                        <label for="6A">6A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="7A">
+                        <br>
+                        <label for="7A">7A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="8A">
+                        <br>
+                        <label for="8A">8A</label>
+                      </div>
+                      <img src="./images/seat-icon.png" alt="">
+                    </div>
+                  </div>
+
+                  <div class="right-rows">
+                    <div class="b-row">
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="1B">
+                          <br>
+                          <label for="1B">1B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="2B">
+                          <br>
+                          <label for="2B">2B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="3B">
+                          <br>
+                          <label for="3B">3B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="4B">
+                          <br>
+                          <label for="4B">4B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="5B">
+                          <br>
+                          <label for="5B">5B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="6B">
+                          <br>
+                          <label for="6B">6B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="7B">
+                          <br>
+                          <label for="7B">7B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="8B">
+                          <br>
+                          <label for="8B">8B</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+                    </div>
+                    <div class="c-row">
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="1C">
+                          <br>
+                          <label for="1C">1C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="2C">
+                          <br>
+                          <label for="2C">2C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="3C">
+                          <br>
+                          <label for="3C">3C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="4C">
+                          <br>
+                          <label for="4C">4C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="5C">
+                          <br>
+                          <label for="5C">5C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="6C">
+                          <br>
+                          <label for="6C">6C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="7C">
+                          <br>
+                          <label for="7C">7C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="8C">
+                          <br>
+                          <label for="8C">8C</label>
+                        </div>
+                        <img src="./images/seat-icon.png" alt="">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="container seat-confirm">
+                <button class="cancel-button" type="button" name="button" onclick="cancelBook();">Cancel</button>
+                <button class="confirm-button"type="button" name="button" onclick="confirmBook();">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Help</a></li>
-        </ul>
-      </div>
-      <div class="copy">
-        <p>WayFarer, Copyright &copy; 2019</p>
-      </div>
-    </div>
-  </footer>
 
-  <script src="./js/scripts.js"></script>
-  <script src="./js/one-trip.js"></script>
-</body>
+  <section class="pre-footer">
+
+  </section>
+
+
+
+
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="copy">
+          <p>WayFarer, Copyright &copy; 2019</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/scripts.js"></script>
+
+
+  </body>
 </html>

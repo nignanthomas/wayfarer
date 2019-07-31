@@ -1,50 +1,49 @@
+form{
+  padding: 20px;
+}
 input{
+  font: 15px/1.5 "Montserrat", Helvetica, sans-serif;
   float: left;
   border: 2px solid #f4f4f4;
-  border-radius: 20px;
-  height: 30px;
-  /* width: 60%; */
-  margin: 5px;
-  padding-left: 2px;
+  height: 40px;
+  box-shadow: 0 5px 10px rgba(158, 158, 158, 0.3), 0 7px 6px rgba(158, 158, 158,0.22);
+  width: 30%;
+  margin-bottom: 20px;
 }
 input:focus{
   outline: none;
   border-color: #9932CC;
 }
-label{
-  display: none;
-}
-.search-bar .main-box{
-  min-height: 150px;
-  margin-bottom: 50px;
-}
-.main-box input[type='submit']{
-  width: auto;
-}
 input[type='submit']{
-  background-color: #e8491d;
+  /* background-color: #e8491d; */
   color: #ffffff;
   font-size: 20px;
-  width: auto;
-  min-height: 20px;
-  border-radius: 5px;
+  height: 46px;
   border: none;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.30), 0 7px 6px rgba(0,0,0,0.22);
-  margin-bottom: 10px;
+
+  background-size: 300% 100%;
+  transition: all .4s ease-in-out;
+  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
-.main-box input[type='submit']:active{
+input[type='submit']:active{
   transform: translateY(4px);
 }
-.main-box input[type='submit']:hover{
+input[type='submit']:hover{
   cursor: pointer;
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
 }
 /* Media Queries */
-@media(max-width: 768px){
-  /* #origin-form, #destination-form{
-    float: left;
-  } */
+@media(max-width: 767px){
   input{
     float: none;
+    width: 90%;
+    padding: 0;
+    margin: 0;
+  }
+  input[type='submit']{
+    margin-bottom: 10px;
   }
   form{
     text-align: center;

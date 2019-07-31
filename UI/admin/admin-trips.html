@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>WayFarer Admin Dashboard</title>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+		<link rel="stylesheet" href="../css/admin.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<i class="fa fa-bus"></i>
+				<span>WayFarer-</span>
+			</div>
+			<a href="#" class="nav-trigger" onclick="displayMenu();"><span></span></a>
+		</div>
+		<div class="side-nav">
+			<div class="logo">
+				<i class="fa fa-bus"></i>
+				<span>WayFarer</span>
+			</div>
+			<nav>
+				<ul>
+					<li>
+						<a href="create-trip.html">
+							<span><i class="fa fa-plus"></i></span>
+							<span>Create Trip</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="#">
+							<span><i class="fa fa-bus"></i></span>
+							<span>Trips</span>
+						</a>
+					</li>
+					<li>
+						<a href="admin-bookings.html">
+							<span><i class="fas fa-ticket-alt"></i></span>
+							<span>Bookings</span>
+						</a>
+					</li>
+					<li>
+						<a href="../index.html">
+							<span><i class="fas fa-angle-double-left"></i></span>
+							<span>Back To App</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="main-content">
+			<div class="title">
+				Admin Dashboard: //All Trips
+			</div>
+			<div class="main">
+        <div class="container one-trip">
+          <div class="trip-details">
+            <h3>Ouagadougou  ==>  Kigali</h3>
+            <p>Sunday, 24th of July</p>
+            <p><b>@ 5:00pm</b></p>
+            <p><b>24</b> seats available</p>
+          </div>
+          <div class="trip-more">
+            <p><b>$100</b></p>
+            <a href="admin-trip.html"><button type="button" name="button">More</button></a>
+          </div>
+        </div>
+        <hr>
+        <div class="container one-trip">
+          <div class="trip-details">
+            <h3>Ouagadougou  ==>  Kigali</h3>
+            <p>Sunday, 24th of July</p>
+            <p><b>@ 5:00pm</b></p>
+            <p><b>24</b> seats available</p>
+          </div>
+          <div class="trip-more">
+            <p><b>$100</b></p>
+						<a href="admin-trip.html"><button type="button" name="button">More</button></a>
+          </div>
+        </div>
+			</div>
+		</div>
+		<script src="../js/admin.js"></script>
+	</body>
+</html>

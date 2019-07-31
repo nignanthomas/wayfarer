@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bus Ticket Booking WebApp">
-  <meta name="keywords" content="bus, ticket, booking, travel">
-  <meta name="author" content="nignanthomas">
-  <title>WayFarer | All Trips</title>
-  <link rel="stylesheet" href="./css/styles.css">
-  <!-- <link rel="stylesheet" href="./css/signup.css"> -->
-  <link rel="stylesheet" href="./css/search-form.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bus Ticket Booking WebApp">
+    <meta name="keywords" content="bus, ticket, booking, travel">
+    <meta name="author" content="nignanthomas">
+    <title>WayFarer | Homepage</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/search-form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+    <link rel="icon" href="./images/bus-icon.png">
+  </head>
+  <body>
+    <header>
     <div class="container">
       <div id="branding">
-        <img src="./images/bus-logo.png" alt="">
-        <h3>WayFarer</h3>
+        <a href="index.html">
+          <img src="./images/bus-logo.png" alt="">
+          <h3>WayFarer</h3>
+        </a>
       </div>
       <nav>
         <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
@@ -35,6 +37,7 @@
           <ul>
             <a href="signup.html"><li class="signup">Sign Up</li></a>
             <a href="signin.html"><li class="signin">Sign In</li></a>
+            <a href="./admin/admin-trips.html">Admin</a>
           </ul>
         </div>
       </nav>
@@ -43,80 +46,208 @@
 
   <section class="main">
     <div class="main-text">
-      <div class="container">
-        <div class="centered-text">
+      <div class="main-shadow">
+        <div class="container">
           <h1>Book | Pay | Travel</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
         </div>
       </div>
     </div>
-    <div class="main-trips">
-      <div class="container" id="trips-container">
-        <div class="search-bar">
-          <div class="main-box">
+
+    <div class="main-body">
+      <div class="container">
+        <div class="container">
+          <div class="main-content">
             <div class="container">
+              <h2>I would like to travel...</h2>
               <form action="" id="search-form" onsubmit="event.preventDefault();">
-                <h3>I would like to travel...</h3>
-                <div class="forms">
                   <div class="formgroup" id="origin-form">
-                    <label for="origin">From:</label>
+                    <!-- <label for="origin">From:</label> -->
                     <input type="text" id="origin" name="origin" placeholder="From" autocomplete="off">
                   </div>
                   <div class="formgroup" id="destination-form">
-                    <label for="destination">Destination:</label>
+                    <!-- <label for="destination">Destination:</label> -->
                     <input type="text" id="destination" name="destination" placeholder="To" autocomplete="off">
                   </div>
-                  <div class="formgroup" id="date-form">
+                  <!-- <div class="formgroup" id="date-form">
                     <label for="date">Date:</label>
                     <input type="date" id="date" name="date" placeholder="" autocomplete="off">
+                  </div> -->
+                  <div class="formgroup">
+                    <input type="submit" value="Search">
                   </div>
-                  <input type="submit" value="Search">
-                </div>
               </form>
             </div>
           </div>
         </div>
-        <div class="one-trip">
-          <div class="main-box">
-            <div class="container">
-              <div class="voyage">
-                <div class="origin">Kigali</div>
-                <div class="arrow"><img src="./images/arrow.png" alt=""></div>
-                <div class="destination">Nairobi</div>
+
+        <h3><img src="./images/bus-small.png" alt=""> Scheduled departures...</h3>
+        <div class="container trips-list">
+          <div id="trips-group">
+            <div class="container one-trip">
+              <div class="bus-icon">
+                <i class="fa fa-bus"></i>
               </div>
-              <div class="date">Sun, 7th Jul 2019</div>
-              <div class="time">09:00pm</div>
-              <div class="bus-type">43 Seater</div>
+              <div class="trip-details">
+                <h3>Ouagadougou  ==>  Kigali</h3>
+                <p>Sunday, 24th of July</p>
+                <p><b>@ 5:00pm</b></p>
+                <p><b>24</b> seats available</p>
+              </div>
+              <div class="trip-more">
+                <p><b>$100</b></p>
+                <a href="one-trip.html"><button type="button" name="button">More</button></a>
+              </div>
+              <hr>
             </div>
-          </div>
-          <div class="more-box">
-            <div class="container">
-              <div class="more"><button type="button" name="button"><a href="one-trip.html">Details</a></button></div>
-              <div class="price">$50</div>
+            <div class="container one-trip">
+              <div class="bus-icon">
+                <i class="fa fa-bus"></i>
+              </div>
+              <div class="trip-details">
+                <h3>Ouagadougou  ==>  Kigali</h3>
+                <p>Sunday, 24th of July</p>
+                <p><b>@ 5:00pm</b></p>
+                <p><b>24</b> seats available</p>
+              </div>
+              <div class="trip-more">
+                <p><b>$100</b></p>
+                <button type="button" name="button">More</button>
+              </div>
+              <hr>
             </div>
           </div>
         </div>
+
+        <div class="destinations">
+          <u><h2>Top Destinations</h2></u>
+            <div class="card">
+              <p>Nairobi</p>
+              <img src="./images/city1.jpg" alt="">
+            </div>
+            <div class="card">
+              <p>Kampala</p>
+              <img src="./images/city2.jpg" alt="">
+            </div>
+            <div class="card">
+              <p>Arusha</p>
+              <img src="./images/city3.jpg" alt="">
+            </div>
+            <div class="card">
+              <p>Kigali</p>
+              <img src="./images/city4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="our-services">
+          <u><h2>Our Services</h2></u>
+          <em><p>This is what makes us stand from others</p></em> <br>
+          <div class="service">
+            <i class="fas fa-umbrella"></i>
+            <h3>Insurance</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
+          </div>
+          <div class="service">
+            <i class="fas fa-restroom"></i>
+            <h3>WC</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
+          </div>
+          <div class="service">
+            <i class="fas fa-pizza-slice"></i>
+            <h3>Snack</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
+          </div>
+          <div class="service">
+            <i class="fas fa-ban"></i>
+            <h3>Cancellation</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <u><h2>Testimonials</h2></u>
+          <em><p>Read what satisfied customers say about us</p></em>
+          <div class="card-test">
+            <div class="content">
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis nostrum deleniti nemo repellat.
+                Id, aliquid necessitatibus perferendis praesentium itaque doloribus molestias.</p>
+                <div class="image">
+                  <img src="./images/avatar-man.png" alt="">
+                </div>
+                <div class="details">
+                  <h2>
+                    Raphael Katana <br>
+                    <span>MUSICIAN</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-test">
+              <div class="content">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis nostrum deleniti nemo repellat.
+                  Id, aliquid necessitatibus perferendis praesentium itaque doloribus molestias.</p>
+                  <div class="image">
+                    <img src="./images/avatar-woman.png" alt="">
+                  </div>
+                  <div class="details">
+                    <h2>
+                      Sharon Wayne <br>
+                      <span>HR MANAGER</span>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div class="card-test">
+                <div class="content">
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis nostrum deleniti nemo repellat.
+                    Id, aliquid necessitatibus perferendis praesentium itaque doloribus molestias.</p>
+                    <div class="image">
+                      <img src="./images/avatar-woman.png" alt="">
+                    </div>
+                    <div class="details">
+                      <h2>
+                        Ivy Nzioka <br>
+                        <span>FRONT-END ENGINEER</span>
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
 
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Help</a></li>
-        </ul>
-      </div>
-      <div class="copy">
-        <p>WayFarer, Copyright &copy; 2019</p>
-      </div>
-    </div>
-  </footer>
+  <section class="pre-footer">
 
-  <script src="./js/scripts.js"></script>
-  <script src="./js/all-trips.js"></script>
-</body>
+  </section>
+
+
+
+
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="copy">
+          <p>WayFarer, Copyright &copy; 2019</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/scripts.js"></script>
+    <script src="./js/all-trips.js"></script>
+
+
+  </body>
 </html>

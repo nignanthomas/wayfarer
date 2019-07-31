@@ -1,7 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat&display=swap);
+
 body{
-  font: 15px/1.5 "Trebuchet MS", Helvetica, sans-serif;
-  padding:0;
-  margin:0;
+  font: 15px/1.5 "Montserrat", Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
   background-color: #f4f4f4;
 }
 /* Global */
@@ -17,7 +19,7 @@ ul {
 /* Header */
 header{
   background: #f4f4f4;
-  padding-top: 20px;
+  padding-top: 10px;
   min-height: 60px;
   border-bottom: #e8491d 3px solid;
 }
@@ -56,7 +58,9 @@ header #hamburger{
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
-.change .bar2{opacity: 0;}
+.change .bar2 {
+  opacity: 0;
+}
 
 .change .bar3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
@@ -69,117 +73,232 @@ header #signs a{
   color: #e8491d;
 }
 header nav{
-  margin-top: 1.2rem;
+  margin-top: 0.7rem;
+}
+header li{
+  margin-right: 10px;
+  padding-top: 5px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  height: 30px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  /* border-radius: 50px; */
+  transition: all .4s ease-in-out;
 }
 header #trips li{
-  border: 2px solid #000000;
-  border-radius: 10px;
+  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 header #signs li{
-  border: 2px solid #e8491d;
-  border-radius: 10px;
+  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
 }
-#trips li:hover{
-  background-color: #000000;
-  color: #ffffff;
-}
-#signs li:hover{
-  background-color: #e8491d;
-  color: #ffffff;
+header li:hover{
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
 }
 header nav li{
   margin-left: 1rem;
 }
-#trips .current{
-  color: #ffffff;
-  background-color: #000000;
+.current{
+  border: #3f86ed 2px solid;
 }
-#signs .current{
-  color: #ffffff;
-  background-color: #e8491d;
-}
+
 /* Main */
 .main{
-  border-bottom: #000000 3px solid;
+  margin-bottom: 100px;
 }
 .main-text{
-  background: url(../images/background.png) no-repeat 500px -20px, #573280;
+  background: url('../images/main-bg.jpg') center center no-repeat;
   background-size: cover;
-  min-height: 300px;
+  min-height: 500px;
+}
+.main-text .main-shadow{
+  background-color: #000000;
+  min-height: 500px;
+  opacity: 0.7;
+}
+.main-text .container{
+  padding-top: 150px;
+  text-align: center;
   color: #ffffff;
-  margin-bottom: -80px;
-  padding-top: 20px;
-  border-bottom-left-radius: 500px;
-  /* border-bottom-right-radius: 500px; */
-}
-.centered-text{
-  font-size: 20px;
-}
-.centered-text h1{
-  font-size: 40px;
-}
-.main-box, .more-box{
-  margin: 0 auto;
-  z-index: -1;
-  margin-left: 100px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  width: 60%;
-  min-height: 200px;
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-}
-.voyage{
-  padding-top: 20px;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
   font-size: 30px;
+  font-style: italic;
+}
+.main-body{
+  min-height: 500px;
+  margin-top: -75px;
+}
+.main-body>.container{
+  padding-bottom: 50px;
+}
+.main-body>.container>.container{
+  box-shadow: 0 10px 20px rgba(158, 158, 158, 0.3), 0 15px 12px rgba(158, 158, 158,0.22);
+  margin-bottom: 100px;
+  position: relative;
+}
+.main-content{
+  min-height: 100px;
+  background-color: #ffffff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+.trips-list{
+  background-color: #ffffff;
+  margin-top: 50px;
+}
+.trips-list hr{
+  width: 90%;
+}
+.one-trip img{
+  width: 200px;
+}
+.bus-icon{
+  float: left;
+  margin-top: 30px;
+  margin-right: 20px;
+}
+.bus-icon i{
+  font-size: 100px;
+}
+.trip-details{
+  float: left;
+}
+.trip-details h3{
+  text-decoration: underline;
+}
+.trip-more{
+  float: right;
   text-align: center;
 }
-.origin, .arrow, .destination{
-  /* padding-left: 50px; */
-  float: left;
+.trip-more p{
+  color: #ec8c69;
+  font-size: 24px;
 }
-.more-box{
-  margin-top: 0;
-  min-height: 75px;
-  margin-bottom: 50px;
-  border-top: 2px dashed #a9a9a9;
-}
-.more-box .more{
-  padding-top: 20px;
-  float: left;
-}
-.more-box .more button, .more-box .price button{
-  background-color: #e8491d;
+.trip-more button{
+  font: 15px/1.5 "Montserrat", Helvetica, sans-serif;
+  margin-right: 10px;
+  padding-top: 5px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 600;
   color: #ffffff;
-  font-size: 20px;
-  width: auto;
   height: 40px;
-  border-radius: 5px;
+  text-align:center;
   border: none;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.30), 0 7px 6px rgba(0,0,0,0.22);
-  margin-bottom: 10px;
-  margin-left: 10px;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  transition: all .4s ease-in-out;
+
+  background-image: linear-gradient(to right, #3463d7, #dc69ec, #f7186a , #883bfb);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+  outline: none;
 }
-.more-box .more button:active{
+.trip-more button:hover{
+  cursor: pointer;
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+.trip-more button:active{
   transform: translateY(4px);
 }
-.more-box .more button:hover{
-  cursor: pointer;
+.destinations{
+  text-align: center;
+  width: 100%;
 }
-.more-box .more a{
+.destinations h2{
+  margin-bottom: 30px;
+}
+.card{
+  float: left;
+  width: 25%;
+  position: relative;
+  padding-bottom: 20px;
+}
+.card img{
+  box-shadow: 0 5px 10px rgba(158, 158, 158,0.30), 0 7px 6px rgba(158, 158, 158,0.22);
+  /* margin-right: 20px; */
+}
+.card p{
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 50%;
   color: #ffffff;
-  text-decoration: none;
+  font-size: 25px;
 }
-.more-box .price{
-  padding-top: 20px;
-  float: right;
-  font-size: 20px
+.our-services{
+  text-align: center;
+  margin-top: 400px;
+}
+.our-services h2{
+  margin-bottom: 30px;
+}
+.service{
+  float: left;
+  width: 25%;
+  padding-bottom: 20px;
+}
+.service i{
+  font-size: 50px;
+  color: #573280;
+}
+.testimonials{
+  text-align: center;
+}
+.testimonials .card-test{
+  margin: 1.5%;
+  float: left;
+  width: 30%;
+  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  background-size: 300% 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px rgba(158, 158, 158,0.30), 0 7px 6px rgba(158, 158, 158,0.22);
+  transition: all .4s ease-in-out;
+}
+.testimonials .card-test:hover{
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+.testimonials .card-test .content p{
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+}
+.testimonials .card-test .content .image{
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.testimonials .card-test .content .details h2{
+  font-size: 16px;
+  color: #ffffff;
+}
+.testimonials .card-test .content .details h2 span{
+  color: #03a9f4;
+  font-size: 12px;
+  transition: 0.5s;
+}
+.testimonials .card-test:hover .content .details h2 span{
+  color: #ffffff;
+}
+.pre-footer{
+  background: url("../images/footer-bg1.png") center center;
+  height: 230px;
 }
 /* Footer */
 footer{
-  background-color: #e8491d;
+  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+  background-size: 300% 100%;
+  border-top: #000000 3px solid;
 }
 footer a{
   color: #ffffff;
@@ -193,10 +312,8 @@ footer .copy{
   float: right;
   color: #ffffff;
 }
-
-
 /* Media Queries */
-@media(max-width: 768px){
+@media(max-width: 767px){
   header{
     padding-top: 10px;
   }
@@ -212,37 +329,83 @@ footer .copy{
     margin: 0;
     padding: 0;
   }
-  .main-text{
-    background: none;
-    background-color: #573280;
-    min-height: 275px;
-    border-bottom-left-radius: 100px;
-    /* border-bottom-right-radius: 100px; */
+  header #signs li, header #trips li{
+    float: left;
+    width: auto;
   }
-  .main-text .centered-text p{
-    /* display: none; */
+  .main-text .container{
     font-size: 16px;
   }
-  .main-text .centered-text h1{
-    font-size: 25px;
+  .main-body>.container>.container{
+    width: 80%;
+    margin-bottom: 0;
   }
-  .main-trips .container{
+  .main-body>.container{
     width: 100%;
   }
-  .main-box{
-    width: 87.5%;
-    margin: 0px 0px 50px 35px;
-    margin-bottom: 0;
-    padding-left: 10px;
+  .trips-list{
+    width: 100%;
   }
-  .more-box{
-    width: 87.5%;
-    margin: 0px 0px 50px 35px;
-    margin-top: 0;
-    padding-right: 10px;
+  .bus-icon {
+    display: none;
   }
-  .main-box, .more-box{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+  .trip-details{
+    float: none;
+  }
+  .trip-more{
+    float: none;
+  }
+  .trip-more p{
+    float: none;
+  }
+  .trip-more p{
+    float: right;
+  }
+  .trip-more button{
+    float:left;
+  }
+  .destinations{
+    margin: 0 auto;
+  }
+  .card{
+    float: none;
+    text-align: center;
+    width: auto;
+    margin: 0 auto;
+  }
+  .our-services{
+    margin: 0 auto;
+  }
+  .service{
+    text-align: center;
+    padding: 20px;
+    width: auto;
+    margin: 0 auto;
+  }
+  .testimonials{
+    margin: 0 auto;
+  }
+  .testimonials .card-test{
+    margin: 10px;
+    width: auto;
+  }
+}
+@media(max-width: 768px){
+  .bus-icon{
+    display: none;
+  }
+}
+@media(min-width: 768px) and (max-width:1024px){
+  header #signs li, header #trips li{
+    width: auto;
+  }
+  .card{
+    width: 50%;
+  }
+  .service{
+    width: 50%;
+  }
+  .testimonials .card-test{
+    width: 40%;
   }
 }

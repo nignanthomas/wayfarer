@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bus Ticket Booking WebApp">
-  <meta name="keywords" content="bus, ticket, booking, travel">
-  <meta name="author" content="nignanthomas">
-  <title>WayFarer | Sign Up</title>
-  <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/signup.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bus Ticket Booking WebApp">
+    <meta name="keywords" content="bus, ticket, booking, travel">
+    <meta name="author" content="nignanthomas">
+    <title>WayFarer | Sign Up</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/sign.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+    <link rel="icon" href="./images/bus-icon.png">
+  </head>
+  <body>
+    <header>
     <div class="container">
       <div id="branding">
-        <img src="./images/bus-logo.png" alt="">
-        <h3>WayFarer</h3>
+        <a href="index.html">
+          <img src="./images/bus-logo.png" alt="">
+          <h3>WayFarer</h3>
+        </a>
       </div>
       <nav>
         <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
@@ -42,68 +45,83 @@
 
   <section class="main">
     <div class="main-text">
-      <div class="container">
-        <div class="centered-text">
+      <div class="main-shadow">
+        <div class="container">
           <h1>Book | Pay | Travel</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
         </div>
       </div>
     </div>
-    <div class="main-trips">
+
+    <div class="main-body">
       <div class="container">
-        <div class="main-box">
-          <div class="container">
-            <form action="" id="login-form" onsubmit="event.preventDefault(); signUp();">
-              <img src="./images/avatar.png" alt="">
-              <div class="forms">
-                <div class="formgroup" id="email-form">
-                  <label for="email">Email*</label>
-                  <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
-                </div>
-                <div class="formgroup" id="fname-form">
-                  <label for="fname">First Name*</label>
-                  <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off">
-                </div>
-                <div class="formgroup" id="lname-form">
-                  <label for="lname">Last Name*</label>
-                  <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
-                </div>
-                <div class="formgroup" id="password-form">
-                  <label for="password">Password*</label>
-                  <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
-                </div>
-                <div class="formgroup" id="confirm-form">
-                  <label for="confirm">Password*</label>
-                  <input type="password" id="confirm" name="confirm" required placeholder="confirm" autocomplete="off">
-                </div>
-                <input type="submit" value="Sign Up">
-                <div class="form-bottom">
-                  Already have an account? <a href="signin.html">Sign In!</a>
-                </div>
+        <div class="container">
+          <div class="main-content">
+            <div class="container">
+              <div class="form-box">
+                <h1>SIGN UP</h1>
+                <img src="./images/avatar.png" alt="">
+                <hr>
+                <form action="" id="login-form" onsubmit="event.preventDefault(); signUp();">
+                  <div class="forms">
+                    <div class="formgroup" id="email-form">
+                      <!-- <label for="email">Email*</label> -->
+                      <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
+                    </div>
+                    <div class="formgroup" id="fname-form">
+                      <!-- <label for="fname">First Name*</label> -->
+                      <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off">
+                    </div>
+                    <div class="formgroup" id="lname-form">
+                      <!-- <label for="lname">Last Name*</label> -->
+                      <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
+                    </div>
+                    <div class="formgroup" id="password-form">
+                      <!-- <label for="password">Password*</label> -->
+                      <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
+                    </div>
+                    <div class="formgroup" id="confirm-form">
+                      <!-- <label for="confirm">Password*</label> -->
+                      <input type="password" id="confirm" name="confirm" required placeholder="confirm" autocomplete="off">
+                    </div>
+                    <input type="submit" value="Sign Up">
+                    <div class="form-bottom">
+                      Already have an account? <a href="signin.html">Sign In!</a>
+                    </div>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Help</a></li>
-        </ul>
-      </div>
-      <div class="copy">
-        <p>WayFarer, Copyright &copy; 2019</p>
-      </div>
-    </div>
-  </footer>
+  <section class="pre-footer">
 
-  <script src="./js/scripts.js"></script>
-  <script src="./js/signup.js"></script>
-</body>
+  </section>
+
+
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="copy">
+          <p>WayFarer, Copyright &copy; 2019</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/scripts.js"></script>
+    <script src="./js/signup.js"></script>
+
+
+  </body>
 </html>
