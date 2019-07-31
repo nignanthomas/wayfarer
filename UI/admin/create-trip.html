@@ -1,61 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bus Ticket Booking WebApp">
-  <meta name="keywords" content="bus, ticket, booking, travel">
-  <meta name="author" content="nignanthomas">
-  <title>WayFarer | Create Trip</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/signup.css">
-  <link rel="stylesheet" href="../css/create-trip.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div id="branding">
-        <img src="../images/bus-logo.png" alt="">
-        <h3>WayFarer</h3>
-      </div>
-      <nav>
-        <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>
-        <div class="subnav" id="trips">
-          <ul>
-            <a href="../index.html"><li class="all-trips">All Trips</li></a>
-            <a href="../all-bookings.html"><li class="all-bookings">All Bookings</li></a>
-          </ul>
-        </div>
-        <div class="subnav" id="signs">
-          <ul>
-            <a href="../signup.html"><li class="signup">Sign Up</li></a>
-            <a href="../signin.html"><li class="signin">Sign In</li></a>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <section class="main">
-    <div class="main-text">
-      <div class="container">
-        <div class="centered-text">
-          <h1>Book | Pay | Travel</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
-        </div>
-      </div>
-    </div>
-    <div class="main-trips">
-      <div class="container">
-        <div class="main-box">
-          <div class="container">
-            <form action="" id="login-form" onsubmit="event.preventDefault(); signIn();">
-              <img src="../images/bus.png" alt="">
+<html>
+	<head>
+		<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>WayFarer Admin Dashboard</title>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+		<link rel="stylesheet" href="../css/admin.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<i class="fa fa-bus"></i>
+				<span>WayFarer-</span>
+			</div>
+			<a href="#" class="nav-trigger" onclick="displayMenu();"><span></span></a>
+		</div>
+		<div class="side-nav">
+			<div class="logo">
+				<i class="fa fa-bus"></i>
+				<span>WayFarer</span>
+			</div>
+			<nav>
+				<ul>
+					<li class="active">
+						<a href="#">
+							<span><i class="fa fa-plus"></i></span>
+							<span>Create Trip</span>
+						</a>
+					</li>
+					<li>
+						<a href="admin-trips.html">
+							<span><i class="fa fa-bus"></i></span>
+							<span>Trips</span>
+						</a>
+					</li>
+					<li>
+						<a href="admin-bookings.html">
+							<span><i class="fas fa-ticket-alt"></i></span>
+							<span>Bookings</span>
+						</a>
+					</li>
+					<li>
+						<a href="../index.html">
+							<span><i class="fas fa-angle-double-left"></i></span>
+							<span>Back To App</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="main-content">
+			<div class="title">
+				Admin Dashboard: //Create A Trip
+			</div>
+			<div class="main">
+				<form action="" id="login-form" onsubmit="event.preventDefault(); createTrip();">
+					<br>
               <div class="forms">
                 <div class="formgroup" id="from-form">
                   <label for="from">From</label>
@@ -71,7 +72,7 @@
                 </div>
                 <div class="formgroup" id="time-form">
                   <label for="time">Time</label>
-                  <input type="number" id="time" name="time" required placeholder="Time" autocomplete="off">
+                  <input type="time" id="time" name="time" required placeholder="Time" autocomplete="off">
                 </div>
                 <div class="formgroup" id="seats-form">
                   <label for="seats">Seats</label>
@@ -85,78 +86,11 @@
                   <label for="price">Price</label>
                   <input type="number" id="price" name="price" required placeholder="Price" autocomplete="off">
                 </div>
-                <div class="formgroup" id="extras-form">
-                  <label for="extras">Extras</label>
-                  <textarea name="extras" rows="2" cols="20" placeholder="Extras"></textarea>
-                </div>
                 <input type="submit" value="Create Trip">
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Help</a></li>
-        </ul>
-      </div>
-      <div class="copy">
-        <p>WayFarer, Copyright &copy; 2019</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="../js/scripts.js"></script>
-  <script src="../js/signup.js"></script>
-</body>
+			</div>
+		</div>
+		<script src="../js/admin.js"></script>
+	</body>
 </html>
-
-
-
-
-
-<!-- <form action="" id="login-form" onsubmit="event.preventDefault(); signIn();">
-  <img src="./images/avatar.png" alt="">
-  <div class="forms">
-    <div class="formgroup" id="from-form">
-      <label for="from">From</label>
-      <input type="text" id="from" name="from" required placeholder="Origin" autocomplete="off">
-    </div>
-    <div class="formgroup" id="destination-form">
-      <label for="destination">To</label>
-      <input type="text" id="destination" name="destination" required placeholder="Destination" autocomplete="off">
-    </div>
-    <div class="formgroup" id="date-form">
-      <label for="date">Date</label>
-      <input type="date" id="date" name="date" required placeholder="Date" autocomplete="off">
-    </div>
-    <div class="formgroup" id="time-form">
-      <label for="time">Time</label>
-      <input type="number" id="time" name="time" required placeholder="Time" autocomplete="off">
-    </div>
-    <div class="formgroup" id="seats-form">
-      <label for="seats">Seats</label>
-      <input type="number" id="seats" name="seats" required placeholder="Seats" autocomplete="off">
-    </div>
-    <div class="formgroup" id="plate-form">
-      <label for="plate">Plate</label>
-      <input type="text" id="plate" name="plate" required placeholder="Plate" autocomplete="off">
-    </div>
-    <div class="formgroup" id="price-form">
-      <label for="price">Price</label>
-      <input type="number" id="price" name="price" required placeholder="Price" autocomplete="off">
-    </div>
-    <div class="formgroup" id="extras-form">
-      <label for="extras">Extras</label>
-      <textarea name="extras" rows="2" cols="20" placeholder="Extras"></textarea>
-    </div>
-    <input type="submit" value="Create Trip">
-  </div>
-</form> -->

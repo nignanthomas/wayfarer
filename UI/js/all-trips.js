@@ -1,3 +1,4 @@
+
 const trips = [
   {
     id: 1,
@@ -5,7 +6,7 @@ const trips = [
     busLicenseNumber: "KCR 4455",
     origin: "Kigali",
     destination: "Nairobi",
-    tripDate: new Date(),
+    tripDate: "Sunday, 24th of July",
     tripTime: "09:00pm" ,
     fare: 50,
     status: 1
@@ -16,36 +17,33 @@ const trips = [
     busLicenseNumber: "KCQ 6968",
     origin: "Kigali",
     destination: "Kampala",
-    tripDate: new Date(),
+    tripDate: "Sunday, 24th of July",
     tripTime: "07:00pm" ,
     fare: 25,
     status: 1
   },
 ]
 
-const tripsDiv = document.querySelector("#trips-container");
+const tripsDiv = document.querySelector("#trips-group");
 
 trips.forEach((trip,i)=>{
   newTrip = document.createElement("div");
+  newTrip.classList.add("container");
   newTrip.classList.add("one-trip");
-  newTrip.innerHTML= `<div class="main-box">
-    <div class="container">
-      <div class="voyage">
-        <div class="origin">${trips[i].origin}</div>
-        <div class="arrow"><img src="./images/arrow.png" alt=""></div>
-        <div class="destination">${trips[i].destination}</div>
-      </div>
-      <div class="date">${trips[i].tripDate}</div>
-      <div class="time">${trips[i].tripTime}</div>
-      <div class="bus-type">43 Seater</div>
-    </div>
+  newTrip.innerHTML = `<div class="bus-icon">
+    <i class="fa fa-bus"></i>
   </div>
-  <div class="more-box">
-    <div class="container">
-      <div class="more"><button type="button" name="button">Details</button></div>
-      <div class="price">$${trips[i].fare}</div>
-    </div>
-  </div>`;
+  <div class="trip-details">
+    <h3>${trip.origin}  ==>  ${trip.destination}</h3>
+    <p>${trip.tripDate}</p>
+    <p><b>@ ${trip.tripTime}</b></p>
+    <p><b>11</b> seats available</p>
+  </div>
+  <div class="trip-more">
+    <p><b>$${trip.fare}</b></p>
+    <a href="one-trip.html"><button type="button" name="button">More</button></a>
+  </div>
+  <hr>`;
 
   tripsDiv.appendChild(newTrip);
 });
