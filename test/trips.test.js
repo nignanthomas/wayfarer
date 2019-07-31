@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import moment from 'moment';
 import app from '../api/server';
-import Trip from '../api/v1/models/tripModel';
+import TripModel from '../api/v1/models/tripModel';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 describe('Trips Tests', () => {
   it('POST /api/v1/trips Should create a new trip', (done) => {
     const trip = {
-      id: Trip.getAllTrips().length + 1,
+      id: TripModel.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
@@ -44,7 +44,7 @@ describe('Trips Tests', () => {
 
   it('GET /api/v1/trips/:id Should return a specific trip', (done) => {
     const trip = {
-      id: Trip.getAllTrips().length + 1,
+      id: TripModel.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
@@ -53,7 +53,7 @@ describe('Trips Tests', () => {
       fare: 5000,
       status: 1,
     };
-    const tripId = Trip.createTrip(trip).id;
+    const tripId = TripModel.createTrip(trip).id;
     chai
       .request(app)
       .get(`/api/v1/trips/${tripId}`)
@@ -66,7 +66,7 @@ describe('Trips Tests', () => {
 
   it('PATCH /api/v1/trips/:id Should update a given a trip', (done) => {
     const trip = {
-      id: Trip.getAllTrips().length + 1,
+      id: TripModel.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
@@ -75,7 +75,7 @@ describe('Trips Tests', () => {
       fare: 5000,
       status: 1,
     };
-    const tripId = Trip.createTrip(trip).id;
+    const tripId = TripModel.createTrip(trip).id;
     chai
       .request(app)
       .patch(`/api/v1/trips/${tripId}`)
@@ -97,7 +97,7 @@ describe('Trips Tests', () => {
 
   it('DELETE /api/v1/trips Should delete a given trip', (done) => {
     const trip = {
-      id: Trip.getAllTrips().length + 1,
+      id: TripModel.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
@@ -106,7 +106,7 @@ describe('Trips Tests', () => {
       fare: 5000,
       status: 1,
     };
-    const tripId = Trip.createTrip(trip).id;
+    const tripId = TripModel.createTrip(trip).id;
     chai
       .request(app)
       .delete(`/api/v1/trips/${tripId}`)

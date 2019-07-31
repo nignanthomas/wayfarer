@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import moment from 'moment';
 
 class Booking {
@@ -12,13 +11,13 @@ class Booking {
         id: 1,
         trip_id: 2,
         user_id: 1,
-        create_on: moment.now(),
+        create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       },
       {
         id: 2,
         trip_id: 1,
         user_id: 2,
-        create_on: moment.now(),
+        create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       },
     ];
   }
@@ -29,7 +28,7 @@ class Booking {
   */
   book(data) {
     const newBooking = {
-      id: uuid.v4(),
+      id: this.bookings.length + 1,
       trip_id: data.trip_id,
       user_id: data.user_id,
       create_on: data.create_on,
@@ -62,7 +61,6 @@ class Booking {
     const booking = this.getOneBooking(id);
     const index = this.bookins.indexOf(booking);
     this.bookings[index] = {
-      id: booking.id,
       trip_id: data.trip_id || booking.trip_id,
       user_id: data.user_id || booking.user_id,
       create_on: data.create_on || booking.create_on,
