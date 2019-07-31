@@ -33,11 +33,11 @@ class User {
   createUser(data) {
     const newUser = {
       id: uuid.v4(),
-      email: data.email,
-      first_name: data.first_name,
-      last_name: data.last_name,
-      password: data.password,
-      is_admin: data.is_admin,
+      email: data.email || '',
+      first_name: data.first_name || '',
+      last_name: data.last_name || '',
+      password: data.password || '',
+      is_admin: data.is_admin || false,
     };
     this.users.push(newUser);
     return newUser;
