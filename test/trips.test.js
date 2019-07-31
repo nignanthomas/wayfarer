@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import moment from 'moment';
 import app from '../api/server';
 import TripModel from '../api/v1/models/tripModel';
 
@@ -16,9 +15,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       chai
         .request(app)
@@ -39,9 +36,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       chai
         .request(app)
@@ -60,9 +55,7 @@ describe('Trips Tests', () => {
         seating_capacity: 45,
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       chai
         .request(app)
@@ -81,9 +74,7 @@ describe('Trips Tests', () => {
         seating_capacity: 45,
         bus_license_number: 'KCK 469',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       chai
         .request(app)
@@ -102,9 +93,7 @@ describe('Trips Tests', () => {
         seating_capacity: 45,
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       chai
         .request(app)
@@ -124,8 +113,6 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-        status: 1,
       };
       chai
         .request(app)
@@ -162,9 +149,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       const tripId = TripModel.createTrip(trip).id;
       chai
@@ -209,9 +194,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       const tripId = TripModel.createTrip(trip).id;
       chai
@@ -222,7 +205,6 @@ describe('Trips Tests', () => {
           bus_license_number: 'KC8 219',
           origin: 'Ouagadougou',
           destination: 'Kigali',
-          trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
           fare: 7500,
         })
         .end((err, res) => {
@@ -245,7 +227,6 @@ describe('Trips Tests', () => {
           bus_license_number: 'KC8 219',
           origin: 'Ouagadougou',
           destination: 'Kigali',
-          trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
           fare: 7500,
         })
         .end((err, res) => {
@@ -264,9 +245,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
-        status: 1,
       };
       const tripId = TripModel.createTrip(trip).id;
       chai
