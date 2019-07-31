@@ -31,10 +31,10 @@ class User {
   createUser(data) {
     const newUser = {
       id: this.users.length + 1,
-      email: data.email || '',
-      first_name: data.first_name || '',
-      last_name: data.last_name || '',
-      password: data.password || '',
+      email: data.email,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      password: data.password,
       is_admin: data.is_admin || false,
     };
     this.users.push(newUser);
