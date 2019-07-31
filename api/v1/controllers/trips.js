@@ -24,7 +24,7 @@ const Trip = {
     try {
       const trips = TripModel.getAllTrips();
       if (!trips.length) {
-        return res.status(200).json({ status: 'No Trips yet!', data: [] });
+        return res.status(404).json({ status: 'No Trips yet!', data: [] });
       }
       return res.status(200).json({ status: 'success', data: trips });
     } catch (error) {
@@ -38,11 +38,25 @@ const Trip = {
   * @returns {object} trip object
   */
   getOneTrip(req, res) {
-    // eslint-disable-next-line max-len
-    const tripId = parseInt(req.params.tripId, 10); // Because of uuid.v4 that returns alpha-numeric I can't parseInt yet!
+    const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
       return res.status(200).json({ status: 'success', data: oneTrip });
+    }
+    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+  },
+
+  /**
+  * @param {object} req
+  * @param {object} res
+  * @returns {messgae} message Trip deleted
+  */
+  deleteTrip(req, res) {
+    const tripId = parseInt(req.params.tripId, 10);
+    const oneTrip = TripModel.getOneTrip(tripId);
+    if (oneTrip) {
+      TripModel.deleteTrip(tripId);
+      return res.send({ status: 'success', data: { message: 'Trip Deleted Successfully!' } });
     }
     return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
   },
