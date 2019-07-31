@@ -9,7 +9,7 @@ const Trip = {
   createTrip(req, res) {
     const { body } = req;
     // eslint-disable-next-line max-len
-    if (!body.seating_capacity || !body.bus_license_number || !body.origin || !body.destination || !body.trip_date || !body.fare) {
+    if (!body.seating_capacity || !body.bus_license_number || !body.origin || !body.destination || !body.fare) {
       return res.status(400).json({ status: 'error', error: 'Bad Request! All trip fields are required!' });
     }
     const trip = TripModel.createTrip(body);

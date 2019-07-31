@@ -16,13 +16,14 @@ describe('Users Tests', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
+        res.body.status.should.match(/success/);
+        res.body.data.should.be.a('array');
         done();
       });
   });
 
-  it('GET /api/v1/users/:id Should get a specific user', (done) => {
+  it('GET /api/v1/users/:id Should get a specific user (User just created)', (done) => {
     const user = {
-      id: UserModel.getAllUsers().length + 1,
       email: 'nignanthomas@gmail.com',
       first_name: 'Thomas',
       last_name: 'Nignan',
@@ -36,6 +37,32 @@ describe('Users Tests', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
+        res.body.status.should.match(/success/);
+        res.body.data.should.be.a('object');
+        done();
+      });
+  });
+
+  it('GET /api/v1/users/:id Should not get a specific user (User 11 that does not exist)', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/11')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.status.should.match(/error/);
+        done();
+      });
+  });
+
+  it('GET /api/v1/users/:id Should not get a specific user (User \'a\' that does not exist)', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/a')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.status.should.match(/error/);
         done();
       });
   });

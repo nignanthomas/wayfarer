@@ -14,7 +14,7 @@ const SignIn = {
     // eslint-disable-next-line max-len
     const foundUser = UserModel.getAllUsers().find(user => user.email === body.email && user.password === body.password);
     if (!foundUser) {
-      return res.status(404).json({ status: 'error', error: `Bad Credentials! User doesn't exist` });
+      return res.status(404).json({ status: 'error', error: 'Bad Credentials! User doesn\'t exist' });
     }
     return res.status(201).json({ status: 'success', data: foundUser });
   },
