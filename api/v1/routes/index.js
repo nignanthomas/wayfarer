@@ -6,6 +6,7 @@ const router = express.Router();
 
 // User routes
 router.get('/users', User.getAllUsers);
+router.get('/users/:userId', User.getOneUser);
 
 // Trips routes
 router.post('/trips', Trip.createTrip);

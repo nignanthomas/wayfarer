@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import uuid from 'uuid';
 import app from '../api/server';
 import User from '../api/v1/models/userModel';
 
@@ -23,7 +22,7 @@ describe('Users Tests', () => {
 
   it('GET /api/v1/users/:id Should get a specific user', (done) => {
     const user = {
-      id: uuid.v4(),
+      id: User.getAllUsers().length + 1,
       email: 'nignanthomas@gmail.com',
       first_name: 'Thomas',
       last_name: 'Nignan',
@@ -43,7 +42,7 @@ describe('Users Tests', () => {
 
   it('PATCH /api/v1/users/:id Should update a given user', (done) => {
     const user = {
-      id: uuid.v4(),
+      id: User.getAllUsers().length + 1,
       email: 'nignanthomas@gmail.com',
       first_name: 'Thomas',
       last_name: 'Nignan',
@@ -54,7 +53,6 @@ describe('Users Tests', () => {
       .request(app)
       .patch(`/api/v1/users/${userId}`)
       .send({
-        id: uuid.v4(),
         email: 'nstcephas@gmail.com',
         first_name: 'Cephas',
         last_name: 'Thomasson',
@@ -69,7 +67,7 @@ describe('Users Tests', () => {
 
   it('DELETE /api/v1/users/:id Should delete a given user', (done) => {
     const user = {
-      id: uuid.v4(),
+      id: User.getAllUsers().length + 1,
       email: 'nignanthomas@gmail.com',
       first_name: 'Thomas',
       last_name: 'Nignan',
