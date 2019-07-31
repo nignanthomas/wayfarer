@@ -2,8 +2,15 @@ import express from 'express';
 import Trip from '../controllers/trips';
 import User from '../controllers/users';
 import Booking from '../controllers/bookings';
+import SignUp from '../controllers/auth/signup';
+import SignIn from '../controllers/auth/signin';
 
 const router = express.Router();
+
+// SignUp route
+router.post('/auth/signup', SignUp.signUp);
+// SignIn route
+router.post('/auth/signin', SignIn.signIn);
 
 // User routes
 router.get('/users', User.getAllUsers);
