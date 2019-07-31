@@ -1,0 +1,493 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : " {{ WayFarer is a public bus transportation booking server. }}",
+    "version" : "1.0.0",
+    "title" : "WayFarer-API",
+    "contact" : {
+      "email" : "nignanthomas@gmail.com"
+    }
+  },
+  "host" : "localhost:3000",
+  "basePath" : "/api/v1/",
+  "tags" : [ {
+    "name" : "authentication",
+    "description" : "Operations about user authentication"
+  }, {
+    "name" : "bookings",
+    "description" : "Operations about bookings"
+  }, {
+    "name" : "trips",
+    "description" : "Operations about trips"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/auth/signup" : {
+      "post" : {
+        "tags" : [ "authentication" ],
+        "summary" : "Create a user account",
+        "description" : "User sign up",
+        "operationId" : "signupUser",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "User object that is sent to the api",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Signup"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Signup successful"
+          },
+          "201" : {
+            "description" : "User created"
+          },
+          "400" : {
+            "description" : "Bad Request "
+          }
+        }
+      }
+    },
+    "/auth/signin" : {
+      "post" : {
+        "tags" : [ "authentication" ],
+        "summary" : "Logs in a user to the system",
+        "description" : "User sign in",
+        "operationId" : "signinUser",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "User object that sent to the api",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Signin"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User signed in"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/bookings" : {
+      "get" : {
+        "tags" : [ "bookings" ],
+        "summary" : "Get all bookings",
+        "description" : "All bookings",
+        "operationId" : "getAllBookings",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Bookings fetched successfully"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "bookings" ],
+        "summary" : "Create a booking",
+        "description" : "Create booking",
+        "operationId" : "createBooking",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Booking object to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Booking"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Booking Created"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/bookings/{bookingId}" : {
+      "get" : {
+        "tags" : [ "bookings" ],
+        "summary" : "Get a booking by ID",
+        "description" : "Returns a specific booking",
+        "operationId" : "getOneBooking",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bookingId",
+          "in" : "path",
+          "description" : "ID of the booking to get",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Booking fetched successfully",
+            "schema": {
+              "$ref": "#/definitions/Booking"
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID inputed"
+          },
+          "404" : {
+            "description" : "Booking not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "bookings" ],
+        "summary" : "Delete booking by ID",
+        "description" : "Returns an empty object",
+        "operationId" : "deleteBooking",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bookingId",
+          "in" : "path",
+          "description" : "ID of booking to be deleted",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Booking successfully deleted"
+          },
+          "400" : {
+            "description" : "Invalid ID inputed"
+          },
+          "404" : {
+            "description" : "Booking not found"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "bookings" ],
+        "summary" : "Update booking by ID",
+        "description" : "Returns an updated booking",
+        "operationId" : "updateBooking",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bookingId",
+          "in" : "path",
+          "description" : "ID of booking to be updated",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Booking successfully updated",
+            "schema" : {
+              "$ref" : "#/definitions/UpdateSeat"
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID inputed"
+          },
+          "404" : {
+            "description" : "Booking not found"
+          }
+        }
+      }
+    },
+    "/trips" : {
+      "get" : {
+        "tags" : [ "trips" ],
+        "summary" : "Get all trips",
+        "description" : "All bookings",
+        "operationId" : "getAllTrips",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Trips fetched successfully"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "trips" ],
+        "summary" : "Create trips",
+        "description" : "Create a trip",
+        "operationId" : "createTrip",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Trip object to be created",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Trip"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Trip Created"
+          },
+          "400" : {
+            "description" : "Bad request"
+          }
+        }
+      }
+    },
+    "/trips/{tripId}" : {
+      "get" : {
+        "tags" : [ "trips" ],
+        "summary" : "Get a trip by ID",
+        "description" : "Returns a specific trip",
+        "operationId" : "getOneTrip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tripId",
+          "in" : "path",
+          "description" : "ID of trip to return",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Trip fetched successfully"
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Trip not found"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "trips" ],
+        "summary" : "Delete trip by ID",
+        "description" : "Returns an empty object",
+        "operationId" : "deleteTrip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tripId",
+          "in" : "path",
+          "description" : "ID of trip to be deleted",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Trip successfully deleted"
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Trip not found"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "trips" ],
+        "summary" : "Update a trip by ID",
+        "description" : "Returns an updated trip",
+        "operationId" : "updateTrip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tripId",
+          "in" : "path",
+          "description" : "ID of trip to be updated",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Trip successfully updated",
+            "schema" : {
+              "$ref" : "#/definitions/Trip"
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          },
+          "404" : {
+            "description" : "Trip not found"
+          }
+        }
+      }
+    },
+    "/trips/{tripId}/cancel" : {
+      "patch" : {
+        "tags" : [ "trips" ],
+        "summary" : "Cancel a trip by ID",
+        "description" : "Returns the the updated trip with the cancelled status:9",
+        "operationId" : "cancelTrip",
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "tripId",
+          "in" : "path",
+          "description" : "ID of trip to be cancelled",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Trip cancelled successfully"
+          },
+          "400" : {
+            "description" : "Invalid ID inputed"
+          },
+          "404" : {
+            "description" : "Trip not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Signup" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "email" : {
+          "type" : "string",
+          "example" : "johndoe@website.com"
+        },
+        "first_name" : {
+          "type" : "string",
+          "example" : "John"
+        },
+        "last_name" : {
+          "type" : "string",
+          "example" : "Doe"
+        },
+        "is_admin" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "password1234"
+        }
+      },
+      "xml" : {
+        "name" : "Signup"
+      }
+    },
+    "Signin" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "example" : "johndoe@website.com"
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "password1234"
+        }
+      },
+      "xml" : {
+        "name" : "Signin"
+      }
+    },
+    "Booking" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "bus_license_number" : {
+          "type" : "string",
+          "example" : "KGL 123"
+        },
+        "trip_date" : {
+          "type" : "date",
+          "example" : "05/08/2019"
+        },
+        "first_name" : {
+          "type" : "string",
+          "example" : "John"
+        },
+        "last_name" : {
+          "type" : "string",
+          "example" : "Doe"
+        },
+        "user_email" : {
+          "type" : "string",
+          "example" : "johndoe@website.com"
+        },
+        "seat_number" : {
+          "type" : "integer",
+          "example" : 11
+        }
+      },
+      "xml" : {
+        "name" : "Booking"
+      }
+    },
+    "Trip" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "seating_capacity" : {
+          "type" : "integer",
+          "example" : 45
+        },
+        "origin" : {
+          "type" : "string",
+          "example" : "Ouagadougou"
+        },
+        "destination" : {
+          "type" : "string",
+          "example" : "Kigali"
+        },
+        "trip_date" : {
+          "type" : "string",
+          "example" : "05/08/2019"
+        },
+        "fare" : {
+          "type" : "number",
+          "example" : 70000
+        },
+        "status" : {
+          "type" : "number",
+          "example" : 1
+        }
+      },
+      "xml" : {
+        "name" : "Trip"
+      }
+    },
+    "UpdateSeat" : {
+      "type" : "object",
+      "properties" : {
+        "seat_number" : {
+          "type" : "number",
+          "example" : 11
+        }
+      },
+      "xml" : {
+        "name" : "Trip"
+      }
+    }
+  }
+}
