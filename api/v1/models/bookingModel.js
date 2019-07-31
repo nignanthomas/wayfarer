@@ -68,7 +68,7 @@ class Booking {
       trip_id: data.trip_id || booking.trip_id,
       user_id: data.user_id || booking.user_id,
       seat_number: data.seat_number || booking.seat_number,
-      created_on: data.created_on || booking.created_on,
+      created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     return this.bookings[index];
   }
