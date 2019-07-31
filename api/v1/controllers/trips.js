@@ -49,6 +49,37 @@ const Trip = {
   /**
   * @param {object} req
   * @param {object} res
+  * @returns {object} updated trip object
+  */
+  updateTrip(req, res) {
+    const tripId = parseInt(req.params.tripId, 10);
+    const oneTrip = TripModel.getOneTrip(tripId);
+    if (oneTrip) {
+      const updatedTrip = TripModel.updateTrip(tripId, req.body);
+      return res.status(200).json({ status: 'success', data: { message: 'Trip Updated Successfully!', data: updatedTrip } });
+    }
+    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+  },
+
+  /**
+  * @param {object} req
+  * @param {object} res
+  * @returns {object} cancelled trip object
+  */
+  cancelTrip(req, res) {
+    const tripId = parseInt(req.params.tripId, 10);
+    const oneTrip = TripModel.getOneTrip(tripId);
+    const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
+    if (oneTrip) {
+      const cancelledTrip = TripModel.updateTrip(tripId, cancelStatus);
+      return res.status(200).json({ status: 'success', data: { message: 'Trip Cancelled Successfully!', data: cancelledTrip } });
+    }
+    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+  },
+
+  /**
+  * @param {object} req
+  * @param {object} res
   * @returns {messgae} message Trip deleted
   */
   deleteTrip(req, res) {

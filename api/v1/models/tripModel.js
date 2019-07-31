@@ -83,7 +83,7 @@ class Trip {
       fare: data.fare || trip.fare,
       status: data.status || trip.status,
     };
-    return trip;
+    return this.trips[index];
   }
 
   /**
