@@ -4,7 +4,7 @@ WayFarer is a public bus transportation booking service.
 An Andela Bootcamp Challenge.
 
 # Live Link
-https://nignanthomas.github.io/wayfarer/UI
+https://nignanthomas.github.io/wayfarer/UI/html
 
 # Features
 1. User can sign up.
