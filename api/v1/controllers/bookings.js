@@ -4,6 +4,20 @@ const Booking = {
   /**
   * @param {object} req
   * @param {object} res
+  * @returns {object} booking object
+  */
+  createBooking(req, res) {
+    const { body } = req;
+    if (!body.user_id || !body.trip_id) {
+      return res.status(400).json({ status: 'error', data: 'Bad Request! All booking fields are required!' });
+    }
+    const booking = BookingModel.book(body);
+    return res.status(201).json({ status: 'success', data: booking });
+  },
+
+  /**
+  * @param {object} req
+  * @param {object} res
   * @returns {object} bookings array
   */
   getAllBookings(req, res) {

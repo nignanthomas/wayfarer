@@ -31,7 +31,7 @@ class Booking {
       id: this.bookings.length + 1,
       trip_id: data.trip_id,
       user_id: data.user_id,
-      create_on: data.create_on,
+      create_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
     };
     this.bookings.push(newBooking);
     return newBooking;
