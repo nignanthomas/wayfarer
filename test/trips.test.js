@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 import moment from 'moment';
 import app from '../api/server';
 import Trip from '../api/v1/models/tripModel';
@@ -12,12 +12,12 @@ chai.use(chaiHttp);
 describe('Trips Tests', () => {
   it('POST /api/v1/trips Should create a new trip', (done) => {
     const trip = {
-      id: uuid.v4(),
+      id: Trip.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
       destination: 'Nairobi',
-      trip_date: moment.now(),
+      trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       fare: 5000,
       status: 1,
     };
@@ -45,12 +45,12 @@ describe('Trips Tests', () => {
 
   it('GET /api/v1/trips/:id Should return a specific trip', (done) => {
     const trip = {
-      id: uuid.v4(),
+      id: Trip.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
       destination: 'Nairobi',
-      trip_date: moment.now(),
+      trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       fare: 5000,
       status: 1,
     };
@@ -67,12 +67,12 @@ describe('Trips Tests', () => {
 
   it('PATCH /api/v1/trips/:id Should update a given a trip', (done) => {
     const trip = {
-      id: uuid.v4(),
+      id: Trip.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
       destination: 'Nairobi',
-      trip_date: moment.now(),
+      trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       fare: 5000,
       status: 1,
     };
@@ -81,12 +81,12 @@ describe('Trips Tests', () => {
       .request(app)
       .patch(`/api/v1/trips/${tripId}`)
       .send({
-        id: uuid.v4(),
+        // id: uuid.v4(),
         seating_capacity: 45,
         bus_license_number: 'KC8 219',
         origin: 'Ouagadougou',
         destination: 'Kigali',
-        trip_date: moment.now(),
+        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 7500,
         status: 0,
       })
@@ -99,12 +99,12 @@ describe('Trips Tests', () => {
 
   it('DELETE /api/v1/trips Should delete a given trip', (done) => {
     const trip = {
-      id: uuid.v4(),
+      id: Trip.getAllTrips().length + 1,
       seating_capacity: 45,
       bus_license_number: 'KCK 469',
       origin: 'Kigali',
       destination: 'Nairobi',
-      trip_date: moment.now(),
+      trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       fare: 5000,
       status: 1,
     };

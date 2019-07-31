@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+// import uuid from 'uuid';
 import moment from 'moment';
 
 class Trip {
@@ -14,7 +14,7 @@ class Trip {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        trip_date: moment.now(),
+        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 5000,
         status: 1,
       },
@@ -24,7 +24,7 @@ class Trip {
         bus_license_number: 'NTM 896',
         origin: 'Kampala',
         destination: 'Arusha',
-        trip_date: moment.now(),
+        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         fare: 8000,
         status: 1,
       },
@@ -37,14 +37,14 @@ class Trip {
   */
   createTrip(data) {
     const newTrip = {
-      id: data.id || uuid.v4(),
+      id: data.id || this.trips.length + 1,
       seating_capacity: data.seating_capacity,
       bus_license_number: data.bus_license_number,
       origin: data.origin,
       destination: data.destination,
       trip_date: data.trip_date,
       fare: data.fare,
-      status: data.status,
+      status: data.status || 1,
     };
     this.trips.push(newTrip);
     return newTrip;
