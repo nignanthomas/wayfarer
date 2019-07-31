@@ -37,7 +37,7 @@ class Trip {
   */
   createTrip(data) {
     const newTrip = {
-      id: uuid.v4(),
+      id: data.id || uuid.v4(),
       seating_capacity: data.seating_capacity,
       bus_license_number: data.bus_license_number,
       origin: data.origin,
