@@ -16,7 +16,7 @@ class Trip {
         destination: 'Nairobi',
         trip_date: moment.now(),
         fare: 5000,
-        status: 'active',
+        status: 1,
       },
       {
         id: 2,
@@ -26,7 +26,7 @@ class Trip {
         destination: 'Arusha',
         trip_date: moment.now(),
         fare: 8000,
-        status: 'active',
+        status: 1,
       },
     ];
   }
