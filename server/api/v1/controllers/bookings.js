@@ -11,7 +11,7 @@ const formatBooking = (data) => {
   const formatted = {
     id: data.id,
     bus_license_number: TripModel.getOneTrip(data.trip_id).bus_license_number,
-    trip_date: UserModel.getOneUser(data.user_id).trip_date,
+    trip_date: TripModel.getOneTrip(data.user_id).trip_date,
     first_name: UserModel.getOneUser(data.user_id).first_name,
     last_name: UserModel.getOneUser(data.user_id).last_name,
     user_email: UserModel.getOneUser(data.user_id).email,

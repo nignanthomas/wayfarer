@@ -85,7 +85,12 @@
         "summary" : "Get all bookings",
         "description" : "All bookings",
         "operationId" : "getAllBookings",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        } ],
         "responses" : {
           "200" : {
             "description" : "Bookings fetched successfully"
@@ -100,6 +105,12 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "in" : "body",
           "name" : "body",
           "description" : "Booking object to be created",
@@ -126,6 +137,12 @@
         "operationId" : "getOneBooking",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "bookingId",
           "in" : "path",
           "description" : "ID of the booking to get",
@@ -155,6 +172,12 @@
         "operationId" : "deleteBooking",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "bookingId",
           "in" : "path",
           "description" : "ID of booking to be deleted",
@@ -182,6 +205,12 @@
         "produces" : [ "application/json" ],
         "consumes" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "bookingId",
           "in" : "path",
           "description" : "ID of booking to be updated",
@@ -220,7 +249,12 @@
         "summary" : "Get all trips",
         "description" : "All bookings",
         "operationId" : "getAllTrips",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        } ],
         "responses" : {
           "200" : {
             "description" : "Trips fetched successfully"
@@ -235,6 +269,12 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "in" : "body",
           "name" : "body",
           "description" : "Trip object to be created",
@@ -261,6 +301,12 @@
         "operationId" : "getOneTrip",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "tripId",
           "in" : "path",
           "description" : "ID of trip to return",
@@ -287,6 +333,12 @@
         "operationId" : "deleteTrip",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "tripId",
           "in" : "path",
           "description" : "ID of trip to be deleted",
@@ -314,6 +366,12 @@
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "tripId",
           "in" : "path",
           "description" : "ID of trip to be updated",
@@ -355,6 +413,12 @@
         "consumes" : [ "application/json", "application/xml" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "in" : "header",
+          "name" : "authorization",
+          "description" : "An authorization header",
+          "required" : true
+        },
+        {
           "name" : "tripId",
           "in" : "path",
           "description" : "ID of trip to be cancelled",
@@ -414,11 +478,11 @@
       "properties" : {
         "email" : {
           "type" : "string",
-          "example" : "johndoe@website.com"
+          "example" : "nignanthomas@gmail.com"
         },
         "password" : {
           "type" : "string",
-          "example" : "password1234"
+          "example" : "qwerty"
         }
       },
       "xml" : {
