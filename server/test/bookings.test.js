@@ -8,6 +8,17 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Bookings Tests', () => {
+  let token = '';
+  before((done) => {
+    chai
+      .request(app)
+      .get('/get-token')
+      .end((err, res) => {
+        const result = JSON.parse(res.text);
+        token = result.token;
+        done();
+      });
+  });
   describe('POST bookings tests', () => {
     it('POST /api/v1/bookings Should create a new booking object', (done) => {
       const booking = {
@@ -18,6 +29,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
+        .set('Authorization', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(201);
@@ -36,6 +48,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
+        .set('Authorization', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(400);
@@ -53,6 +66,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
+        .set('Authorization', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(400);
@@ -70,6 +84,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
+        .set('Authorization', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(400);
@@ -85,6 +100,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get('/api/v1/bookings')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -106,6 +122,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get(`/api/v1/bookings/${bookingId}`)
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -119,6 +136,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get('/api/v1/bookings/11')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -131,6 +149,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get('/api/v1/bookings/a')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -151,6 +170,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .patch(`/api/v1/bookings/${bookingId}`)
+        .set('Authorization', token)
         .send({
           trip_id: 2,
           user_id: 2,
@@ -175,6 +195,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .delete(`/api/v1/bookings/${bookingId}`)
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
