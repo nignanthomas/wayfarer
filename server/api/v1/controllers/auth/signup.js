@@ -1,4 +1,5 @@
 import UserModel from '../../models/userModel';
+import tokenGenerator from '../../helpers/signToken';
 
 const SignUp = {
   /**
@@ -12,7 +13,8 @@ const SignUp = {
       return res.status(400).json({ status: 'error', error: 'Bad Request! All Sign Up fields are required!' });
     }
     const newUser = UserModel.createUser(body);
-    return res.status(201).json({ status: 'success', data: newUser });
+    const token = tokenGenerator.signToken(newUser);
+    return res.status(201).json({ status: 'success', data: newUser, token });
   },
 };
 export default SignUp;
