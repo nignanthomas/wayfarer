@@ -9,10 +9,22 @@ chai.use(chaiHttp);
 
 
 describe('Users Tests', () => {
+  let token = '';
+  before((done) => {
+    chai
+      .request(app)
+      .get('/get-token')
+      .end((err, res) => {
+        const result = JSON.parse(res.text);
+        token = result.token;
+        done();
+      });
+  });
   it('GET /api/v1/users should get all users', (done) => {
     chai
       .request(app)
       .get('/api/v1/users')
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -34,6 +46,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get(`/api/v1/users/${userId}`)
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -47,6 +60,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get('/api/v1/users/11')
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
@@ -59,6 +73,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get('/api/v1/users/a')
+      .set('Authorization', token)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');

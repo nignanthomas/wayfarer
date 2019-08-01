@@ -8,6 +8,17 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Trips Tests', () => {
+  let token = '';
+  before((done) => {
+    chai
+      .request(app)
+      .get('/get-token')
+      .end((err, res) => {
+        const result = JSON.parse(res.text);
+        token = result.token;
+        done();
+      });
+  });
   describe('POST trips tests', () => {
     it('POST /api/v1/trips Should create a new trip', (done) => {
       const trip = {
@@ -20,6 +31,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
+        .set('Authorization', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(201);
@@ -41,6 +53,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
+        .set('Authorization', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -60,6 +73,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
+        .set('Authorization', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -79,6 +93,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
+        .set('Authorization', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -98,6 +113,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
+        .set('Authorization', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -117,6 +133,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
+        .set('Authorization', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -132,6 +149,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -155,6 +173,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get(`/api/v1/trips/${tripId}`)
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -166,6 +185,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/11')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -178,6 +198,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/a')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -200,6 +221,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}`)
+        .set('Authorization', token)
         .send({
           seating_capacity: 45,
           bus_license_number: 'KC8 219',
@@ -222,6 +244,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch('/api/v1/trips/11')
+        .set('Authorization', token)
         .send({
           seating_capacity: 45,
           bus_license_number: 'KC8 219',
@@ -251,6 +274,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete(`/api/v1/trips/${tripId}`)
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -264,6 +288,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete('/api/v1/trips/9')
+        .set('Authorization', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
