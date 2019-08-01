@@ -42,8 +42,10 @@ trips.forEach((trip,i)=>{
   <div class="trip-more">
     <p><b>$${trip.fare}</b></p>
     <a href="one-trip.html"><button type="button" name="button">More</button></a>
-  </div>
-  <hr>`;
+  </div>`;
+  if (i<trips.length-1) {
+    newTrip.innerHTML += `<hr>`
+  }
 
   tripsDiv.appendChild(newTrip);
 });
