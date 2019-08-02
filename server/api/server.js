@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import flash from 'connect-flash';
 import apiRoutes from './v1/routes';
-import swaggerDocument from '../api-docs/v1/swagger.json';
+import swaggerDocument from './api-docs/v1/swagger.json';
 import tokenGenerator from './v1/helpers/signToken';
 
 const app = express();

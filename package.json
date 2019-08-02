@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "babel-watch ./server/api/server.js",
-    "test": "mocha --require @babel/register ./server/test/*.test.js --exit --timeout 10000",
-    "build": "rm -rf ./build && babel ./server/api -d build",
+    "production": "babel-watch ./server/api/server.js",
+    "test": "mocha --require @babel/register ./test/*.test.js --exit --timeout 10000",
+    "build": "rm -rf ./build && babel ./server -d build",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
     "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage",
-    "start": "npm run build && node build/server.js"
+    "start": "npm run build && node build/api/server.js"
   },
   "repository": {
     "type": "git",
@@ -61,5 +62,8 @@
     "eslint-plugin-react": "^7.14.2",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
