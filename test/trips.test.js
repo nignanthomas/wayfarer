@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../api/server';
-import TripModel from '../api/v1/models/tripModel';
+import app from '../server/api/server';
+import TripModel from '../server/api/v1/models/tripModel';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
