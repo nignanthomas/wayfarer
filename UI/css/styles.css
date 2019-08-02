@@ -6,6 +6,10 @@ body{
   margin: 0;
   background-color: #f4f4f4;
 }
+hr{
+  background-color: #000000;
+  color: #000000;
+}
 /* Global */
 .container{
   width: 80%;
@@ -147,6 +151,14 @@ header nav li{
   padding-top: 20px;
   padding-bottom: 20px;
   width: 100%;
+}
+.main-body h3 img{
+  float: left;
+  margin-top: -20px;
+  margin-right: 10px;
+}
+.main-body h3 i{
+  margin-left: 20px;;
 }
 .trips-list{
   background-color: #ffffff;
@@ -300,13 +312,17 @@ footer{
   background-size: 300% 100%;
   border-top: #000000 3px solid;
 }
+footer ul{
+  float: left;
+  margin-top: 15px;
+}
 footer a{
   color: #ffffff;
 }
 footer li{
   float: left;
   display: inline;
-  padding: 0 10px 0 10px;
+  padding-left: 10px;
 }
 footer .copy{
   float: right;
@@ -337,11 +353,14 @@ footer .copy{
     font-size: 16px;
   }
   .main-body>.container>.container{
-    width: 80%;
+    width: 90%;
     margin-bottom: 0;
   }
   .main-body>.container{
     width: 100%;
+  }
+  .main-body h3{
+    margin-top: 50px;
   }
   .trips-list{
     width: 100%;
@@ -391,6 +410,25 @@ footer .copy{
   }
 }
 @media(max-width: 768px){
+  header{
+    padding-top: 10px;
+  }
+  header #hamburger{
+    display: inline-block;
+    float: right;
+  }
+  header .subnav{
+    display: none;
+  }
+  header nav .display-menu{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  header #signs li, header #trips li{
+    float: left;
+    width: auto;
+  }
   .bus-icon{
     display: none;
   }
