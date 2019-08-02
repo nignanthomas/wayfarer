@@ -34,7 +34,7 @@ describe('Sign In', () => {
       .post('/api/v1/auth/signin')
       .send(user)
       .end((err, res) => {
-        res.should.have.status(401);
+        res.should.have.status(404);
         res.body.should.be.a('object');
         done();
       });

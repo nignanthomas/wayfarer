@@ -1,5 +1,6 @@
 import TripModel from '../models/tripModel';
 import tripValidation from '../helpers/tripValidators';
+import idValidator from '../helpers/idValidator';
 
 const Trip = {
   /**
@@ -9,10 +10,6 @@ const Trip = {
   */
   createTrip(req, res) {
     const { body } = req;
-    // eslint-disable-next-line max-len
-    // if (!body.seating_capacity || !body.bus_license_number || !body.origin || !body.destination || !body.fare) {
-    //   return res.status(400).json({ status: 'error', error: 'Bad Request! All trip fields are required!' });
-    // }
     const { error } = tripValidation.validateNewTrip(body);
     if (error) {
       return res.status(400).json({ status: 'error', error: error.details[0].message });
@@ -43,6 +40,11 @@ const Trip = {
   * @returns {object} trip object
   */
   getOneTrip(req, res) {
+    // const { tripId } = req.params;
+    const { error } = idValidator.tripIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
@@ -57,10 +59,19 @@ const Trip = {
   * @returns {object} updated trip object
   */
   updateTrip(req, res) {
+    const { error } = idValidator.tripIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
-      const updatedTrip = TripModel.updateTrip(tripId, req.body);
+      const { body } = req;
+      // const { error } = tripValidation.validateNewTrip(body);
+      // if (error) {
+      //   return res.status(400).json({ status: 'error', error: error.details[0].message });
+      // }
+      const updatedTrip = TripModel.updateTrip(tripId, body);
       return res.status(200).json({ status: 'success', data: { message: 'Trip Updated Successfully!', data: updatedTrip } });
     }
     return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
@@ -72,6 +83,10 @@ const Trip = {
   * @returns {object} cancelled trip object
   */
   cancelTrip(req, res) {
+    const { error } = idValidator.tripIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
@@ -88,6 +103,10 @@ const Trip = {
   * @returns {messgae} message Trip deleted
   */
   deleteTrip(req, res) {
+    const { error } = idValidator.tripIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {

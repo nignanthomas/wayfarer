@@ -16,6 +16,7 @@ describe('Bookings Tests', () => {
       .end((err, res) => {
         const result = JSON.parse(res.text);
         token = result.token;
+        console.log(token);
         done();
       });
   });
@@ -116,7 +117,7 @@ describe('Bookings Tests', () => {
       const booking = {
         trip_id: 1,
         user_id: 2,
-        seat_number: '4A',
+        seat_number: 12,
       };
       const bookingId = BookingModel.book(booking).id;
       chai
@@ -127,7 +128,7 @@ describe('Bookings Tests', () => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.status.should.match(/success/);
-          res.body.data.seat_number.should.match(/4A/);
+          res.body.data.seat_number.should.equal(12);
           done();
         });
     });
@@ -151,7 +152,7 @@ describe('Bookings Tests', () => {
         .get('/api/v1/bookings/a')
         .set('Authorization', token)
         .end((err, res) => {
-          res.should.have.status(404);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.status.should.match(/error/);
           done();

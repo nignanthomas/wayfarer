@@ -1,5 +1,7 @@
-import UserModel from '../../models/userModel';
 import tokenGenerator from '../../helpers/signToken';
+import signinValidators from '../../helpers/signinValidators';
+import UserModel from '../../models/userModel';
+// import errorMessage from '../../helpers/joiErrorMessage';
 
 const SignIn = {
   /**
@@ -8,18 +10,27 @@ const SignIn = {
   *@returns {object} user object
   */
   signIn(req, res) {
-    const { user } = req;
-    // if (!body.email || !body.password) {
-    //   return res.status(400).json({ status: 'error', error: 'Bad Request! All Sign In fields are required!' });
-    // }
-    // eslint-disable-next-line max-len
-    // const foundUser = UserModel.getAllUsers().find(user => user.email === body.email && user.password === body.password);
-    if (!user) {
-      return res.status(404).json({ status: 'error', error: 'Bad Credentials! User doesn\'t exist' });
+    const { body } = req;
+    const { error } = signinValidators.validateSignin(body);
+    if (error) {
+      // const message = errorMessage.errorMessage(error.details);
+      res.status(400).json({ status: 'error', error: error.details[0].message });
     }
-    console.log(`Login success: ${user.email}=>${user.password}`);
+    // Find user given the email
+    const user = UserModel.getAllUsers().find(aUser => aUser.email === body.email);
+    // If not handle it
+    if (!user) {
+      return res.status(404).json({ status: 'error', error: 'This user email is not registered' });
+    }
+    // Check if the password is valid
+    const isMatch = user.password === body.password;
+    // If Not match, handle it
+    if (!isMatch) {
+      return res.status(401).json({ status: 'error', error: 'The password is incorrect.' });
+    }
     const token = tokenGenerator.signToken(user);
-    return res.status(201).json({ status: 'success', data: user, token });
+    user.token = token;
+    return res.status(201).json({ status: 'success', data: user });
   },
 };
 export default SignIn;

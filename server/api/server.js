@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import flash from 'connect-flash';
 import apiRoutes from './v1/routes';
 import swaggerDocument from '../api-docs/v1/swagger.json';
 import tokenGenerator from './v1/helpers/signToken';
@@ -16,6 +17,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
 
 app.use(express.json());
+app.use(flash());
 
 app.get('/get-token', (req, res) => {
   const token = tokenGenerator.signToken({
@@ -33,6 +35,7 @@ app.get('/', (req, res) => res.status(200).send({ message: "Bienvenue, this is W
 
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', apiRoutes);
+app.use('*', (req, res) => res.status(404).json({ message: 'Oops! Please visit https://wayfarer-adc-nthomas.herokuapp.com/api/v1/api-docs/ for documentation.' }));
 
 app.listen(port, () => console.log(`Server is running on port ${port}...`));
 

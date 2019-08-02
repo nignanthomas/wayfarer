@@ -1,6 +1,8 @@
 import BookingModel from '../models/bookingModel';
 import UserModel from '../models/userModel';
 import TripModel from '../models/tripModel';
+import idValidator from '../helpers/idValidator';
+import bookingValidators from '../helpers/bookingValidators';
 
 /**
 *
@@ -28,8 +30,9 @@ const Booking = {
   */
   createBooking(req, res) {
     const { body } = req;
-    if (!body.user_id || !body.trip_id || !body.seat_number) {
-      return res.status(400).json({ status: 'error', error: 'Bad Request! All booking fields are required!' });
+    const { error } = bookingValidators.validateNewBooking(body);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: error.details[0].message });
     }
     const booking = BookingModel.book(body);
     return res.status(201).json({ status: 'success', data: booking });
@@ -59,6 +62,10 @@ const Booking = {
   * @returns {object} booking object
   */
   getOneBooking(req, res) {
+    const { error } = idValidator.bookingIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
@@ -74,6 +81,10 @@ const Booking = {
   * @returns {object} updated booking object
   */
   updateBooking(req, res) {
+    const { error } = idValidator.bookingIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
@@ -90,6 +101,10 @@ const Booking = {
   * @returns {messgae} message Booking deleted
   */
   deleteBooking(req, res) {
+    const { error } = idValidator.bookingIdValidator(req.params);
+    if (error) {
+      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+    }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
