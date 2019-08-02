@@ -6,8 +6,8 @@ const validateNewTrip = (data) => {
     destination: Joi.string().trim().required(),
     seating_capacity: Joi.number().required(),
     bus_license_number: Joi.string().trim().required(),
-    // trip_date: Joi.date().min('now').required(),
-    fare: Joi.number().required(),
+    trip_date: Joi.date().min('now').required(),
+    fare: Joi.number().integer().required(),
   });
   return Joi.validate(data, schema);
 };

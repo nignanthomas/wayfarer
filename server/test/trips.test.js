@@ -21,11 +21,14 @@ describe('Trips Tests', () => {
   });
   describe('POST trips tests', () => {
     it('POST /api/v1/trips Should create a new trip', (done) => {
+      console.log(token);
       const trip = {
         seating_capacity: 45,
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
+        // trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       chai
@@ -48,6 +51,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       chai
@@ -68,6 +72,7 @@ describe('Trips Tests', () => {
         seating_capacity: 45,
         origin: 'Kigali',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       chai
@@ -88,6 +93,7 @@ describe('Trips Tests', () => {
         seating_capacity: 45,
         bus_license_number: 'KCK 469',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       chai
@@ -129,6 +135,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
       };
       chai
         .request(app)
@@ -167,6 +174,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       const tripId = TripModel.createTrip(trip).id;
@@ -200,7 +208,7 @@ describe('Trips Tests', () => {
         .get('/api/v1/trips/a')
         .set('Authorization', token)
         .end((err, res) => {
-          res.should.have.status(404);
+          res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.status.should.match(/error/);
           done();
@@ -215,6 +223,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       const tripId = TripModel.createTrip(trip).id;
@@ -226,6 +235,7 @@ describe('Trips Tests', () => {
           seating_capacity: 45,
           bus_license_number: 'KC8 219',
           origin: 'Ouagadougou',
+          trip_date: new Date().setDate(new Date().getDate() + 1),
           destination: 'Kigali',
           fare: 7500,
         })
@@ -268,6 +278,7 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
       const tripId = TripModel.createTrip(trip).id;

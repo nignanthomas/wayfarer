@@ -8,14 +8,13 @@ import SignIn from '../controllers/auth/signin';
 import passportConf from '../passport';
 
 const router = express.Router();
-const passportSignIn = passport.authenticate('local', { session: false });
 const passportJWT = passport.authenticate('jwt', { session: false });
 
 
 // SignUp route
 router.post('/auth/signup', SignUp.signUp);
 // SignIn route
-router.post('/auth/signin', passportSignIn, SignIn.signIn);
+router.post('/auth/signin', SignIn.signIn);
 
 // User routes
 router.get('/users', passportJWT, User.getAllUsers);

@@ -41,7 +41,7 @@ class Trip {
       bus_license_number: data.bus_license_number,
       origin: data.origin,
       destination: data.destination,
-      trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+      trip_date: data.trip_date,
       fare: data.fare,
       status: 1,
     };
