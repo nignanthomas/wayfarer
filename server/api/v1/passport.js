@@ -9,6 +9,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET,
+  // eslint-disable-next-line consistent-return
 }, async (payload, done) => {
   try {
     // Find the user specified in token

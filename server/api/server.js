@@ -44,6 +44,7 @@ app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', apiRoutes);
 app.use('*', (req, res) => res.status(404).json({ message: 'Oops! Please visit https://wayfarer-adc-nthomas.herokuapp.com/api/v1/api-docs/ for documentation.' }));
 
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server is running on port ${port}...`));
 
 export default app;

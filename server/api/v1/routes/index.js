@@ -5,10 +5,19 @@ import User from '../controllers/users';
 import Booking from '../controllers/bookings';
 import SignUp from '../controllers/auth/signup';
 import SignIn from '../controllers/auth/signin';
+// eslint-disable-next-line no-unused-vars
 import passportConf from '../passport';
 
 const router = express.Router();
-const passportJWT = passport.authenticate('jwt', { session: false });
+const passportJWT = (req, res, next) => {
+  // eslint-disable-next-line consistent-return
+  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json({ status: 'error', error: 'Missing or Invalid Token!' });
+    req.user = user;
+    next();
+  })(req, res, next);
+};
 
 
 // SignUp route

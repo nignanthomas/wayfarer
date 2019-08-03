@@ -27,7 +27,15 @@ const Trip = {
   */
   getAllTrips(req, res) {
     try {
-      const trips = TripModel.getAllTrips();
+      let trips = TripModel.getAllTrips();
+      const { origin } = req.query;
+      const { destination } = req.query;
+      if (origin) {
+        trips = trips.filter(trip => trip.origin.toLowerCase() === origin.toLowerCase());
+      }
+      if (destination) {
+        trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
+      }
       if (!trips.length) {
         return res.status(404).json({ status: 'No Trips yet!', data: [] });
       }
