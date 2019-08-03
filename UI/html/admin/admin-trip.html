@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>WayFarer Admin Dashboard</title>
+		<title>WayFarer | Admin Dashboard</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
 		<link rel="stylesheet" href="../../css/admin.css">
 	</head>
@@ -12,7 +12,7 @@
 		<div class="header">
 			<div class="logo">
 				<i class="fa fa-bus"></i>
-				<span>WayFarer-</span>
+				<span>WayFarer</span>
 			</div>
 			<a href="#" class="nav-trigger" onclick="displayMenu();"><span></span></a>
 		</div>
@@ -52,24 +52,26 @@
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Admin Dashboard: //Trip Details Trips
+				Admin Dashboard: //Trips
 			</div>
 			<div class="main">
         <div class="container">
           <h2 class="trip-head">Trip Details</h2>
           <hr>
-          <div class="trip-details">
-            <h2 class="trip-title">Ouagadougou => Kigali</h2>
-            <p class="trip-date"><span class="trip-cat">Date: </span>Sunday 24th of July</p>
-            <p class="trip-boarding"><span class="trip-cat">Boarding Time: </span>4:30pm</p>
-            <p class="trip-time"><span class="trip-cat">Departure Time: </span>5:00pm</p>
-            <p class="trip-capacity"><span class="trip-cat">Seating Capacity: </span>45 seats</p>
-            <p class="trip-available"><span class="trip-cat">Available Seats: </span>21 seats</p>
-          </div>
-          <div class="trip-more">
-            <p><b>$100</b></p>
-            <button class="red" type="button" name="button" onclick="cancelTrip();">Cancel Trip</button>
-          </div>
+					<div class="one-trip">
+						<div class="trip-details">
+							<h3 class="trip-title">Ouagadougou <span class="no-bold">to</span> Kigali</h3>
+							<p class="trip-date"><span class="cat">Date: </span>Sunday 24th of July</p>
+							<p class="trip-boarding"><span class="cat">Boarding Time: </span>4:30pm</p>
+							<p class="trip-time"><span class="cat">Departure Time: </span>5:00pm</p>
+							<p class="trip-capacity"><span class="cat">Seating Capacity: </span>45 seats</p>
+							<p class="trip-available"><span class="cat">Available Seats: </span>21 seats</p>
+						</div>
+						<div class="trip-more">
+							<p><b>$100</b></p>
+							<a href=""><button class="red" type="button" name="button" onclick="cancelTrip();">Cancel</button></a>
+						</div>
+					</div>
         </div>
 			</div>
 		</div>
