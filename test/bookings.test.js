@@ -16,7 +16,6 @@ describe('Bookings Tests', () => {
       .end((err, res) => {
         const result = JSON.parse(res.text);
         token = result.token;
-        console.log(token);
         done();
       });
   });
@@ -173,9 +172,7 @@ describe('Bookings Tests', () => {
         .patch(`/api/v1/bookings/${bookingId}`)
         .set('Authorization', token)
         .send({
-          trip_id: 2,
-          user_id: 2,
-          seat_number: 12,
+          seat_number: 21,
         })
         .end((err, res) => {
           res.should.have.status(200);

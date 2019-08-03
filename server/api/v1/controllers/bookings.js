@@ -44,7 +44,10 @@ const Booking = {
   * @returns {object} bookings array
   */
   getAllBookings(req, res) {
-    const bookings = BookingModel.getAllBookings();
+    let bookings = BookingModel.getAllBookings();
+    if (!req.user.is_admin) {
+      bookings = bookings.filter(booking => booking.user_id === req.user.id);
+    }
     if (!bookings.length) {
       return res.status(404).json({ status: 'Oops! No bookings found!', data: [] });
     }
@@ -69,6 +72,9 @@ const Booking = {
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
+      if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
+        return res.status(400).json({ status: 'error', error: 'This booking is not yours! You cannot access it!' });
+      }
       const formattedBooking = formatBooking(oneBooking);
       return res.status(200).json({ status: 'success', data: formattedBooking });
     }
@@ -88,7 +94,15 @@ const Booking = {
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
-      const updatedBooking = BookingModel.updateBooking(bookingId, req.body);
+      if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
+        return res.status(400).json({ status: 'error', error: 'This booking is not yours! You cannot update it!' });
+      }
+      const { body } = req;
+      const errorUpdate = bookingValidators.validateUpdateBooking(body).error;
+      if (errorUpdate) {
+        return res.status(400).json({ status: 'error', error: errorUpdate.details[0].message });
+      }
+      const updatedBooking = BookingModel.updateBooking(bookingId, body);
       const formattedBooking = formatBooking(updatedBooking);
       return res.status(200).json({ status: 'success', data: { message: 'Booking Updated Successfully!', data: formattedBooking } });
     }
@@ -108,6 +122,9 @@ const Booking = {
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
+      if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
+        return res.status(400).json({ status: 'error', error: 'This booking is not yours! You cannot delete it!' });
+      }
       BookingModel.deleteBooking(bookingId);
       return res.send({ status: 'success', data: { message: 'Booking Deleted Successfully!' } });
     }

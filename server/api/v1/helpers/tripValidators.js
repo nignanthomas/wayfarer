@@ -11,6 +11,16 @@ const validateNewTrip = (data) => {
   });
   return Joi.validate(data, schema);
 };
+const validateUpdateTrip = (data) => {
+  const schema = Joi.object().keys({
+    seating_capacity: Joi.number(),
+    bus_license_number: Joi.string().trim(),
+    trip_date: Joi.date().min('now'),
+    fare: Joi.number().integer(),
+  });
+  return Joi.validate(data, schema);
+};
 module.exports = {
   validateNewTrip,
+  validateUpdateTrip,
 };
