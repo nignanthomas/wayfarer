@@ -135,6 +135,47 @@ body {
 	color: #333;
 	font-size: 18px;
 }
+.one-trip {
+	background-color: #ffffff;
+	box-shadow: 0 5px 10px rgba(158, 158, 158,0.30), 0 7px 6px rgba(158, 158, 158,0.22);
+	margin-bottom: 40px;
+	padding-bottom: 10px;
+	/* padding-left: 10px; */
+	/* display: inline-block; */
+}
+.one-trip h3{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #eef1f7;
+	text-align: center;
+}
+.one-trip p {
+	padding-left: 10px;
+	/* float: left; */
+}
+.one-trip a {
+	padding-left: 10px;
+	left: 70%;
+	position: relative;
+	/* float: right; */
+}
+.cat {
+	font-weight: bold;
+}
+.formgroup label{
+	width: 100px;
+}
+.formgroup input{
+	/* float: right; */
+	border-radius: 5px;
+	height: 40px;
+	padding-left: 5px;
+	position: relative;
+	left: 10px;
+}
+button{
+	font-weight: bold;
+}
 /* set element styles to fit tablet and higher(desktop) */
 @media screen and (min-width: 600px) {
 	.header {
@@ -173,6 +214,36 @@ body {
 	.main-content {
 		margin-left: 70px;
 	}
+	.one-trip {
+		width: 40%;
+		float: left;
+		margin-left: 5%;
+	}
+	.one-trip h3{
+		margin-top: 0px;
+	}
+	.formgroup{
+		width: 50%;
+		float: left;
+	}
+	.formgroup label{
+		/* float: left; */
+	}
+	.formgroup input{
+		/* float: right; */
+	}
+	.formgroup input[type="submit"]{
+		/* float: right; */
+	}
+}
+/* set element styles for desktop */
+@media screen and (min-width: 767px) {
+	.one-trip a {
+		padding-left: 10px;
+		left: 70%;
+		position: relative;
+		/* float: right; */
+	}
 }
 /* set element styles for desktop */
 @media screen and (min-width: 800px) {
@@ -197,31 +268,42 @@ body {
 	.main-content {
 		margin-left: 200px;
 	}
+	.one-trip a {
+		left: 75%;
+	}
 }
 
 /* main box container */
 .main {
 	margin: 15px;
 }
+form {
+	margin-bottom: 50px;
+}
 .forms{
 	margin-left: 20px;
 }
 input{
 	margin: 10px;
-	width: 50%;
+	width: 75%;
 }
 input[type="submit"]{
-	height: 30px;
 	border-radius: 5px;
 	background-color: #4ad181;
 	color: #ffffff;
+	font-weight: bold;
+	font-size: 20px;
 }
 .trip-more button{
 	height: 30px;
 	border-radius: 5px;
 	background-color: #bc45d7;
+	color: #ffffff;
 }
 .trip-more .red{
 	background-color: #a31b42;
 	color: #ffffff;
+}
+.no-bold {
+	font-weight: normal;
 }
