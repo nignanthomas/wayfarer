@@ -63,13 +63,8 @@ class Booking {
   updateBooking(id, data) {
     const booking = this.getOneBooking(id);
     const index = this.bookings.indexOf(booking);
-    this.bookings[index] = {
-      id: booking.id,
-      trip_id: data.trip_id || booking.trip_id,
-      user_id: data.user_id || booking.user_id,
-      seat_number: data.seat_number || booking.seat_number,
-      created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-    };
+    console.log(data);
+    this.bookings[index].seat_number = data.seat_number || booking.seat_number;
     return this.bookings[index];
   }
 

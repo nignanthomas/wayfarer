@@ -234,9 +234,7 @@ describe('Trips Tests', () => {
         .send({
           seating_capacity: 45,
           bus_license_number: 'KC8 219',
-          origin: 'Ouagadougou',
           trip_date: new Date().setDate(new Date().getDate() + 1),
-          destination: 'Kigali',
           fare: 7500,
         })
         .end((err, res) => {

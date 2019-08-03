@@ -8,6 +8,13 @@ const validateNewBooking = (data) => {
   });
   return Joi.validate(data, schema);
 };
+const validateUpdateBooking = (data) => {
+  const schema = Joi.object().keys({
+    seat_number: Joi.number().min(1).max(45),
+  });
+  return Joi.validate(data, schema);
+};
 module.exports = {
   validateNewBooking,
+  validateUpdateBooking,
 };
