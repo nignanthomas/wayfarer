@@ -2,7 +2,6 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import flash from 'connect-flash';
 import apiRoutes from './v1/routes';
 import swaggerDocument from './api-docs/v1/swagger.json';
 import tokenGenerator from './v1/helpers/signToken';
@@ -17,7 +16,15 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
 
 app.use(express.json());
-app.use(flash());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Access to any client
+  res.header('Access-Control-Allow-Headers', '*');
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH DELETE, GET');
+    res.status(200).json({});
+  }
+  next();
+});
 
 app.get('/get-token', (req, res) => {
   const token = tokenGenerator.signToken({

@@ -20,7 +20,7 @@
     "name" : "trips",
     "description" : "Operations about trips"
   } ],
-  "schemes" : [ "http" ],
+  "schemes" : [ "https" ],
   "paths" : {
     "/auth/signup" : {
       "post" : {
