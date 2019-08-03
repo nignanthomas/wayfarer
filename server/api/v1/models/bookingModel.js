@@ -63,7 +63,6 @@ class Booking {
   updateBooking(id, data) {
     const booking = this.getOneBooking(id);
     const index = this.bookings.indexOf(booking);
-    console.log(data);
     this.bookings[index].seat_number = data.seat_number || booking.seat_number;
     return this.bookings[index];
   }
