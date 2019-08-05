@@ -240,9 +240,9 @@ describe('Trips Tests', () => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.status.should.match(/success/);
-          res.body.data.data.bus_license_number.should.match(/KC8 219/);
-          res.body.data.data.fare.should.equal(7500);
-          res.body.data.data.status.should.equal(1);
+          res.body.data.bus_license_number.should.match(/KC8 219/);
+          res.body.data.fare.should.equal(7500);
+          res.body.data.status.should.equal(1);
           done();
         });
     });
@@ -284,10 +284,8 @@ describe('Trips Tests', () => {
         .delete(`/api/v1/trips/${tripId}`)
         .set('Authorization', token)
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(204);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
-          res.body.data.message.should.match(/Trip Deleted Successfully!/);
           done();
         });
     });

@@ -1,4 +1,5 @@
 import UserModel from '../models/userModel';
+import responseHelpers from '../helpers/responseHelpers';
 
 
 const User = {
@@ -10,13 +11,14 @@ const User = {
   */
   getAllUsers(req, res) {
     if (!req.user.is_admin) {
-      return res.status(400).json({ status: 'error', error: 'Only admin can access this route!' });
+      return responseHelpers.responseError(res, 401, 'Unauthorized! Admin only!');
     }
     const users = UserModel.getAllUsers();
     if (!users.length) {
-      return res.status(404).json({ status: 'Oops! No Users found!', data: [] });
+      return responseHelpers.responseError(res, 404, 'Oops! No Users found!');
     }
-    return res.status(200).json({ status: 'success', data: users });
+    // return res.status(200).json({ status: 'success', data: users });
+    return responseHelpers.responseSuccess(res, 200, users);
   },
 
   /**
@@ -26,14 +28,15 @@ const User = {
   */
   getOneUser(req, res) {
     if (!req.user.is_admin) {
-      return res.status(400).json({ status: 'error', error: 'Only admin can access this route!' });
+      return responseHelpers.responseError(res, 401, 'Unauthorized! Admin only!');
     }
     const userId = parseInt(req.params.userId, 10);
     const user = UserModel.getOneUser(userId);
     if (user) {
-      return res.status(200).json({ status: 'success', data: user });
+      // return res.status(200).json({ status: 'success', data: user });
+      return responseHelpers.responseSuccess(res, 200, user);
     }
-    return res.status(404).json({ status: 'error', error: `Cannot find user of id: ${userId}` });
+    return responseHelpers.responseError(res, 404, 'Oops! No Users found!');
   },
 
 };

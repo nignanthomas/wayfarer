@@ -1,6 +1,7 @@
 import TripModel from '../models/tripModel';
 import tripValidators from '../helpers/tripValidators';
 import idValidator from '../helpers/idValidator';
+import responseHelpers from '../helpers/responseHelpers';
 
 const Trip = {
   /**
@@ -12,13 +13,13 @@ const Trip = {
     const { body } = req;
     const { error } = tripValidators.validateNewTrip(body);
     if (error) {
-      return res.status(400).json({ status: 'error', error: error.details[0].message });
+      return responseHelpers.responseError(res, 400, error.details[0].message);
     }
     if (!req.user.is_admin) {
-      return res.status(400).json({ status: 'error', error: 'Unauthorized! Only admin can create a trip!' });
+      return responseHelpers.responseError(res, 400, 'Unauthorized! Only admin can create a trip!');
     }
     const trip = TripModel.createTrip(body);
-    return res.status(201).json({ status: 'success', data: trip });
+    return responseHelpers.responseSuccess(res, 201, trip);
   },
   /**
   * @param {object} req
@@ -37,11 +38,11 @@ const Trip = {
         trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
       }
       if (!trips.length) {
-        return res.status(404).json({ status: 'No Trips yet!', data: [] });
+        return responseHelpers.responseError(res, 404, 'There are no Trips yet!');
       }
-      return res.status(200).json({ status: 'success', data: trips });
+      return responseHelpers.responseSuccess(res, 200, trips);
     } catch (error) {
-      return res.status(500).json({ status: 'error', error: 'Oops! Cannot retrieve trips. :(' });
+      return responseHelpers.responseError(res, 500, 'Oops! Cannot retrieve trips. :(');
     }
   },
 
@@ -51,17 +52,16 @@ const Trip = {
   * @returns {object} trip object
   */
   getOneTrip(req, res) {
-    // const { tripId } = req.params;
     const { error } = idValidator.tripIdValidator(req.params);
     if (error) {
-      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
     }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
-      return res.status(200).json({ status: 'success', data: oneTrip });
+      return responseHelpers.responseSuccess(res, 200, oneTrip);
     }
-    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+    return responseHelpers.responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
 
   /**
@@ -72,10 +72,10 @@ const Trip = {
   updateTrip(req, res) {
     const { error } = idValidator.tripIdValidator(req.params);
     if (error) {
-      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
     }
     if (!req.user.is_admin) {
-      return res.status(400).json({ status: 'error', error: 'Unauthorized! Only admin can cancel a trip!' });
+      return responseHelpers.responseError(res, 401, 'Unauthorized! Only admin can update a trip!');
     }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
@@ -83,12 +83,13 @@ const Trip = {
       const { body } = req;
       const errorUpdate = tripValidators.validateUpdateTrip(body).error;
       if (errorUpdate) {
-        return res.status(400).json({ status: 'error', error: errorUpdate.details[0].message });
+        return responseHelpers.responseError(res, 400, errorUpdate.details[0].message);
       }
       const updatedTrip = TripModel.updateTrip(tripId, body);
-      return res.status(200).json({ status: 'success', data: { message: 'Trip Updated Successfully!', data: updatedTrip } });
+      // return res.status(200).json({ status: 'success', data: { message: 'Trip Updated Successfully!', data: updatedTrip } });
+      return responseHelpers.responseSuccess(res, 200, updatedTrip);
     }
-    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+    return responseHelpers.responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
 
   /**
@@ -99,19 +100,20 @@ const Trip = {
   cancelTrip(req, res) {
     const { error } = idValidator.tripIdValidator(req.params);
     if (error) {
-      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
     }
     if (!req.user.is_admin) {
-      return res.status(400).json({ status: 'error', error: 'Unauthorized! Only admin can cancel a trip!' });
+      return responseHelpers.responseError(res, 401, 'Unauthorized! Only admin can cancel a trip!');
     }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
     if (oneTrip) {
       const cancelledTrip = TripModel.updateTrip(tripId, cancelStatus);
-      return res.status(200).json({ status: 'success', data: { message: 'Trip Cancelled Successfully!', data: cancelledTrip } });
+      // return res.status(200).json({ status: 'success', data: { message: 'Trip Cancelled Successfully!', data: cancelledTrip } });
+      return responseHelpers.responseSuccess(res, 200, cancelledTrip);
     }
-    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+    return responseHelpers.responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
 
   /**
@@ -122,18 +124,19 @@ const Trip = {
   deleteTrip(req, res) {
     const { error } = idValidator.tripIdValidator(req.params);
     if (error) {
-      return res.status(400).json({ status: 'error', error: 'The trip ID should be a number' });
+      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
     }
     if (!req.user.is_admin) {
-      return res.status(400).json({ status: 'error', error: 'Unauthorized! Only admin can cancel a trip!' });
+      return responseHelpers.responseError(res, 401, 'Unauthorized! Only admin can cancel a trip!');
     }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
       TripModel.deleteTrip(tripId);
-      return res.send({ status: 'success', data: { message: 'Trip Deleted Successfully!' } });
+      // return res.send({ status: 'success', data: { message: 'Trip Deleted Successfully!' } });
+      return responseHelpers.responseSuccess(res, 204, {});
     }
-    return res.status(404).json({ status: 'error', error: `Cannot find trip of id: ${tripId}` });
+    return responseHelpers.responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
 };
 export default Trip;

@@ -55,37 +55,5 @@ class User {
   getAllUsers() {
     return this.users;
   }
-
-  /**
-  *
-  * @param {id} id
-  * @param {object} data
-  */
-  updateUser(id, data) {
-    const user = this.getOneUser(id);
-    const index = this.users.indexOf(user);
-    this.users[index] = {
-      id: user.id,
-      first_name: data.first_name || user.first_name,
-      last_name: data.last_name || user.last_name,
-      email: data.email || user.email,
-      password: data.password || user.password,
-      is_admin: data.is_admin || user.is_admin,
-    };
-    return user;
-  }
-
-  /**
-  *
-  * @param {id} id
-  */
-  deleteUser(id) {
-    const user = this.getOneUser(id);
-    // [user, ...otherUsers] = this.users;
-    // this.users = otherUsers;
-    const index = this.users.indexOf(user);
-    this.users.splice(index, 1);
-    return {};
-  }
 }
 export default new User();
