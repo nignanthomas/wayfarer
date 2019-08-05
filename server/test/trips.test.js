@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../server/api/server';
-import TripModel from '../server/api/v1/models/tripModel';
+import app from '../server';
+import TripModel from '../v1/models/tripModel';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -21,7 +21,6 @@ describe('Trips Tests', () => {
   });
   describe('POST trips tests', () => {
     it('POST /api/v1/trips Should create a new trip', (done) => {
-      console.log(token);
       const trip = {
         seating_capacity: 45,
         bus_license_number: 'KCK 469',

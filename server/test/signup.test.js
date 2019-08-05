@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../server/api/server';
+import app from '../server';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
