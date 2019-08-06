@@ -15,9 +15,6 @@ const Trip = {
     if (error) {
       return responseError(res, 400, error.details[0].message);
     }
-    if (!req.user.is_admin) {
-      return responseError(res, 400, 'Unauthorized! Only admin can create a trip!');
-    }
     const trip = TripModel.createTrip(body);
     return responseSuccess(res, 201, trip);
   },
@@ -74,9 +71,6 @@ const Trip = {
     if (error) {
       return responseError(res, 400, 'The trip ID should be a number');
     }
-    if (!req.user.is_admin) {
-      return responseError(res, 401, 'Unauthorized! Only admin can update a trip!');
-    }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
@@ -102,9 +96,6 @@ const Trip = {
     if (error) {
       return responseError(res, 400, 'The trip ID should be a number');
     }
-    if (!req.user.is_admin) {
-      return responseError(res, 401, 'Unauthorized! Only admin can cancel a trip!');
-    }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
@@ -125,9 +116,6 @@ const Trip = {
     const { error } = idValidator.tripIdValidator(req.params);
     if (error) {
       return responseError(res, 400, 'The trip ID should be a number');
-    }
-    if (!req.user.is_admin) {
-      return responseError(res, 401, 'Unauthorized! Only admin can cancel a trip!');
     }
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);

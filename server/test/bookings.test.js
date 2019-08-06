@@ -12,10 +12,14 @@ describe('Bookings Tests', () => {
   before((done) => {
     chai
       .request(app)
-      .get('/get-token')
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'nignanthomas@gmail.com',
+        password: 'qwerty',
+      })
       .end((err, res) => {
         const result = JSON.parse(res.text);
-        token = result.token;
+        token = result.data.token;
         done();
       });
   });
@@ -163,7 +167,7 @@ describe('Bookings Tests', () => {
     it('PATCH /api/v1/bookings/:id Should update a given booking', (done) => {
       const booking = {
         trip_id: 1,
-        user_id: 2,
+        user_id: 1,
         seat_number: 12,
       };
       const bookingId = BookingModel.book(booking).id;
@@ -186,7 +190,7 @@ describe('Bookings Tests', () => {
     it('DELETE /api/v1/bookings/:id Should delete a given booking', (done) => {
       const booking = {
         trip_id: 1,
-        user_id: 2,
+        user_id: 1,
         seat_number: 12,
       };
       const bookingId = BookingModel.book(booking).id;

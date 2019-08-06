@@ -12,10 +12,14 @@ describe('Trips Tests', () => {
   before((done) => {
     chai
       .request(app)
-      .get('/get-token')
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'nignanthomas@gmail.com',
+        password: 'qwerty',
+      })
       .end((err, res) => {
         const result = JSON.parse(res.text);
-        token = result.token;
+        token = result.data.token;
         done();
       });
   });

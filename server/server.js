@@ -26,18 +26,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/get-token', (req, res) => {
-  const token = tokenGenerator.signToken({
-    id: 1,
-    email: 'nignanthomas@gmail.com',
-    first_name: 'Thomas',
-    last_name: 'Nignan',
-    password: 'qwerty',
-    is_admin: true,
-  });
-  res.send({ token });
-});
-
 app.get('/', (req, res) => res.status(200).send({ message: "Bienvenue, this is WayFarer's!!!" }));
 
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

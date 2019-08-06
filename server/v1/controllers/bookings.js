@@ -95,7 +95,7 @@ const Booking = {
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
-      if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
+      if (req.user.id !== oneBooking.user_id) {
         return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       const { body } = req;
@@ -105,7 +105,6 @@ const Booking = {
       }
       const updatedBooking = BookingModel.updateBooking(bookingId, body);
       const formattedBooking = formatBooking(updatedBooking);
-      // return res.status(200).json({ status: 'success', data: { message: 'Booking Updated Successfully!', data: formattedBooking } });
       return responseSuccess(res, 200, formattedBooking);
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
@@ -124,11 +123,10 @@ const Booking = {
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
-      if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
+      if (req.user.id !== oneBooking.user_id) {
         return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       BookingModel.deleteBooking(bookingId);
-      // return res.send({ status: 'success', data: { message: 'Booking Deleted Successfully!' } });
       return responseSuccess(res, 204, {});
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);

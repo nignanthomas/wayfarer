@@ -10,9 +10,6 @@ const User = {
   * @returns {array} users objects
   */
   getAllUsers(req, res) {
-    if (!req.user.is_admin) {
-      return responseError(res, 401, 'Unauthorized! Admin only!');
-    }
     const users = UserModel.getAllUsers();
     if (!users.length) {
       return responseError(res, 404, 'Oops! No Users found!');
@@ -27,9 +24,6 @@ const User = {
   * @returns {object} user object
   */
   getOneUser(req, res) {
-    if (!req.user.is_admin) {
-      return responseError(res, 401, 'Unauthorized! Admin only!');
-    }
     const userId = parseInt(req.params.userId, 10);
     const user = UserModel.getOneUser(userId);
     if (user) {

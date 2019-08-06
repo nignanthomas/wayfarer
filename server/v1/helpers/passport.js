@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { ExtractJwt } from 'passport-jwt';
-import UserModel from './models/userModel';
-import { JWT_SECRET } from './config';
+import UserModel from '../models/userModel';
+import { JWT_SECRET } from '../config';
 
 const JwtStrategy = require('passport-jwt').Strategy;
 
