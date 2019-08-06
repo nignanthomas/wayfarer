@@ -140,8 +140,6 @@ body {
 	box-shadow: 0 5px 10px rgba(158, 158, 158,0.30), 0 7px 6px rgba(158, 158, 158,0.22);
 	margin-bottom: 40px;
 	padding-bottom: 10px;
-	/* padding-left: 10px; */
-	/* display: inline-block; */
 }
 .one-trip h3{
 	padding-top: 10px;
@@ -151,13 +149,11 @@ body {
 }
 .one-trip p {
 	padding-left: 10px;
-	/* float: left; */
 }
 .one-trip a {
 	padding-left: 10px;
 	left: 70%;
 	position: relative;
-	/* float: right; */
 }
 .cat {
 	font-weight: bold;
@@ -166,7 +162,6 @@ body {
 	width: 100px;
 }
 .formgroup input{
-	/* float: right; */
 	border-radius: 5px;
 	height: 40px;
 	padding-left: 5px;
@@ -226,15 +221,6 @@ button{
 		width: 50%;
 		float: left;
 	}
-	.formgroup label{
-		/* float: left; */
-	}
-	.formgroup input{
-		/* float: right; */
-	}
-	.formgroup input[type="submit"]{
-		/* float: right; */
-	}
 }
 /* set element styles for desktop */
 @media screen and (min-width: 767px) {
@@ -242,7 +228,6 @@ button{
 		padding-left: 10px;
 		left: 70%;
 		position: relative;
-		/* float: right; */
 	}
 }
 /* set element styles for desktop */
@@ -295,10 +280,11 @@ input[type="submit"]{
 	font-size: 20px;
 }
 .trip-more button{
-	height: 30px;
+	height: 40px;
 	border-radius: 5px;
 	background-color: #bc45d7;
 	color: #ffffff;
+	font-size: 20px;
 }
 .trip-more .red{
 	background-color: #a31b42;
