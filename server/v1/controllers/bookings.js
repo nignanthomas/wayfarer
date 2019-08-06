@@ -3,7 +3,7 @@ import UserModel from '../models/userModel';
 import TripModel from '../models/tripModel';
 import idValidator from '../helpers/idValidator';
 import bookingValidators from '../helpers/bookingValidators';
-import responseHelpers from '../helpers/responseHelpers';
+import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
 /**
 *
@@ -33,10 +33,10 @@ const Booking = {
     const { body } = req;
     const { error } = bookingValidators.validateNewBooking(body);
     if (error) {
-      return responseHelpers.responseError(res, 400, error.details[0].message);
+      return responseError(res, 400, error.details[0].message);
     }
     const booking = BookingModel.book(body);
-    return responseHelpers.responseSuccess(res, 201, booking);
+    return responseSuccess(res, 201, booking);
   },
 
   /**
@@ -50,14 +50,14 @@ const Booking = {
       bookings = bookings.filter(booking => booking.user_id === req.user.id);
     }
     if (!bookings.length) {
-      return responseHelpers.responseError(res, 404, 'Oops! No bookings found!');
+      return responseError(res, 404, 'Oops! No bookings found!');
     }
     const formattedBookings = [];
     bookings.forEach((booking) => {
       const formattedBooking = formatBooking(booking);
       formattedBookings.push(formattedBooking);
     });
-    return responseHelpers.responseSuccess(res, 200, formattedBookings);
+    return responseSuccess(res, 200, formattedBookings);
   },
 
   /**
@@ -68,18 +68,18 @@ const Booking = {
   getOneBooking(req, res) {
     const { error } = idValidator.bookingIdValidator(req.params);
     if (error) {
-      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
+      return responseError(res, 400, 'The trip ID should be a number');
     }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
       if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
-        return responseHelpers.responseError(res, 401, 'Unauthorized! You cannot access this booking!');
+        return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       const formattedBooking = formatBooking(oneBooking);
-      return responseHelpers.responseSuccess(res, 200, formattedBooking);
+      return responseSuccess(res, 200, formattedBooking);
     }
-    return responseHelpers.responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
+    return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   },
 
   /**
@@ -90,25 +90,25 @@ const Booking = {
   updateBooking(req, res) {
     const { error } = idValidator.bookingIdValidator(req.params);
     if (error) {
-      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
+      return responseError(res, 400, 'The trip ID should be a number');
     }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
       if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
-        return responseHelpers.responseError(res, 401, 'Unauthorized! You cannot access this booking!');
+        return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       const { body } = req;
       const errorUpdate = bookingValidators.validateUpdateBooking(body).error;
       if (errorUpdate) {
-        return responseHelpers.responseError(res, 400, errorUpdate.details[0].message);
+        return responseError(res, 400, errorUpdate.details[0].message);
       }
       const updatedBooking = BookingModel.updateBooking(bookingId, body);
       const formattedBooking = formatBooking(updatedBooking);
       // return res.status(200).json({ status: 'success', data: { message: 'Booking Updated Successfully!', data: formattedBooking } });
-      return responseHelpers.responseSuccess(res, 200, formattedBooking);
+      return responseSuccess(res, 200, formattedBooking);
     }
-    return responseHelpers.responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
+    return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   },
 
   /**
@@ -119,19 +119,19 @@ const Booking = {
   deleteBooking(req, res) {
     const { error } = idValidator.bookingIdValidator(req.params);
     if (error) {
-      return responseHelpers.responseError(res, 400, 'The trip ID should be a number');
+      return responseError(res, 400, 'The trip ID should be a number');
     }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
     if (oneBooking) {
       if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
-        return responseHelpers.responseError(res, 401, 'Unauthorized! You cannot access this booking!');
+        return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       BookingModel.deleteBooking(bookingId);
       // return res.send({ status: 'success', data: { message: 'Booking Deleted Successfully!' } });
-      return responseHelpers.responseSuccess(res, 204, {});
+      return responseSuccess(res, 204, {});
     }
-    return responseHelpers.responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
+    return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   },
 
 };
