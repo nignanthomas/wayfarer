@@ -34,9 +34,9 @@ trips.forEach((trip,i)=>{
     <i class="fa fa-bus"></i>
   </div>
   <div class="trip-details">
-    <h3>${trip.origin}  ==>  ${trip.destination}</h3>
-    <p>${trip.tripDate}</p>
-    <p><b>@ ${trip.tripTime}</b></p>
+    <h3>${trip.origin}  <span class="no-bold">to</span>  ${trip.destination}</h3>
+    <p><span class="trip-cat">Date: </span>${trip.tripDate}</p>
+    <p><span class="trip-cat">Departure Time: </span><b>${trip.tripTime}</b></p>
     <p><b>11</b> seats available</p>
   </div>
   <div class="trip-more">

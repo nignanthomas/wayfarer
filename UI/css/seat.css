@@ -36,10 +36,6 @@ input[disabled]:hover{
 .one-seat .num{
   color: #06b319;
 }
-/* disabled to be red */
-/* input[disabled]>label{
-  color: #a21a1a;
-} */
 
 button{
   font: 15px/1.5 "Montserrat", Helvetica, sans-serif;

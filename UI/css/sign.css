@@ -59,9 +59,6 @@ input[type='submit']:hover{
     border: none;
     margin: 0;
   }
-  .main-content .form-bottom{
-    /* font-size: 16px; */
-  }
 }
 @media(min-width: 768px) and (max-width:1024px){
   input{
