@@ -16,7 +16,6 @@ input:focus{
   border-color: #9932CC;
 }
 input[type='submit']{
-  /* background-color: #e8491d; */
   color: #ffffff;
   font-size: 20px;
   height: 46px;
