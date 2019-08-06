@@ -17,8 +17,10 @@
     <header>
     <div class="container">
       <div id="branding">
-        <img src="../images/bus-logo.png" alt="">
-        <h3>WayFarer</h3>
+        <a href="index.html">
+          <!-- <img src="../images/bus-logo.png" alt=""> -->
+          <h3>WayFarer</h3>
+        </a>
       </div>
       <nav>
         <div class="hamburger-menu" id="hamburger" onclick="hamburger(this)">
@@ -26,16 +28,10 @@
           <div class="bar2"></div>
           <div class="bar3"></div>
         </div>
-        <div class="subnav" id="trips">
-          <ul>
-            <a href="index.html"><li class="all-trips">All Trips</li></a>
-            <a href="my-trips.html"><li class="my-trips">My Trips</li></a>
-          </ul>
-        </div>
         <div class="subnav" id="signs">
           <ul>
-            <a href="signup.html"><li class="signup">Sign Up</li></a>
-            <a href="signin.html"><li class="signin">Sign In</li></a>
+            <!-- <a href="signup.html"><li class="signup">Sign Up</li></a> -->
+            <a href="index.html"><li class="signin">Log Out</li></a>
           </ul>
         </div>
       </nav>
@@ -47,7 +43,7 @@
       <div class="main-shadow">
         <div class="container">
           <h1>Book | Pay | Travel</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed volutpat velit mollis ultricies ultrices.</p>
+          <p>No more queues on jammed streets and bus stations for bus tickets. <br> Book a bus ticket from your couch or when you are on the move.</p>
         </div>
       </div>
     </div>
@@ -57,10 +53,11 @@
         <div class="container">
           <div class="main-content">
             <div class="container">
+              <a href="my-trips.html" class="back-link"><< Back</a>
               <h2 class="trip-head">Booking Details</h2>
               <hr>
               <div class="trip-details">
-                <h2 class="trip-title">Ouagadougou = Kigali</h2>
+                <h2 class="trip-title">Ouagadougou <span class="no-bold">to</span> Kigali</h2>
                 <p class="trip-date"><span class="trip-cat">Date: </span>Sunday 24th of July</p>
                 <p class="trip-passenger"><span class="trip-cat">Passenger: </span>Harry Zona</p>
                 <p class="trip-boarding"><span class="trip-cat">Boarding Time: </span>4:30pm</p>
@@ -95,7 +92,6 @@
             <li><a href="#">About us</a></li>
             <li><a href="#">Contact us</a></li>
             <li><a href="#">Help</a></li>
-            <li><a href="https://wayfarer-adc-nthomas.herokuapp.com/api/v1/api-docs/">Api Docs</a></li>
           </ul>
         </div>
         <div class="copy">

@@ -4,5 +4,6 @@ const signUp = () => {
   const lname = document.querySelector("#lname").value;
   const password = document.querySelector("#password").value;
   const confirm = document.querySelector("#confirm").value;
-  alert(email);
+  // alert(email);
+  window.location.href = "../html/index.html";
 }
