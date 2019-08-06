@@ -2,7 +2,16 @@ const signUp = () => {
   const email = document.querySelector("#email").value;
   const fname = document.querySelector("#fname").value;
   const lname = document.querySelector("#lname").value;
-  const password = document.querySelector("#password").value;
-  const confirm = document.querySelector("#confirm").value;
-  window.location.href = "../html/index.html";
+  validate();
+}
+const validate = () => {
+  const password = document.querySelector("#password");
+  const confirm = document.querySelector("#confirm");
+  const error = document.querySelector(".error-message");
+
+  if(password.value != confirm.value) {
+    error.textContent = "Passwords Don't Match";
+  } else {
+    window.location.href = "../html/index.html#trips-section";
+  }
 }
