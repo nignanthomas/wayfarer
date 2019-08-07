@@ -45,10 +45,10 @@
                 <form action="" id="login-form" onsubmit="event.preventDefault(); signIn();">
                   <div class="forms">
                     <div class="formgroup" id="email-form">
-                      <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
+                      <input type="email" id="email" name="email" required placeholder="email" autocomplete="off" maxlength="20" pattern="[A-Za-z]{2,}">
                     </div>
                     <div class="formgroup" id="password-form">
-                      <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
+                      <input type="password" id="password" name="password" required placeholder="password" autocomplete="off" minlength="6" title="Six or more chareacters!">
                     </div>
                     <input type="submit" value="Sign In">
                     <div class="form-bottom">

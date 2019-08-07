@@ -42,25 +42,27 @@
                 <h1>SIGN UP</h1>
                 <img src="../images/avatar.png" alt="">
                 <hr>
-                <form action="" id="login-form" onsubmit="event.preventDefault(); signUp();">
+                <form action="" id="login-form" onsubmit="signUp(); event.preventDefault();">
                   <div class="forms">
                     <div class="formgroup" id="email-form">
-                      <input type="text" id="email" name="email" required placeholder="email" autocomplete="off">
+                      <input type="email" id="email" name="email" required placeholder="email" autocomplete="off">
                     </div>
                     <div class="formgroup" id="fname-form">
-                      <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off">
+                      <input type="text" id="fname" name="fname" required placeholder="first name" autocomplete="off" maxlength="20" pattern="[A-Za-z]{2,}">
                     </div>
                     <div class="formgroup" id="lname-form">
-                      <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off">
+                      <input type="text" id="lname" name="lname" required placeholder="last name" autocomplete="off" maxlength="20" pattern="[A-Za-z]{2,}">
                     </div>
                     <div class="formgroup" id="location-form">
-                      <input type="text" id="location" name="location" required placeholder="location" autocomplete="off">
+                      <input type="text" id="location" name="location" required placeholder="location" autocomplete="off" maxlength="20" pattern="[A-Za-z]{2,}">
                     </div>
                     <div class="formgroup" id="password-form">
-                      <input type="password" id="password" name="password" required placeholder="password" autocomplete="off">
+                      <input type="password" id="password" name="password" required placeholder="password" autocomplete="off" minlength="6" title="Six or more chareacters!">
                     </div>
                     <div class="formgroup" id="confirm-form">
                       <input type="password" id="confirm" name="confirm" required placeholder="confirm password" autocomplete="off">
+                    </div>
+                    <div class="error-message">
                     </div>
                     <input type="submit" value="Sign Up">
                     <div class="form-bottom">
