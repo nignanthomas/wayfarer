@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import apiRoutes from './v1/routes';
 import swaggerDocument from './api-docs/v1/swagger.json';
-import tokenGenerator from './v1/helpers/signToken';
 
 const app = express();
 const port = process.env.PORT || 3000;

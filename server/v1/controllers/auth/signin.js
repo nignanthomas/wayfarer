@@ -1,7 +1,5 @@
 import tokenGenerator from '../../helpers/signToken';
-import signinValidators from '../../helpers/signinValidators';
 import UserModel from '../../models/userModel';
-// import errorMessage from '../../helpers/joiErrorMessage';
 import { responseSuccess, responseError } from '../../helpers/responseHelpers';
 
 const SignIn = {
@@ -12,11 +10,6 @@ const SignIn = {
   */
   signIn(req, res) {
     const { body } = req;
-    const { error } = signinValidators.validateSignin(body);
-    if (error) {
-      // const message = errorMessage.errorMessage(error.details);
-      return responseError(res, 400, error.details[0].message);
-    }
     // Find user given the email
     const user = UserModel.getAllUsers().find(aUser => aUser.email === body.email);
     // If not handle it

@@ -1,6 +1,5 @@
 import UserModel from '../../models/userModel';
 import tokenGenerator from '../../helpers/signToken';
-import signupValidators from '../../helpers/signupValidators';
 import { responseSuccess, responseError } from '../../helpers/responseHelpers';
 
 
@@ -12,10 +11,6 @@ const SignUp = {
   */
   signUp(req, res) {
     const { body } = req;
-    const { error } = signupValidators.validateSignup(body);
-    if (error) {
-      return responseError(res, 400, error.details[0].message);
-    }
     if (UserModel.getAllUsers().find(user => user.email === body.email)) {
       return responseError(res, 403, 'This email address is already in use!');
     }

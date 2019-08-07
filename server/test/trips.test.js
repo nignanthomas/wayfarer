@@ -257,10 +257,9 @@ describe('Trips Tests', () => {
         .patch('/api/v1/trips/11')
         .set('Authorization', token)
         .send({
-          seating_capacity: 45,
+          seating_capacity: 21,
           bus_license_number: 'KC8 219',
-          origin: 'Ouagadougou',
-          destination: 'Kigali',
+          trip_date: '12-12-2020',
           fare: 7500,
         })
         .end((err, res) => {

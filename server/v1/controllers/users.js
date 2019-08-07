@@ -14,7 +14,6 @@ const User = {
     if (!users.length) {
       return responseError(res, 404, 'Oops! No Users found!');
     }
-    // return res.status(200).json({ status: 'success', data: users });
     return responseSuccess(res, 200, users);
   },
 
@@ -27,7 +26,6 @@ const User = {
     const userId = parseInt(req.params.userId, 10);
     const user = UserModel.getOneUser(userId);
     if (user) {
-      // return res.status(200).json({ status: 'success', data: user });
       return responseSuccess(res, 200, user);
     }
     return responseError(res, 404, 'Oops! No Users found!');

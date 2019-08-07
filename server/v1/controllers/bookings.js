@@ -2,7 +2,6 @@ import BookingModel from '../models/bookingModel';
 import UserModel from '../models/userModel';
 import TripModel from '../models/tripModel';
 import idValidator from '../helpers/idValidator';
-import bookingValidators from '../helpers/bookingValidators';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
 /**
@@ -31,10 +30,6 @@ const Booking = {
   */
   createBooking(req, res) {
     const { body } = req;
-    const { error } = bookingValidators.validateNewBooking(body);
-    if (error) {
-      return responseError(res, 400, error.details[0].message);
-    }
     const booking = BookingModel.book(body);
     return responseSuccess(res, 201, booking);
   },
@@ -99,10 +94,6 @@ const Booking = {
         return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       const { body } = req;
-      const errorUpdate = bookingValidators.validateUpdateBooking(body).error;
-      if (errorUpdate) {
-        return responseError(res, 400, errorUpdate.details[0].message);
-      }
       const updatedBooking = BookingModel.updateBooking(bookingId, body);
       const formattedBooking = formatBooking(updatedBooking);
       return responseSuccess(res, 200, formattedBooking);

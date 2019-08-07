@@ -4,7 +4,6 @@ const isAdmin = (req, res, next) => {
   if (!req.user.is_admin) {
     return responseError(res, 400, 'Unauthorized! Only admin can create a trip!');
   }
-  console.log('passed middleware');
   return next();
 };
 module.exports = {

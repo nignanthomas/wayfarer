@@ -1,5 +1,4 @@
 import TripModel from '../models/tripModel';
-import tripValidators from '../helpers/tripValidators';
 import idValidator from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
@@ -11,10 +10,6 @@ const Trip = {
   */
   createTrip(req, res) {
     const { body } = req;
-    const { error } = tripValidators.validateNewTrip(body);
-    if (error) {
-      return responseError(res, 400, error.details[0].message);
-    }
     const trip = TripModel.createTrip(body);
     return responseSuccess(res, 201, trip);
   },
@@ -68,19 +63,14 @@ const Trip = {
   */
   updateTrip(req, res) {
     const { error } = idValidator.tripIdValidator(req.params);
+    const tripId = parseInt(req.params.tripId, 10);
     if (error) {
       return responseError(res, 400, 'The trip ID should be a number');
     }
-    const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
       const { body } = req;
-      const errorUpdate = tripValidators.validateUpdateTrip(body).error;
-      if (errorUpdate) {
-        return responseError(res, 400, errorUpdate.details[0].message);
-      }
       const updatedTrip = TripModel.updateTrip(tripId, body);
-      // return res.status(200).json({ status: 'success', data: { message: 'Trip Updated Successfully!', data: updatedTrip } });
       return responseSuccess(res, 200, updatedTrip);
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
@@ -101,7 +91,6 @@ const Trip = {
     const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
     if (oneTrip) {
       const cancelledTrip = TripModel.updateTrip(tripId, cancelStatus);
-      // return res.status(200).json({ status: 'success', data: { message: 'Trip Cancelled Successfully!', data: cancelledTrip } });
       return responseSuccess(res, 200, cancelledTrip);
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
@@ -121,7 +110,6 @@ const Trip = {
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
       TripModel.deleteTrip(tripId);
-      // return res.send({ status: 'success', data: { message: 'Trip Deleted Successfully!' } });
       return responseSuccess(res, 204, {});
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
