@@ -1,7 +1,10 @@
+import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import UserModel from '../v1/models/userModel';
+
+dotenv.config();
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -15,8 +18,8 @@ describe('Users Tests', () => {
       .request(app)
       .post('/api/v1/auth/signin')
       .send({
-        email: 'nignanthomas@gmail.com',
-        password: 'qwerty',
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD,
       })
       .end((err, res) => {
         const result = JSON.parse(res.text);
@@ -28,7 +31,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get('/api/v1/users')
-      .set('Authorization', token)
+      .set('token', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -50,7 +53,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get(`/api/v1/users/${userId}`)
-      .set('Authorization', token)
+      .set('token', token)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -64,7 +67,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get('/api/v1/users/11')
-      .set('Authorization', token)
+      .set('token', token)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
@@ -77,7 +80,7 @@ describe('Users Tests', () => {
     chai
       .request(app)
       .get('/api/v1/users/a')
-      .set('Authorization', token)
+      .set('token', token)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');

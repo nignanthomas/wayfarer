@@ -1,8 +1,11 @@
+import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import BookingModel from '../v1/models/bookingModel';
 import TripModel from '../v1/models/tripModel';
+
+dotenv.config();
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -20,27 +23,23 @@ describe('Bookings Tests', () => {
       fare: 5000,
     }
     TripModel.createTrip(trip);
-    // chai
-    //   .request(app)
-    //   .post('/api/v1/auth/signup')
-    //   .send({
-    //     email: 'nignanthomas@gmail.com',
-    //     first_name: 'Thomas',
-    //     last_name: 'Nignan',
-    //     password: 'qwerty',
-    //   })
-    //   .end((err, res) => {
-    //     console.log('created admin');
-    //     const result = JSON.parse(res.text);
-    //     console.log(result.data.token);
-    //     done();
-    //   });
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        email: process.env.ADMIN_EMAIL,
+        first_name: 'Thomas',
+        last_name: 'Nignan',
+        password: process.env.ADMIN_PASSWORD,
+      })
+      .end((err, res) => {
+      });
     chai
       .request(app)
       .post('/api/v1/auth/signin')
       .send({
-        email: 'nignanthomas@gmail.com',
-        password: 'qwerty',
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD,
       })
       .end((err, res) => {
         const result = JSON.parse(res.text);
@@ -58,7 +57,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
-        // .set('Authorization', token)
+        // .set('token', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(401);
@@ -77,7 +76,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
-        .set('Authorization', token)
+        .set('token', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(201);
@@ -98,7 +97,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
-        .set('Authorization', token)
+        .set('token', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(400);
@@ -116,7 +115,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .post('/api/v1/bookings')
-        .set('Authorization', token)
+        .set('token', token)
         .send(booking)
         .end((err, res) => {
           res.should.have.status(400);
@@ -132,7 +131,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get('/api/v1/bookings')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -154,7 +153,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get(`/api/v1/bookings/${bookingId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -168,7 +167,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get('/api/v1/bookings/11')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -181,7 +180,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .get('/api/v1/bookings/a')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
@@ -204,7 +203,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .patch(`/api/v1/bookings/${bookingId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seat_number: 21,
         })
@@ -219,7 +218,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .patch('/api/v1/bookings/41')
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seat_number: 21,
         })
@@ -243,7 +242,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .delete(`/api/v1/bookings/${bookingId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(204);
           res.body.should.be.a('object');
@@ -255,7 +254,7 @@ describe('Bookings Tests', () => {
       chai
         .request(app)
         .delete('/api/v1/bookings/a')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');

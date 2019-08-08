@@ -1,7 +1,10 @@
+import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import TripModel from '../v1/models/tripModel';
+
+dotenv.config();
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -11,27 +14,12 @@ chai.use(chaiHttp);
 describe('Trips Tests', () => {
   let token = '';
   before((done) => {
-    // chai
-    //   .request(app)
-    //   .post('/api/v1/auth/signup')
-    //   .send({
-    //     email: 'nignanthomas@gmail.com',
-    //     first_name: 'Thomas',
-    //     last_name: 'Nignan',
-    //     password: 'qwerty',
-    //   })
-    //   .end((err, res) => {
-    //     console.log('created admin');
-    //     const result = JSON.parse(res.text);
-    //     console.log(result.data.token);
-    //     done();
-    //   });
     chai
       .request(app)
       .post('/api/v1/auth/signin')
       .send({
-        email: 'nignanthomas@gmail.com',
-        password: 'qwerty',
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD,
       })
       .end((err, res) => {
         const result = JSON.parse(res.text);
@@ -45,7 +33,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -68,7 +56,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(201);
@@ -91,7 +79,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -112,7 +100,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -133,7 +121,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -153,7 +141,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -174,7 +162,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -190,7 +178,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -204,7 +192,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/?origin=Kigali&destination=Nairobi')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -231,7 +219,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get(`/api/v1/trips/${tripId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -243,7 +231,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/11')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -256,7 +244,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/a')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
@@ -280,7 +268,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seating_capacity: 45,
           bus_license_number: 'KC8 219',
@@ -311,7 +299,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}/cancel`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -329,7 +317,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch('/api/v1/trips/a/cancel')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
@@ -343,7 +331,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch('/api/v1/trips/11/cancel')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -357,7 +345,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch('/api/v1/trips/11')
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seating_capacity: 21,
           bus_license_number: 'KC8 219',
@@ -376,7 +364,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch('/api/v1/trips/a')
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seating_capacity: 21,
           bus_license_number: 'KC8 219',
@@ -407,7 +395,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete(`/api/v1/trips/${tripId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(204);
           res.body.should.be.a('object');
@@ -419,7 +407,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete('/api/v1/trips/9')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -433,7 +421,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete('/api/v1/trips/a')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');

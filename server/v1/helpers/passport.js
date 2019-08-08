@@ -9,7 +9,7 @@ dotenv.config();
 const JwtStrategy = require('passport-jwt').Strategy;
 
 passport.use(new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  jwtFromRequest: ExtractJwt.fromHeader('token'),
   secretOrKey: process.env.JWT_SECRET,
 }, async (payload, done) => {
   try {

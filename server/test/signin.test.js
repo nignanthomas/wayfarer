@@ -1,6 +1,10 @@
+import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
+
+dotenv.config();
+
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -9,8 +13,8 @@ chai.use(chaiHttp);
 describe('Sign In', () => {
   it('POST /api/v1/auth/signin Should log in a user', (done) => {
     const user = {
-      email: 'nignanthomas@gmail.com',
-      password: 'qwerty',
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD,
     };
     chai
       .request(app)
@@ -42,7 +46,7 @@ describe('Sign In', () => {
 
   it('POST /api/v1/auth/signin Should not log in a user: Bad Credentials! (Wrong password)', (done) => {
     const user = {
-      email: 'nignanthomas@gmail.com',
+      email: process.env.ADMIN_EMAIL,
       password: 'badpassword',
     };
     chai

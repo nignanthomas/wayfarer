@@ -87,8 +87,8 @@
         "operationId" : "getAllBookings",
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         } ],
         "responses" : {
@@ -106,8 +106,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -138,8 +138,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -173,8 +173,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -206,8 +206,8 @@
         "consumes" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -251,8 +251,8 @@
         "operationId" : "getAllTrips",
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         } ],
         "responses" : {
@@ -270,8 +270,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -302,8 +302,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -334,8 +334,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -367,8 +367,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {
@@ -414,8 +414,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "header",
-          "name" : "authorization",
-          "description" : "An authorization header",
+          "name" : "token",
+          "description" : "An token header",
           "required" : true
         },
         {

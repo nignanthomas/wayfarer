@@ -70,8 +70,6 @@ class Trip {
   */
   deleteTrip(id) {
     const trip = this.getOneTrip(id);
-    // [trip, ...otherTrips] = this.trips;
-    // this.trips = otherTrips;
     const index = this.trips.indexOf(trip);
     this.trips.splice(index, 1);
     return {};
