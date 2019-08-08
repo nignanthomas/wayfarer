@@ -30,6 +30,7 @@ const Booking = {
   */
   createBooking(req, res) {
     const { body } = req;
+    body.user_id = req.user.id;
     const booking = BookingModel.book(body);
     return responseSuccess(res, 201, 'Booking Created Successfully', booking);
   },
@@ -63,7 +64,7 @@ const Booking = {
   getOneBooking(req, res) {
     const { error } = idValidator.bookingIdValidator(req.params);
     if (error) {
-      return responseError(res, 400, 'The trip ID should be a number');
+      return responseError(res, 400, 'The booking ID should be a number');
     }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
@@ -85,7 +86,7 @@ const Booking = {
   updateBooking(req, res) {
     const { error } = idValidator.bookingIdValidator(req.params);
     if (error) {
-      return responseError(res, 400, 'The trip ID should be a number');
+      return responseError(res, 400, 'The booking ID should be a number');
     }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);
@@ -109,7 +110,7 @@ const Booking = {
   deleteBooking(req, res) {
     const { error } = idValidator.bookingIdValidator(req.params);
     if (error) {
-      return responseError(res, 400, 'The trip ID should be a number');
+      return responseError(res, 400, 'The booking ID should be a number');
     }
     const bookingId = parseInt(req.params.bookingId, 10);
     const oneBooking = BookingModel.getOneBooking(bookingId);

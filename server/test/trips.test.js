@@ -1,11 +1,15 @@
+import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import TripModel from '../v1/models/tripModel';
 
+dotenv.config();
+
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
 chai.use(chaiHttp);
+
 
 describe('Trips Tests', () => {
   let token = '';
@@ -14,8 +18,8 @@ describe('Trips Tests', () => {
       .request(app)
       .post('/api/v1/auth/signin')
       .send({
-        email: 'nignanthomas@gmail.com',
-        password: 'qwerty',
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD,
       })
       .end((err, res) => {
         const result = JSON.parse(res.text);
@@ -23,6 +27,22 @@ describe('Trips Tests', () => {
         done();
       });
   });
+
+  describe('Trips Tests - Empty Trips', () => {
+    it('GET /api/v1/trips Should get all trips', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/trips')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.error.should.match(/There are no Trips yet!/);
+          done();
+        });
+    });
+  });
+
   describe('POST trips tests', () => {
     it('POST /api/v1/trips Should create a new trip', (done) => {
       const trip = {
@@ -31,19 +51,19 @@ describe('Trips Tests', () => {
         origin: 'Kigali',
         destination: 'Nairobi',
         trip_date: new Date().setDate(new Date().getDate() + 1),
-        fare: 5000,
+        fare: '5000',
       };
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           res.body.status.should.equal(201);
           res.body.data.should.a('object');
-          res.body.data.fare.should.equal(5000);
+          res.body.data.fare.should.equal('5000');
           done();
         });
     });
@@ -59,7 +79,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -80,7 +100,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -101,7 +121,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -121,7 +141,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -142,7 +162,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .post('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .send(trip)
         .end((err, res) => {
           res.should.have.status(400);
@@ -158,12 +178,28 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.status.should.equal(200);
           res.body.data.should.be.a('array');
+          done();
+        });
+    });
+
+    it('GET /api/v1/trips Should get all trips filtered', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/trips/?origin=Kigali&destination=Nairobi')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(200);
+          res.body.data.should.be.a('array');
+          res.body.data[0].origin.should.match(/Kigali/);
+          res.body.data[0].destination.should.match(/Nairobi/);
           done();
         });
     });
@@ -183,7 +219,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get(`/api/v1/trips/${tripId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -195,7 +231,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/11')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -208,7 +244,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v1/trips/a')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
@@ -232,7 +268,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seating_capacity: 45,
           bus_license_number: 'KC8 219',
@@ -250,11 +286,66 @@ describe('Trips Tests', () => {
         });
     });
 
+    it('PATCH /api/v1/trips/:id/cancel Should cancel a given a trip (Trip just created)', (done) => {
+      const trip = {
+        seating_capacity: 45,
+        bus_license_number: 'KCK 469',
+        origin: 'Kigali',
+        destination: 'Nairobi',
+        trip_date: new Date().setDate(new Date().getDate() + 1),
+        fare: '5000',
+      };
+      const tripId = TripModel.createTrip(trip).id;
+      chai
+        .request(app)
+        .patch(`/api/v1/trips/${tripId}/cancel`)
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(200);
+          res.body.data.bus_license_number.should.match(/KCK 469/);
+          res.body.data.origin.should.match(/Kigali/);
+          res.body.data.destination.should.match(/Nairobi/);
+          res.body.data.fare.should.equal('5000');
+          res.body.data.status.should.equal(9);
+          done();
+        });
+    });
+
+    it('PATCH /api/v1/trips/:id/cancel Should not cancel a given a trip (Trip id = a , character)', (done) => {
+      chai
+        .request(app)
+        .patch('/api/v1/trips/a/cancel')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(400);
+          res.body.error.match(/The trip ID should be a number/);
+          done();
+        });
+    });
+
+    it('PATCH /api/v1/trips/:id/cancel Should not cancel a given a trip (Trip id 11 not found not exist)', (done) => {
+      chai
+        .request(app)
+        .patch('/api/v1/trips/11/cancel')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(404);
+          res.body.error.match(/Cannot find trip of id: 11/);
+          done();
+        });
+    });
+
     it('PATCH /api/v1/trips/:id Should return 404 (Trip id 11 that does not exist )', (done) => {
       chai
         .request(app)
         .patch('/api/v1/trips/11')
-        .set('Authorization', token)
+        .set('token', token)
         .send({
           seating_capacity: 21,
           bus_license_number: 'KC8 219',
@@ -265,6 +356,26 @@ describe('Trips Tests', () => {
           res.should.have.status(404);
           res.body.should.be.a('object');
           res.body.status.should.equal(404);
+          done();
+        });
+    });
+
+    it('PATCH /api/v1/trips/:id Should return 400 (Trip id should be a number)', (done) => {
+      chai
+        .request(app)
+        .patch('/api/v1/trips/a')
+        .set('token', token)
+        .send({
+          seating_capacity: 21,
+          bus_license_number: 'KC8 219',
+          trip_date: '12-12-2020',
+          fare: 7500,
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(400);
+          res.body.error.match(/The trip ID should be a number/);
           done();
         });
     });
@@ -284,7 +395,7 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete(`/api/v1/trips/${tripId}`)
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(204);
           res.body.should.be.a('object');
@@ -296,11 +407,26 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .delete('/api/v1/trips/9')
-        .set('Authorization', token)
+        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
           res.body.status.should.equal(404);
+          res.body.error.match(/Cannot find trip of id: 11/);
+          done();
+        });
+    });
+
+    it('DELETE /api/v1/trips Should not delete a trip (Trip id a, not a number)', (done) => {
+      chai
+        .request(app)
+        .delete('/api/v1/trips/a')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(400);
+          res.body.error.should.match(/The trip ID should be a number/)
           done();
         });
     });

@@ -2,12 +2,14 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 import apiRoutes from './v1/routes';
 import defaultRoute from './v1/routes/default';
 import swaggerDocument from './api-docs/v1/swagger.json';
 
 const app = express();
 const port = process.env.PORT || 3000;
+dotenv.config();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());

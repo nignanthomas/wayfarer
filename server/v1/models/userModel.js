@@ -4,24 +4,7 @@ class User {
   * @param {object} data
   */
   constructor() {
-    this.users = [
-      {
-        id: 1,
-        email: 'nignanthomas@gmail.com',
-        first_name: 'Thomas',
-        last_name: 'Nignan',
-        password: 'qwerty',
-        is_admin: true,
-      },
-      {
-        id: 2,
-        email: 'nziokaivy@gmail.com',
-        first_name: 'Ivy',
-        last_name: 'Mwende',
-        password: 'password',
-        is_admin: false,
-      },
-    ];
+    this.users = [];
   }
 
   /**
