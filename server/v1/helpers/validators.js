@@ -1,14 +1,14 @@
 import Joi from '@hapi/joi';
 
-const validateSignin = Joi.object().keys({
-  email: Joi.string().trim().required(),
+const validateSignup = Joi.object().keys({
+  email: Joi.string().email({ minDomainSegments: 2 }).required(),
+  first_name: Joi.string().trim().required(),
+  last_name: Joi.string().trim().required(),
   password: Joi.string().trim().required(),
 });
 
-const validateSignup = Joi.object().keys({
-  email: Joi.string().trim().required(),
-  first_name: Joi.string().trim().required(),
-  last_name: Joi.string().trim().required(),
+const validateSignin = Joi.object().keys({
+  email: Joi.string().email({ minDomainSegments: 2 }).required(),
   password: Joi.string().trim().required(),
 });
 

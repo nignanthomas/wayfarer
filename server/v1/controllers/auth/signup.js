@@ -17,7 +17,7 @@ const SignUp = {
     const newUser = UserModel.createUser(body);
     const token = tokenGenerator.signToken(newUser);
     newUser.token = token;
-    return responseSuccess(res, 201, newUser);
+    return responseSuccess(res, 201, 'User Successfully Created', { token: newUser.token });
   },
 };
 export default SignUp;

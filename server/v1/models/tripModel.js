@@ -6,28 +6,7 @@ class Trip {
   * @param {object} data
   */
   constructor() {
-    this.trips = [
-      {
-        id: 1,
-        seating_capacity: 45,
-        bus_license_number: 'KCK 469',
-        origin: 'Kigali',
-        destination: 'Nairobi',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-        fare: 5000,
-        status: 1,
-      },
-      {
-        id: 2,
-        seating_capacity: 45,
-        bus_license_number: 'NTM 896',
-        origin: 'Kampala',
-        destination: 'Arusha',
-        trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-        fare: 8000,
-        status: 1,
-      },
-    ];
+    this.trips = [];
   }
 
   /**

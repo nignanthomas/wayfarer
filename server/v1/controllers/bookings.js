@@ -31,7 +31,7 @@ const Booking = {
   createBooking(req, res) {
     const { body } = req;
     const booking = BookingModel.book(body);
-    return responseSuccess(res, 201, booking);
+    return responseSuccess(res, 201, 'Booking Created Successfully', booking);
   },
 
   /**
@@ -52,7 +52,7 @@ const Booking = {
       const formattedBooking = formatBooking(booking);
       formattedBookings.push(formattedBooking);
     });
-    return responseSuccess(res, 200, formattedBookings);
+    return responseSuccess(res, 200, 'Bookings Successfully Fetched', formattedBookings);
   },
 
   /**
@@ -72,7 +72,7 @@ const Booking = {
         return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       const formattedBooking = formatBooking(oneBooking);
-      return responseSuccess(res, 200, formattedBooking);
+      return responseSuccess(res, 200, 'Booking Fetched Successfully', formattedBooking);
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   },
@@ -96,7 +96,7 @@ const Booking = {
       const { body } = req;
       const updatedBooking = BookingModel.updateBooking(bookingId, body);
       const formattedBooking = formatBooking(updatedBooking);
-      return responseSuccess(res, 200, formattedBooking);
+      return responseSuccess(res, 200, 'Booking updated Successfully', formattedBooking);
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   },
@@ -118,7 +118,7 @@ const Booking = {
         return responseError(res, 401, 'Unauthorized! You cannot access this booking!');
       }
       BookingModel.deleteBooking(bookingId);
-      return responseSuccess(res, 204, {});
+      return responseSuccess(res, 204, `Booking of id ${bookingId} Successfully Deleted`, {});
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   },

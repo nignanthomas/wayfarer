@@ -10,21 +10,17 @@ const SignIn = {
   */
   signIn(req, res) {
     const { body } = req;
-    // Find user given the email
     const user = UserModel.getAllUsers().find(aUser => aUser.email === body.email);
-    // If not handle it
     if (!user) {
       return responseError(res, 404, 'This user email is not registered');
     }
-    // Check if the password is valid
     const isMatch = user.password === body.password;
-    // If Not match, handle it
     if (!isMatch) {
       return responseError(res, 401, 'Unauthorized! The password is incorrect.');
     }
     const token = tokenGenerator.signToken(user);
     user.token = token;
-    return responseSuccess(res, 201, user);
+    return responseSuccess(res, 201, 'User Successfully Logged in', { token: user.token });
   },
 };
 export default SignIn;

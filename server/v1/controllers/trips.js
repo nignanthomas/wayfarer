@@ -11,7 +11,7 @@ const Trip = {
   createTrip(req, res) {
     const { body } = req;
     const trip = TripModel.createTrip(body);
-    return responseSuccess(res, 201, trip);
+    return responseSuccess(res, 201, 'Trip Successfully Created', trip);
   },
   /**
   * @param {object} req
@@ -32,7 +32,7 @@ const Trip = {
       if (!trips.length) {
         return responseError(res, 404, 'There are no Trips yet!');
       }
-      return responseSuccess(res, 200, trips);
+      return responseSuccess(res, 200, 'Trips Successfully Fetched', trips);
     } catch (error) {
       return responseError(res, 500, 'Oops! Cannot retrieve trips. :(');
     }
@@ -51,7 +51,7 @@ const Trip = {
     const tripId = parseInt(req.params.tripId, 10);
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
-      return responseSuccess(res, 200, oneTrip);
+      return responseSuccess(res, 200, 'Trip Successfully Fetched', oneTrip);
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
@@ -71,7 +71,7 @@ const Trip = {
     if (oneTrip) {
       const { body } = req;
       const updatedTrip = TripModel.updateTrip(tripId, body);
-      return responseSuccess(res, 200, updatedTrip);
+      return responseSuccess(res, 200, 'Trip Successfully Updated', updatedTrip);
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
@@ -91,7 +91,7 @@ const Trip = {
     const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
     if (oneTrip) {
       const cancelledTrip = TripModel.updateTrip(tripId, cancelStatus);
-      return responseSuccess(res, 200, cancelledTrip);
+      return responseSuccess(res, 200, 'Trip Successfully Cancelled', cancelledTrip);
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },
@@ -110,7 +110,7 @@ const Trip = {
     const oneTrip = TripModel.getOneTrip(tripId);
     if (oneTrip) {
       TripModel.deleteTrip(tripId);
-      return responseSuccess(res, 204, {});
+      return responseSuccess(res, 204, `Trip of id: ${tripId} Successfully Deleted`, {});
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   },

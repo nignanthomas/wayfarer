@@ -30,7 +30,6 @@ describe('Trips Tests', () => {
         bus_license_number: 'KCK 469',
         origin: 'Kigali',
         destination: 'Nairobi',
-        // trip_date: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
         trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };

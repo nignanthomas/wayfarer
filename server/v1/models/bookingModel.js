@@ -6,22 +6,7 @@ class Booking {
   * @param data
   */
   constructor() {
-    this.bookings = [
-      {
-        id: 1,
-        trip_id: 2,
-        user_id: 1,
-        seat_number: 12,
-        created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-      },
-      {
-        id: 2,
-        trip_id: 1,
-        user_id: 2,
-        seat_number: 32,
-        created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-      },
-    ];
+    this.bookings = [];
   }
 
   /**

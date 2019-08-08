@@ -13,12 +13,9 @@ const isValid = (req, res, next) => {
 
     return Joi.validate(req.body, schema, (error, data) => {
       if (error) {
-        console.log('Validation Failed');
-        console.log(error.details[0].message);
         return responseError(res, 400, error.details[0].message);
       }
       req.body = data;
-      console.log('Validation Success');
       return next();
     });
   }

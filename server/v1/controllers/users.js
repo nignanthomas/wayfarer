@@ -14,7 +14,7 @@ const User = {
     if (!users.length) {
       return responseError(res, 404, 'Oops! No Users found!');
     }
-    return responseSuccess(res, 200, users);
+    return responseSuccess(res, 200, 'Users Successfully Fetched', users);
   },
 
   /**
@@ -26,7 +26,7 @@ const User = {
     const userId = parseInt(req.params.userId, 10);
     const user = UserModel.getOneUser(userId);
     if (user) {
-      return responseSuccess(res, 200, user);
+      return responseSuccess(res, 200, 'User Successfully Fetched', user);
     }
     return responseError(res, 404, 'Oops! No Users found!');
   },
