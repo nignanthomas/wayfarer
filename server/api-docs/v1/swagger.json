@@ -89,7 +89,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         } ],
         "responses" : {
           "200" : {
@@ -108,7 +109,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "in" : "body",
@@ -140,7 +142,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "bookingId",
@@ -175,7 +178,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "bookingId",
@@ -208,7 +212,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "bookingId",
@@ -253,7 +258,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         } ],
         "responses" : {
           "200" : {
@@ -272,7 +278,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "in" : "body",
@@ -304,7 +311,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "tripId",
@@ -336,7 +344,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "tripId",
@@ -369,7 +378,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "tripId",
@@ -416,7 +426,8 @@
           "in" : "header",
           "name" : "token",
           "description" : "An token header",
-          "required" : true
+          "required" : true,
+          "type": "string"
         },
         {
           "name" : "tripId",
