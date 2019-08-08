@@ -19,7 +19,7 @@ describe('Sign In', () => {
       .end((err, res) => {
         res.should.have.status(201);
         res.body.should.be.a('object');
-        res.body.status.should.match(/success/);
+        res.body.status.should.equal(201);
         done();
       });
   });
@@ -52,7 +52,7 @@ describe('Sign In', () => {
       .end((err, res) => {
         res.should.have.status(401);
         // res.body.should.be.a('object');
-        // res.body.status.should.match(/error/);
+        // res.body.status.should.equal(401);
         done();
       });
   });
@@ -69,7 +69,7 @@ describe('Sign In', () => {
       .end((err, res) => {
         res.should.have.status(400);
         // res.body.should.be.a('object');
-        // res.body.status.should.match(/error/);
+        // res.body.status.should.equal(400);
         done();
       });
   });
@@ -86,7 +86,7 @@ describe('Sign In', () => {
       .end((err, res) => {
         res.should.have.status(400);
         // res.body.should.be.a('object');
-        // res.body.status.should.match(/error/);
+        // res.body.status.should.equal(400);
         done();
       });
   });
@@ -103,7 +103,7 @@ describe('Sign In', () => {
       .end((err, res) => {
         res.should.have.status(400);
         // res.body.should.be.a('object');
-        // res.body.status.should.match(/error/);
+        // res.body.status.should.equal(400);
         done();
       });
   });

@@ -21,7 +21,7 @@ describe('Sign Up', () => {
       .end((err, res) => {
         res.should.have.status(201);
         res.body.should.be.a('object');
-        res.body.status.should.match(/success/);
+        res.body.status.should.equal(201);
         done();
       });
   });
@@ -40,7 +40,7 @@ describe('Sign Up', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.status.should.match(/error/);
+        res.body.status.should.equal(400);
         done();
       });
   });
@@ -59,7 +59,7 @@ describe('Sign Up', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.status.should.match(/error/);
+        res.body.status.should.equal(400);
         done();
       });
   });
@@ -78,7 +78,7 @@ describe('Sign Up', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.status.should.match(/error/);
+        res.body.status.should.equal(400);
         done();
       });
   });
@@ -97,7 +97,7 @@ describe('Sign Up', () => {
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.status.should.match(/error/);
+        res.body.status.should.equal(400);
         done();
       });
   });

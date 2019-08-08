@@ -41,7 +41,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
+          res.body.status.should.equal(201);
           res.body.data.should.a('object');
           res.body.data.fare.should.equal(5000);
           done();
@@ -64,7 +64,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -85,7 +85,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -106,7 +106,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -126,7 +126,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -147,7 +147,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -162,7 +162,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
+          res.body.status.should.equal(200);
           res.body.data.should.be.a('array');
           done();
         });
@@ -199,7 +199,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(404);
           done();
         });
     });
@@ -212,7 +212,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -242,7 +242,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
+          res.body.status.should.equal(200);
           res.body.data.bus_license_number.should.match(/KC8 219/);
           res.body.data.fare.should.equal(7500);
           res.body.data.status.should.equal(1);
@@ -264,7 +264,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(404);
           done();
         });
     });
@@ -300,7 +300,7 @@ describe('Trips Tests', () => {
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(404);
           done();
         });
     });

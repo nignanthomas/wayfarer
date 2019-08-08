@@ -2,6 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import BookingModel from '../v1/models/bookingModel';
+import TripModel from '../v1/models/tripModel';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -10,6 +11,15 @@ chai.use(chaiHttp);
 describe('Bookings Tests', () => {
   let token = '';
   before((done) => {
+    const trip = {
+      seating_capacity: 45,
+      bus_license_number: 'KCK 469',
+      origin: 'Kigali',
+      destination: 'Nairobi',
+      trip_date: '10-12-2019',
+      fare: 5000,
+    }
+    TripModel.createTrip(trip);
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -27,7 +37,7 @@ describe('Bookings Tests', () => {
     it('POST /api/v1/bookings Should create a new booking object', (done) => {
       const booking = {
         trip_id: 1,
-        user_id: 2,
+        user_id: 1,
         seat_number: 12,
       };
       chai
@@ -38,7 +48,7 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
+          res.body.status.should.equal(201);
           res.body.data.seat_number.should.equal(12);
           done();
         });
@@ -46,7 +56,7 @@ describe('Bookings Tests', () => {
 
     it('POST /api/v1/bookings Should not create a new booking object (No trip_id)', (done) => {
       const booking = {
-        user_id: 2,
+        user_id: 1,
         seat_number: 12,
       };
       chai
@@ -57,14 +67,14 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
 
     it('POST /api/v1/bookings Should not create a new booking object (No user_id)', (done) => {
       const booking = {
-        trip_id: 2,
+        trip_id: 1,
         seat_number: 12,
       };
       chai
@@ -75,14 +85,14 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
 
     it('POST /api/v1/bookings Should not create a new booking object (No seat_number)', (done) => {
       const booking = {
-        trip_id: 2,
+        trip_id: 1,
         user_id: 1,
       };
       chai
@@ -93,7 +103,7 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -108,7 +118,7 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
+          res.body.status.should.equal(200);
           res.body.data.should.be.a('array');
           done();
         });
@@ -119,7 +129,7 @@ describe('Bookings Tests', () => {
     it('GET /api/v1/bookings/:id Should return a specific booking', (done) => {
       const booking = {
         trip_id: 1,
-        user_id: 2,
+        user_id: 1,
         seat_number: 12,
       };
       const bookingId = BookingModel.book(booking).id;
@@ -130,7 +140,7 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.status.should.match(/success/);
+          res.body.status.should.equal(200);
           res.body.data.seat_number.should.equal(12);
           done();
         });
@@ -144,7 +154,7 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(404);
           done();
         });
     });
@@ -157,7 +167,7 @@ describe('Bookings Tests', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
-          res.body.status.should.match(/error/);
+          res.body.status.should.equal(400);
           done();
         });
     });
@@ -169,6 +179,7 @@ describe('Bookings Tests', () => {
         trip_id: 1,
         user_id: 1,
         seat_number: 12,
+        fare: 3000,
       };
       const bookingId = BookingModel.book(booking).id;
       chai
@@ -179,6 +190,7 @@ describe('Bookings Tests', () => {
           seat_number: 21,
         })
         .end((err, res) => {
+          console.log(res.status);
           res.should.have.status(200);
           res.body.should.be.a('object');
           done();
