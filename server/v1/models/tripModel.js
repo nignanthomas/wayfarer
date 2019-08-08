@@ -52,6 +52,7 @@ class Trip {
     const trip = this.getOneTrip(id);
     const index = this.trips.indexOf(trip);
     this.trips[index] = {
+      id: this.trips[index].id,
       seating_capacity: data.seating_capacity || trip.seating_capacity,
       bus_license_number: data.bus_license_number || trip.bus_license_number,
       origin: data.origin || trip.origin,

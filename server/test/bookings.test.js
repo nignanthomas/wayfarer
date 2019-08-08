@@ -20,6 +20,21 @@ describe('Bookings Tests', () => {
       fare: 5000,
     }
     TripModel.createTrip(trip);
+    // chai
+    //   .request(app)
+    //   .post('/api/v1/auth/signup')
+    //   .send({
+    //     email: 'nignanthomas@gmail.com',
+    //     first_name: 'Thomas',
+    //     last_name: 'Nignan',
+    //     password: 'qwerty',
+    //   })
+    //   .end((err, res) => {
+    //     console.log('created admin');
+    //     const result = JSON.parse(res.text);
+    //     console.log(result.data.token);
+    //     done();
+    //   });
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -34,10 +49,29 @@ describe('Bookings Tests', () => {
       });
   });
   describe('POST bookings tests', () => {
-    it('POST /api/v1/bookings Should create a new booking object', (done) => {
+    it('POST /api/v1/bookings Should not create a new booking object (No token)', (done) => {
       const booking = {
         trip_id: 1,
         user_id: 1,
+        seat_number: 12,
+      };
+      chai
+        .request(app)
+        .post('/api/v1/bookings')
+        // .set('Authorization', token)
+        .send(booking)
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(401);
+          res.body.error.match(/Missing or Invalid Token!/);
+          done();
+        });
+    });
+
+    it('POST /api/v1/bookings Should create a new booking object', (done) => {
+      const booking = {
+        trip_id: 1,
         seat_number: 12,
       };
       chai
@@ -50,6 +84,8 @@ describe('Bookings Tests', () => {
           res.body.should.be.a('object');
           res.body.status.should.equal(201);
           res.body.data.seat_number.should.equal(12);
+          res.body.data.user_id.should.equal(1);
+          res.body.data.trip_id.should.equal(1);
           done();
         });
     });
@@ -57,24 +93,6 @@ describe('Bookings Tests', () => {
     it('POST /api/v1/bookings Should not create a new booking object (No trip_id)', (done) => {
       const booking = {
         user_id: 1,
-        seat_number: 12,
-      };
-      chai
-        .request(app)
-        .post('/api/v1/bookings')
-        .set('Authorization', token)
-        .send(booking)
-        .end((err, res) => {
-          res.should.have.status(400);
-          res.body.should.be.a('object');
-          res.body.status.should.equal(400);
-          done();
-        });
-    });
-
-    it('POST /api/v1/bookings Should not create a new booking object (No user_id)', (done) => {
-      const booking = {
-        trip_id: 1,
         seat_number: 12,
       };
       chai
@@ -168,6 +186,7 @@ describe('Bookings Tests', () => {
           res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.status.should.equal(400);
+          res.body.error.should.match(/The booking ID should be a number/);
           done();
         });
     });
@@ -190,9 +209,24 @@ describe('Bookings Tests', () => {
           seat_number: 21,
         })
         .end((err, res) => {
-          console.log(res.status);
           res.should.have.status(200);
           res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it('PATCH /api/v1/bookings/:id Should not update a given booking (id = 41, not exist)', (done) => {
+      chai
+        .request(app)
+        .patch('/api/v1/bookings/41')
+        .set('Authorization', token)
+        .send({
+          seat_number: 21,
+        })
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.error.should.match(/Cannot find booking of id: 41/)
           done();
         });
     });
@@ -216,5 +250,22 @@ describe('Bookings Tests', () => {
           done();
         });
     });
+
+    it('DELETE /api/v1/bookings/:id Should not delete a given booking (id = a, not a number )', (done) => {
+      chai
+        .request(app)
+        .delete('/api/v1/bookings/a')
+        .set('Authorization', token)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.error.should.match(/The booking ID should be a number/)
+          done();
+        });
+    });
+  });
+  after((done) => {
+    TripModel.deleteTrip(1);
+    done();
   });
 });

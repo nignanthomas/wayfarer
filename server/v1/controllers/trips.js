@@ -29,6 +29,9 @@ const Trip = {
       if (destination) {
         trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
       }
+      if (!req.user.is_admin) {
+        trips = trips.filter(trip => trip.status === 1);
+      }
       if (!trips.length) {
         return responseError(res, 404, 'There are no Trips yet!');
       }
@@ -49,7 +52,10 @@ const Trip = {
       return responseError(res, 400, 'The trip ID should be a number');
     }
     const tripId = parseInt(req.params.tripId, 10);
-    const oneTrip = TripModel.getOneTrip(tripId);
+    let oneTrip = TripModel.getOneTrip(tripId);
+    if (!req.user.is_admin && oneTrip.status === 9) {
+      oneTrip = '';
+    }
     if (oneTrip) {
       return responseSuccess(res, 200, 'Trip Successfully Fetched', oneTrip);
     }
