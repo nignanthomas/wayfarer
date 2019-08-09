@@ -8,7 +8,7 @@
     "production": "babel-watch ./server/server.js",
     "test": "mocha --require @babel/register ./server/test/*.test.js --exit --timeout 10000",
     "build": "rm -rf ./build && babel ./server -d build",
-    "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
+    "generate-lcov": "nyc report --reporter=text-lcov > lcov.info && nyc report --reporter=html",
     "coveralls-coverage": "coveralls < lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
     "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage",

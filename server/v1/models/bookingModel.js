@@ -1,66 +1,52 @@
 import moment from 'moment';
+import bookings from '../data/bookings.json';
 
 class Booking {
-  /**
-  * class constructor
-  * @param data
-  */
-  constructor() {
-    this.bookings = [];
-  }
-
-  /**
-  *
-  * @param {object} data
-  */
-  book(data) {
-    const newBooking = {
-      id: this.bookings.length + 1,
-      trip_id: data.trip_id,
-      user_id: data.user_id,
-      seat_number: data.seat_number,
-      created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-    };
-    this.bookings.push(newBooking);
-    return newBooking;
-  }
-
-  /**
-  * @param {uuid} id
-  * @returns {object} data
-  */
-  getOneBooking(id) {
-    return this.bookings.find(booking => booking.id === id);
-  }
-
-  /**
-  *
-  * @returns {object} return all bookings
-  */
-  getAllBookings() {
-    return this.bookings;
-  }
-
-  /**
-  * @param {uuid} id
-  * @param {object} data
-  */
-  updateBooking(id, data) {
-    const booking = this.getOneBooking(id);
-    const index = this.bookings.indexOf(booking);
-    this.bookings[index].seat_number = data.seat_number || booking.seat_number;
-    return this.bookings[index];
-  }
-
-  /**
-  *
-  * @param {uuid} id
-  */
-  deleteBooking(id) {
-    const booking = this.getOneBooking(id);
-    const index = this.bookings.indexOf(booking);
-    this.bookings.splice(index, 1);
-    return {};
+  constructor({
+    id, trip_id, user_id, seat_number, created_on
+  }) {
+    this.id = id;
+    this.trip_id = trip_id;
+    this.user_id = user_id;
+    this.seat_number = seat_number;
+    this.created_on = created_on;
   }
 }
-export default new Booking();
+
+const book = (data) => {
+  const newBooking = new Booking({
+    id: bookings.length + 1,
+    trip_id: data.trip_id,
+    user_id: data.user_id,
+    seat_number: data.seat_number,
+    created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+  });
+  bookings.push(newBooking);
+  return newBooking;
+};
+
+const getOneBooking = id => bookings.find(booking => booking.id === id);
+
+const getAllBookings = () => bookings;
+
+const updateBooking = (id, data) => {
+  const booking = getOneBooking(id);
+  const index = bookings.indexOf(booking);
+  bookings[index].seat_number = data.seat_number || booking.seat_number;
+  return bookings[index];
+};
+
+const deleteBooking = (id) => {
+  const booking = getOneBooking(id);
+  const index = bookings.indexOf(booking);
+  bookings.splice(index, 1);
+  return {};
+};
+
+module.exports = {
+  book,
+  getOneBooking,
+  getAllBookings,
+  updateBooking,
+  deleteBooking,
+};

@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import BookingModel from '../v1/models/bookingModel';
+import bookingModel from '../v1/models/bookingModel';
 import tripModel from '../v1/models/tripModel';
 
 dotenv.config();
@@ -148,7 +148,7 @@ describe('Bookings Tests', () => {
         user_id: 1,
         seat_number: 12,
       };
-      const bookingId = BookingModel.book(booking).id;
+      const bookingId = bookingModel.book(booking).id;
       chai
         .request(app)
         .get(`/api/v1/bookings/${bookingId}`)
@@ -198,7 +198,7 @@ describe('Bookings Tests', () => {
         seat_number: 12,
         fare: 3000,
       };
-      const bookingId = BookingModel.book(booking).id;
+      const bookingId = bookingModel.book(booking).id;
       chai
         .request(app)
         .patch(`/api/v1/bookings/${bookingId}`)
@@ -237,7 +237,7 @@ describe('Bookings Tests', () => {
         user_id: 1,
         seat_number: 12,
       };
-      const bookingId = BookingModel.book(booking).id;
+      const bookingId = bookingModel.book(booking).id;
       chai
         .request(app)
         .delete(`/api/v1/bookings/${bookingId}`)
