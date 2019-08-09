@@ -21,9 +21,9 @@ describe('Sign In', () => {
       .post('/api/v1/auth/signin')
       .send(user)
       .end((err, res) => {
-        res.should.have.status(201);
+        res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.status.should.equal(201);
+        res.body.status.should.equal(200);
         done();
       });
   });
