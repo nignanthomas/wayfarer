@@ -8,7 +8,7 @@
       "email" : "nignanthomas@gmail.com"
     }
   },
-  "host" : "wayfarer-adc-nthomas.herokuapp.com",
+  "host" : "localhost:3000",
   "basePath" : "/api/v1/",
   "tags" : [ {
     "name" : "authentication",
@@ -20,7 +20,7 @@
     "name" : "trips",
     "description" : "Operations about trips"
   } ],
-  "schemes" : [ "https" ],
+  "schemes" : [ "https", "http" ],
   "paths" : {
     "/auth/signup" : {
       "post" : {

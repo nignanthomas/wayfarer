@@ -17,7 +17,11 @@ const signUp = (req, res) => {
   }
   const token = tokenGenerator.signToken(newUser);
   newUser.token = token;
-  return responseSuccess(res, 201, 'User Successfully Created', { token: newUser.token, user: newUser });
+  let message = 'User Successfully Created';
+  if (newUser.is_admin) {
+    message = 'Superuser Created Successfully';
+  }
+  return responseSuccess(res, 201, message, { token: newUser.token });
 };
 
 module.exports = {

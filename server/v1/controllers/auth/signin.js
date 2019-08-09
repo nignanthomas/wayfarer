@@ -14,7 +14,11 @@ const signIn = (req, res) => {
   }
   const token = tokenGenerator.signToken(user);
   user.token = token;
-  return responseSuccess(res, 201, 'User Successfully Logged in', { token: user.token });
+  let message = 'User Successfully Logged in';
+  if (user.is_admin) {
+    message = 'Superuser Logged in Successfully';
+  }
+  return responseSuccess(res, 200, message, { token: user.token });
 };
 
 module.exports = {
