@@ -31,6 +31,13 @@ const Booking = {
   createBooking(req, res) {
     const { body } = req;
     body.user_id = req.user.id;
+    const foundTrip = TripModel.getOneTrip(body.trip_id);
+    if (!foundTrip || foundTrip.status === 9) {
+      return responseError(res, 404, 'Trip Not Found or Cancelled! ');
+    }
+    if (TripModel.getAllTrips().find(trip => trip.seat_number === body.seat_number)) {
+      return responseError(res, 404, 'This seat number is already booked for this trip!');
+    }
     const booking = BookingModel.book(body);
     return responseSuccess(res, 201, 'Booking Created Successfully', booking);
   },

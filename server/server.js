@@ -31,7 +31,15 @@ app.use((req, res, next) => {
 app.use('', defaultRoute);
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', apiRoutes);
-app.use('*', (req, res) => res.status(404).json({ status: 404, error: 'Route does not exist! or Method Not Allowed!' }));
+
+// catch 405
+app.use((req, res, next) => res.status(405).json({ status: 405, error: 'Method Not Allowed!' }));
+
+// catch 500
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).send({ status: error.status || 500, error: error.message });
+  next();
+});
 
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server is running on port ${port}...`));

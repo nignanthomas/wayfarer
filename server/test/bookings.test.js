@@ -21,7 +21,7 @@ describe('Bookings Tests', () => {
       destination: 'Nairobi',
       trip_date: '10-12-2019',
       fare: 5000,
-    }
+    };
     TripModel.createTrip(trip);
     chai
       .request(app)
@@ -51,7 +51,6 @@ describe('Bookings Tests', () => {
     it('POST /api/v1/bookings Should not create a new booking object (No token)', (done) => {
       const booking = {
         trip_id: 1,
-        user_id: 1,
         seat_number: 12,
       };
       chai
