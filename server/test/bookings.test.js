@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import BookingModel from '../v1/models/bookingModel';
-import TripModel from '../v1/models/tripModel';
+import tripModel from '../v1/models/tripModel';
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ describe('Bookings Tests', () => {
       trip_date: '10-12-2019',
       fare: 5000,
     };
-    TripModel.createTrip(trip);
+    tripModel.createTrip(trip);
     chai
       .request(app)
       .post('/api/v1/auth/signup')
@@ -263,7 +263,7 @@ describe('Bookings Tests', () => {
     });
   });
   after((done) => {
-    TripModel.deleteTrip(1);
+    tripModel.deleteTrip(1);
     done();
   });
 });

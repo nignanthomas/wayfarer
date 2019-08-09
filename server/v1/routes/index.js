@@ -1,5 +1,5 @@
 import express from 'express';
-import Trip from '../controllers/trips';
+import trips from '../controllers/trips';
 import User from '../controllers/users';
 import Booking from '../controllers/bookings';
 import { signUp } from '../controllers/auth/signup';
@@ -21,12 +21,12 @@ router.get('/users', passportJWT, isAdmin, User.getAllUsers);
 router.get('/users/:userId', passportJWT, isAdmin, User.getOneUser);
 
 // Trips routes
-router.post('/trips', passportJWT, isAdmin, isValid, Trip.createTrip);
-router.get('/trips', passportJWT, Trip.getAllTrips);
-router.get('/trips/:tripId', passportJWT, Trip.getOneTrip);
-router.patch('/trips/:tripId', passportJWT, isAdmin, isValid, Trip.updateTrip);
-router.patch('/trips/:tripId/cancel', passportJWT, isAdmin, Trip.cancelTrip);
-router.delete('/trips/:tripId', passportJWT, isAdmin, Trip.deleteTrip);
+router.post('/trips', passportJWT, isAdmin, isValid, trips.createTrip);
+router.get('/trips', passportJWT, trips.getAllTrips);
+router.get('/trips/:tripId', passportJWT, trips.getOneTrip);
+router.patch('/trips/:tripId', passportJWT, isAdmin, isValid, trips.updateTrip);
+router.patch('/trips/:tripId/cancel', passportJWT, isAdmin, trips.cancelTrip);
+router.delete('/trips/:tripId', passportJWT, isAdmin, trips.deleteTrip);
 
 // Bookings routes
 router.post('/bookings', passportJWT, isValid, Booking.createBooking);

@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import TripModel from '../v1/models/tripModel';
+import tripModel from '../v1/models/tripModel';
 
 dotenv.config();
 
@@ -215,7 +215,7 @@ describe('Trips Tests', () => {
         trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
-      const tripId = TripModel.createTrip(trip).id;
+      const tripId = tripModel.createTrip(trip).id;
       chai
         .request(app)
         .get(`/api/v1/trips/${tripId}`)
@@ -264,7 +264,7 @@ describe('Trips Tests', () => {
         trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
-      const tripId = TripModel.createTrip(trip).id;
+      const tripId = tripModel.createTrip(trip).id;
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}`)
@@ -295,7 +295,7 @@ describe('Trips Tests', () => {
         trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: '5000',
       };
-      const tripId = TripModel.createTrip(trip).id;
+      const tripId = tripModel.createTrip(trip).id;
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}/cancel`)
@@ -391,7 +391,7 @@ describe('Trips Tests', () => {
         trip_date: new Date().setDate(new Date().getDate() + 1),
         fare: 5000,
       };
-      const tripId = TripModel.createTrip(trip).id;
+      const tripId = tripModel.createTrip(trip).id;
       chai
         .request(app)
         .delete(`/api/v1/trips/${tripId}`)
