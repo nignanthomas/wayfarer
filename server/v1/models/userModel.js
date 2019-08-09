@@ -1,42 +1,37 @@
+import users from '../data/users.json';
+
 class User {
-  /**
-  * class constructor
-  * @param {object} data
-  */
-  constructor() {
-    this.users = [];
-  }
-
-  /**
-  *
-  * @param {object} user object
-  */
-  createUser(data) {
-    const newUser = {
-      id: this.users.length + 1,
-      email: data.email,
-      first_name: data.first_name,
-      last_name: data.last_name,
-      password: data.password,
-      is_admin: data.is_admin || false,
-    };
-    this.users.push(newUser);
-    return newUser;
-  }
-
-  /**
-  * @param {id} id
-  * @returns {object} user object
-  */
-  getOneUser(id) {
-    return this.users.find(user => user.id === id);
-  }
-
-  /**
-  * @returns {object} return all users
-  */
-  getAllUsers() {
-    return this.users;
+  constructor({
+    id, email, first_name, last_name, password, is_admin
+  }) {
+    this.id = id;
+    this.email = email;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.password = password;
+    this.is_admin = is_admin;
   }
 }
-export default new User();
+
+const createUser = (data) => {
+  const newUser = new User({
+    id: users.length + 1,
+    email: data.email,
+    first_name: data.first_name,
+    last_name: data.last_name,
+    password: data.password,
+    is_admin: data.is_admin || false,
+  });
+  users.push(newUser);
+  return newUser;
+};
+
+const getOneUser = id => users.find(user => user.id === id);
+
+const getAllUsers = () => users;
+
+module.exports = {
+  createUser,
+  getOneUser,
+  getAllUsers,
+};

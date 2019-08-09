@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import UserModel from '../v1/models/userModel';
+import userModel from '../v1/models/userModel';
 
 dotenv.config();
 
@@ -49,7 +49,7 @@ describe('Users Tests', () => {
       password: 'qwerty',
       is_admin: true,
     };
-    const userId = UserModel.createUser(user).id;
+    const userId = userModel.createUser(user).id;
     chai
       .request(app)
       .get(`/api/v1/users/${userId}`)

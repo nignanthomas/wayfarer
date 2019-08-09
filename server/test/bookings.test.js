@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import BookingModel from '../v1/models/bookingModel';
-import TripModel from '../v1/models/tripModel';
+import bookingModel from '../v1/models/bookingModel';
+import tripModel from '../v1/models/tripModel';
 
 dotenv.config();
 
@@ -21,8 +21,8 @@ describe('Bookings Tests', () => {
       destination: 'Nairobi',
       trip_date: '10-12-2019',
       fare: 5000,
-    }
-    TripModel.createTrip(trip);
+    };
+    tripModel.createTrip(trip);
     chai
       .request(app)
       .post('/api/v1/auth/signup')
@@ -51,7 +51,6 @@ describe('Bookings Tests', () => {
     it('POST /api/v1/bookings Should not create a new booking object (No token)', (done) => {
       const booking = {
         trip_id: 1,
-        user_id: 1,
         seat_number: 12,
       };
       chai
@@ -149,7 +148,7 @@ describe('Bookings Tests', () => {
         user_id: 1,
         seat_number: 12,
       };
-      const bookingId = BookingModel.book(booking).id;
+      const bookingId = bookingModel.book(booking).id;
       chai
         .request(app)
         .get(`/api/v1/bookings/${bookingId}`)
@@ -199,7 +198,7 @@ describe('Bookings Tests', () => {
         seat_number: 12,
         fare: 3000,
       };
-      const bookingId = BookingModel.book(booking).id;
+      const bookingId = bookingModel.book(booking).id;
       chai
         .request(app)
         .patch(`/api/v1/bookings/${bookingId}`)
@@ -238,7 +237,7 @@ describe('Bookings Tests', () => {
         user_id: 1,
         seat_number: 12,
       };
-      const bookingId = BookingModel.book(booking).id;
+      const bookingId = bookingModel.book(booking).id;
       chai
         .request(app)
         .delete(`/api/v1/bookings/${bookingId}`)
@@ -264,7 +263,7 @@ describe('Bookings Tests', () => {
     });
   });
   after((done) => {
-    TripModel.deleteTrip(1);
+    tripModel.deleteTrip(1);
     done();
   });
 });
