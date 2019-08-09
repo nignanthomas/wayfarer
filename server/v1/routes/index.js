@@ -2,8 +2,8 @@ import express from 'express';
 import Trip from '../controllers/trips';
 import User from '../controllers/users';
 import Booking from '../controllers/bookings';
-import SignUp from '../controllers/auth/signup';
-import SignIn from '../controllers/auth/signin';
+import { signUp } from '../controllers/auth/signup';
+import { signIn } from '../controllers/auth/signin';
 import { passportJWT } from '../middlewares/passportJWT';
 import isValid from '../middlewares/validationMiddleware';
 import { isAdmin } from '../middlewares/isAdmin';
@@ -12,9 +12,9 @@ const router = express.Router();
 
 
 // SignUp route
-router.post('/auth/signup', isValid, SignUp.signUp);
+router.post('/auth/signup', isValid, signUp);
 // SignIn route
-router.post('/auth/signin', isValid, SignIn.signIn);
+router.post('/auth/signin', isValid, signIn);
 
 // User routes
 router.get('/users', passportJWT, isAdmin, User.getAllUsers);
