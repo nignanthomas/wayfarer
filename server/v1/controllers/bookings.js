@@ -1,7 +1,7 @@
 import bookingModel from '../models/bookingModel';
 import userModel from '../models/userModel';
 import tripModel from '../models/tripModel';
-import idValidator from '../helpers/idValidator';
+import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
 const formatBooking = (data) => {
@@ -50,11 +50,11 @@ const getAllBookings = (req, res) => {
 
 
 const getOneBooking = (req, res) => {
-  const { error } = idValidator.bookingIdValidator(req.params);
+  const { error } = idValidator(req.params);
   if (error) {
     return responseError(res, 400, 'The booking ID should be a number');
   }
-  const bookingId = parseInt(req.params.bookingId, 10);
+  const bookingId = parseInt(req.params.id, 10);
   const oneBooking = bookingModel.getOneBooking(bookingId);
   if (oneBooking) {
     if (req.user.id !== oneBooking.user_id && !req.user.is_admin) {
@@ -67,11 +67,11 @@ const getOneBooking = (req, res) => {
 };
 
 const updateBooking = (req, res) => {
-  const { error } = idValidator.bookingIdValidator(req.params);
+  const { error } = idValidator(req.params);
   if (error) {
     return responseError(res, 400, 'The booking ID should be a number');
   }
-  const bookingId = parseInt(req.params.bookingId, 10);
+  const bookingId = parseInt(req.params.id, 10);
   const oneBooking = bookingModel.getOneBooking(bookingId);
   if (oneBooking) {
     if (req.user.id !== oneBooking.user_id) {
@@ -86,11 +86,11 @@ const updateBooking = (req, res) => {
 };
 
 const deleteBooking = (req, res) => {
-  const { error } = idValidator.bookingIdValidator(req.params);
+  const { error } = idValidator(req.params);
   if (error) {
     return responseError(res, 400, 'The booking ID should be a number');
   }
-  const bookingId = parseInt(req.params.bookingId, 10);
+  const bookingId = parseInt(req.params.id, 10);
   const oneBooking = bookingModel.getOneBooking(bookingId);
   if (oneBooking) {
     if (req.user.id !== oneBooking.user_id) {

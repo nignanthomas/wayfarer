@@ -18,22 +18,22 @@ router.post('/auth/signin', isValid, signIn);
 
 // User routes
 router.get('/users', passportJWT, isAdmin, users.getAllUsers);
-router.get('/users/:userId', passportJWT, isAdmin, users.getOneUser);
+router.get('/users/:id', passportJWT, isAdmin, users.getOneUser);
 
 // Trips routes
 router.post('/trips', passportJWT, isAdmin, isValid, trips.createTrip);
 router.get('/trips', passportJWT, trips.getAllTrips);
-router.get('/trips/:tripId', passportJWT, trips.getOneTrip);
-router.patch('/trips/:tripId', passportJWT, isAdmin, isValid, trips.updateTrip);
-router.patch('/trips/:tripId/cancel', passportJWT, isAdmin, trips.cancelTrip);
-router.delete('/trips/:tripId', passportJWT, isAdmin, trips.deleteTrip);
+router.get('/trips/:id', passportJWT, trips.getOneTrip);
+router.patch('/trips/:id', passportJWT, isAdmin, isValid, trips.updateTrip);
+router.patch('/trips/:id/cancel', passportJWT, isAdmin, trips.cancelTrip);
+router.delete('/trips/:id', passportJWT, isAdmin, trips.deleteTrip);
 
 // Bookings routes
 router.post('/bookings', passportJWT, isValid, bookings.createBooking);
 router.get('/bookings', passportJWT, bookings.getAllBookings);
-router.get('/bookings/:bookingId', passportJWT, bookings.getOneBooking);
-router.patch('/bookings/:bookingId', passportJWT, isValid, bookings.updateBooking);
-router.delete('/bookings/:bookingId', passportJWT, bookings.deleteBooking);
+router.get('/bookings/:id', passportJWT, bookings.getOneBooking);
+router.patch('/bookings/:id', passportJWT, isValid, bookings.updateBooking);
+router.delete('/bookings/:id', passportJWT, bookings.deleteBooking);
 
 
 export default router;

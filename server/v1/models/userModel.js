@@ -1,4 +1,5 @@
 import users from '../data/users.json';
+import { nextId } from '../helpers/nextId';
 
 class User {
   constructor({
@@ -15,7 +16,7 @@ class User {
 
 const createUser = (data) => {
   const newUser = new User({
-    id: users.length + 1,
+    id: nextId(users),
     email: data.email,
     first_name: data.first_name,
     last_name: data.last_name,

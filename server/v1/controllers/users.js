@@ -1,4 +1,5 @@
 import userModel from '../models/userModel';
+import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
 
@@ -12,7 +13,11 @@ const getAllUsers = (req, res) => {
 
 
 const getOneUser = (req, res) => {
-  const userId = parseInt(req.params.userId, 10);
+  const { error } = idValidator(req.params);
+  if (error) {
+    return responseError(res, 400, 'The user ID should be a number');
+  }
+  const userId = parseInt(req.params.id, 10);
   const user = userModel.getOneUser(userId);
   if (user) {
     return responseSuccess(res, 200, 'User Successfully Fetched', user);

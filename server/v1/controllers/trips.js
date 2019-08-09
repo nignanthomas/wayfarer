@@ -1,9 +1,16 @@
 import tripModel from '../models/tripModel';
-import idValidator from '../helpers/idValidator';
+import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
 const createTrip = (req, res) => {
   const { body } = req;
+  if (body.origin.toLowerCase() === body.destination.toLowerCase()) {
+    return responseError(res, 400, 'The origin and the destination cannot be the same!');
+  }
+  const foundTrip = tripModel.getAllTrips().find(trip => trip.bus_license_number === body.bus_license_number && trip.trip_date === body.trip_date);
+  if (foundTrip) {
+    return responseError(res, 403, 'This trip already exists');
+  }
   const trip = tripModel.createTrip(body);
   return responseSuccess(res, 201, 'Trip Successfully Created', trip);
 };
@@ -32,11 +39,11 @@ const getAllTrips = (req, res) => {
 };
 
 const getOneTrip = (req, res) => {
-  const { error } = idValidator.tripIdValidator(req.params);
+  const { error } = idValidator(req.params);
   if (error) {
     return responseError(res, 400, 'The trip ID should be a number');
   }
-  const tripId = parseInt(req.params.tripId, 10);
+  const tripId = parseInt(req.params.id, 10);
   let oneTrip = tripModel.getOneTrip(tripId);
   if (!req.user.is_admin && oneTrip.status === 9) {
     oneTrip = '';
@@ -48,8 +55,8 @@ const getOneTrip = (req, res) => {
 };
 
 const updateTrip = (req, res) => {
-  const { error } = idValidator.tripIdValidator(req.params);
-  const tripId = parseInt(req.params.tripId, 10);
+  const { error } = idValidator(req.params);
+  const tripId = parseInt(req.params.id, 10);
   if (error) {
     return responseError(res, 400, 'The trip ID should be a number');
   }
@@ -63,11 +70,11 @@ const updateTrip = (req, res) => {
 };
 
 const cancelTrip = (req, res) => {
-  const { error } = idValidator.tripIdValidator(req.params);
+  const { error } = idValidator(req.params);
   if (error) {
     return responseError(res, 400, 'The trip ID should be a number');
   }
-  const tripId = parseInt(req.params.tripId, 10);
+  const tripId = parseInt(req.params.id, 10);
   const oneTrip = tripModel.getOneTrip(tripId);
   const cancelStatus = { status: 9 }; // cancelled trip are assigned the status 9
   if (oneTrip) {
@@ -78,11 +85,11 @@ const cancelTrip = (req, res) => {
 };
 
 const deleteTrip = (req, res) => {
-  const { error } = idValidator.tripIdValidator(req.params);
+  const { error } = idValidator(req.params);
   if (error) {
     return responseError(res, 400, 'The trip ID should be a number');
   }
-  const tripId = parseInt(req.params.tripId, 10);
+  const tripId = parseInt(req.params.id, 10);
   const oneTrip = tripModel.getOneTrip(tripId);
   if (oneTrip) {
     tripModel.deleteTrip(tripId);

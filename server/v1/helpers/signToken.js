@@ -1,5 +1,10 @@
 import JWT from 'jsonwebtoken';
-import { JWT_SECRET } from '../config';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const { JWT_SECRET } = process.env;
+
 
 const signToken = (user) => {
   return JWT.sign({
