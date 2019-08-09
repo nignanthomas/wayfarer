@@ -43,7 +43,7 @@ module.exports = {
   '/auth/signup': validateSignup,
   '/auth/signin': validateSignin,
   '/trips': validateNewTrip,
-  '/trips/:tripId': validateUpdateTrip,
+  '/trips/:id': validateUpdateTrip,
   '/bookings': validateNewBooking,
-  '/bookings/:bookingId': validateUpdateBooking,
+  '/bookings/:id': validateUpdateBooking,
 };
