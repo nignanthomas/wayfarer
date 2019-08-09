@@ -82,9 +82,9 @@ describe('Users Tests', () => {
       .get('/api/v1/users/a')
       .set('token', token)
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(400);
         res.body.should.be.a('object');
-        res.body.status.should.equal(404);
+        res.body.status.should.equal(400);
         done();
       });
   });

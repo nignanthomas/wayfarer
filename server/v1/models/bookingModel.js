@@ -1,5 +1,6 @@
 import moment from 'moment';
 import bookings from '../data/bookings.json';
+import { nextId } from '../helpers/nextId';
 
 class Booking {
   constructor({
@@ -15,7 +16,8 @@ class Booking {
 
 const book = (data) => {
   const newBooking = new Booking({
-    id: bookings.length + 1,
+    id: nextId(bookings),
+    // id: bookings.length + 1,
     trip_id: data.trip_id,
     user_id: data.user_id,
     seat_number: data.seat_number,

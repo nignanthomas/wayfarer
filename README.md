@@ -72,19 +72,19 @@ Admin route: https://nignanthomas.github.io/wayfarer/UI/html/admin/admin-booking
 | [/api/v1/trips/?origin=Kigali](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/?origin=Kigali) | GET | origin && Authhorization token|
 | [/api/v1/trips/?destination=Nairobi](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/?destination=Nairobi) | GET | destination && Authhorization token|
 | [/api/v1/trips/?origin=Kigali&destination=Nairobi](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/?origin=Kigali&destination=Nairobi) | GET | origin & destination && Authhorization token|
-| [/api/v1/trips/:tripId](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:tripId) | GET | tripId && Authhorization token |
-| [/api/v1/trips/:tripId](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:tripId) | PATCH | tripId && Authhorization token |
-| [/api/v1/trips/:tripId/cancel](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:tripId/cancel) | PATCH | tripId && Authhorization token |
-| [/api/v1/trips/:tripId](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:tripId) | DELETE | tripId && Authhorization token |
+| [/api/v1/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id) | GET | id && Authhorization token |
+| [/api/v1/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id) | PATCH | id && Authhorization token |
+| [/api/v1/trips/:id/cancel](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id/cancel) | PATCH | id && Authhorization token |
+| [/api/v1/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id) | DELETE | id && Authhorization token |
 
 - #### Bookings endpoint
 | Endpoints | Request Method | Request parameter |
 | --------- | ----------- | ------------- |
 | [/api/v1/bookings](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings) | POST | Authhorization token |
 | [/api/v1/bookings](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings) | GET | Authhorization token |
-| [/api/v1/bookings/:bookingId](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:bookingId) | GET | bookingId && Authhorization token |
-| [/api/v1/bookings/:bookingId](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:bookingId) | PATCH | bookingId && Authhorization token |
-| [/api/v1/bookings/:bookingId](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:bookingId) | DELETE | bookingId && Authhorization token |
+| [/api/v1/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:id) | GET | id && Authhorization token |
+| [/api/v1/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:id) | PATCH | id && Authhorization token |
+| [/api/v1/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:id) | DELETE | id && Authhorization token |
 
 # Prerequisites :wrench:
 - Clone this project with `git clone https://github.com/nignanthomas/wayfarer.git`.
