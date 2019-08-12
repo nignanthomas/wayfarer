@@ -17,7 +17,6 @@ class Booking {
 const book = (data) => {
   const newBooking = new Booking({
     id: nextId(bookings),
-    // id: bookings.length + 1,
     trip_id: data.trip_id,
     user_id: data.user_id,
     seat_number: data.seat_number,

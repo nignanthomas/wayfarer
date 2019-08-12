@@ -20,7 +20,6 @@ class Trip {
 const createTrip = (data) => {
   const newTrip = new Trip({
     id: data.id || nextId(trips),
-    // id: data.id || trips.length + 1,
     seating_capacity: data.seating_capacity,
     bus_license_number: data.bus_license_number,
     origin: data.origin,

@@ -2,8 +2,9 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import bookingModel from '../v1/models/bookingModel';
-import tripModel from '../v1/models/tripModel';
+import bookingModel from '../v2/models/bookingModel';
+import tripModel from '../v2/models/tripModel';
+import data from './mockData';
 
 dotenv.config();
 
@@ -14,29 +15,10 @@ chai.use(chaiHttp);
 describe('Bookings Tests', () => {
   let token = '';
   before((done) => {
-    const trip = {
-      seating_capacity: 45,
-      bus_license_number: 'KCK 469',
-      origin: 'Kigali',
-      destination: 'Nairobi',
-      trip_date: '10-12-2019',
-      fare: 5000,
-    };
-    tripModel.createTrip(trip);
+    tripModel.createTrip(data.trip);
     chai
       .request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        email: process.env.ADMIN_EMAIL,
-        first_name: 'Thomas',
-        last_name: 'Nignan',
-        password: process.env.ADMIN_PASSWORD,
-      })
-      .end((err, res) => {
-      });
-    chai
-      .request(app)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send({
         email: process.env.ADMIN_EMAIL,
         password: process.env.ADMIN_PASSWORD,
@@ -48,16 +30,11 @@ describe('Bookings Tests', () => {
       });
   });
   describe('POST bookings tests', () => {
-    it('POST /api/v1/bookings Should not create a new booking object (No token)', (done) => {
-      const booking = {
-        trip_id: 1,
-        seat_number: 12,
-      };
+    it('POST /api/v2/bookings Should not create a new booking object (No token)', (done) => {
       chai
         .request(app)
-        .post('/api/v1/bookings')
-        // .set('token', token)
-        .send(booking)
+        .post('/api/v2/bookings')
+        .send(data.bookingForPost)
         .end((err, res) => {
           res.should.have.status(401);
           res.body.should.be.a('object');
@@ -67,16 +44,12 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('POST /api/v1/bookings Should create a new booking object', (done) => {
-      const booking = {
-        trip_id: 1,
-        seat_number: 12,
-      };
+    it('POST /api/v2/bookings Should create a new booking object', (done) => {
       chai
         .request(app)
-        .post('/api/v1/bookings')
+        .post('/api/v2/bookings')
         .set('token', token)
-        .send(booking)
+        .send(data.bookingForPost)
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
@@ -88,16 +61,12 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('POST /api/v1/bookings Should not create a new booking object (No trip_id)', (done) => {
-      const booking = {
-        user_id: 1,
-        seat_number: 12,
-      };
+    it('POST /api/v2/bookings Should not create a new booking object (No trip_id)', (done) => {
       chai
         .request(app)
-        .post('/api/v1/bookings')
+        .post('/api/v2/bookings')
         .set('token', token)
-        .send(booking)
+        .send(data.bookingNoTripId)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
@@ -106,16 +75,12 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('POST /api/v1/bookings Should not create a new booking object (No seat_number)', (done) => {
-      const booking = {
-        trip_id: 1,
-        user_id: 1,
-      };
+    it('POST /api/v2/bookings Should not create a new booking object (No seat_number)', (done) => {
       chai
         .request(app)
-        .post('/api/v1/bookings')
+        .post('/api/v2/bookings')
         .set('token', token)
-        .send(booking)
+        .send(data.bookingNoSeatNumber)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');
@@ -126,10 +91,10 @@ describe('Bookings Tests', () => {
   });
 
   describe('GET all bookings tests', () => {
-    it('GET /api/v1/bookings Should return all bookings', (done) => {
+    it('GET /api/v2/bookings Should return all bookings', (done) => {
       chai
         .request(app)
-        .get('/api/v1/bookings')
+        .get('/api/v2/bookings')
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
@@ -142,16 +107,11 @@ describe('Bookings Tests', () => {
   });
 
   describe('GET a booking tests', () => {
-    it('GET /api/v1/bookings/:id Should return a specific booking', (done) => {
-      const booking = {
-        trip_id: 1,
-        user_id: 1,
-        seat_number: 12,
-      };
-      const bookingId = bookingModel.book(booking).id;
+    it('GET /api/v2/bookings/:id Should return a specific booking', (done) => {
+      const bookingId = bookingModel.book(data.bookingForModel).id;
       chai
         .request(app)
-        .get(`/api/v1/bookings/${bookingId}`)
+        .get(`/api/v2/bookings/${bookingId}`)
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
@@ -162,10 +122,10 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('GET /api/v1/bookings/:id Should not get a specific booking (Booking 11 that does not exist)', (done) => {
+    it('GET /api/v2/bookings/:id Should not get a specific booking (Booking 11 that does not exist)', (done) => {
       chai
         .request(app)
-        .get('/api/v1/bookings/11')
+        .get('/api/v2/bookings/11')
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
@@ -175,10 +135,10 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('GET /api/v1/bookings/:id Should not get a specific booking (Booking \'a\' is not a valid user id)', (done) => {
+    it('GET /api/v2/bookings/:id Should not get a specific booking (Booking \'a\' is not a valid user id)', (done) => {
       chai
         .request(app)
-        .get('/api/v1/bookings/a')
+        .get('/api/v2/bookings/a')
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
@@ -191,21 +151,13 @@ describe('Bookings Tests', () => {
   });
 
   describe('PATCH a booking tests', () => {
-    it('PATCH /api/v1/bookings/:id Should update a given booking', (done) => {
-      const booking = {
-        trip_id: 1,
-        user_id: 1,
-        seat_number: 12,
-        fare: 3000,
-      };
-      const bookingId = bookingModel.book(booking).id;
+    it('PATCH /api/v2/bookings/:id Should update a given booking', (done) => {
+      const bookingId = bookingModel.book(data.bookingForModel).id;
       chai
         .request(app)
-        .patch(`/api/v1/bookings/${bookingId}`)
+        .patch(`/api/v2/bookings/${bookingId}`)
         .set('token', token)
-        .send({
-          seat_number: 21,
-        })
+        .send(data.seatNumberUpdate)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -213,14 +165,12 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('PATCH /api/v1/bookings/:id Should not update a given booking (id = 41, not exist)', (done) => {
+    it('PATCH /api/v2/bookings/:id Should not update a given booking (id = 41, not exist)', (done) => {
       chai
         .request(app)
-        .patch('/api/v1/bookings/41')
+        .patch('/api/v2/bookings/41')
         .set('token', token)
-        .send({
-          seat_number: 21,
-        })
+        .send(data.seatNumberUpdate)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -231,16 +181,11 @@ describe('Bookings Tests', () => {
   });
 
   describe('DELETE bookings tests', () => {
-    it('DELETE /api/v1/bookings/:id Should delete a given booking', (done) => {
-      const booking = {
-        trip_id: 1,
-        user_id: 1,
-        seat_number: 12,
-      };
-      const bookingId = bookingModel.book(booking).id;
+    it('DELETE /api/v2/bookings/:id Should delete a given booking', (done) => {
+      const bookingId = bookingModel.book(data.bookingForModel).id;
       chai
         .request(app)
-        .delete(`/api/v1/bookings/${bookingId}`)
+        .delete(`/api/v2/bookings/${bookingId}`)
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(204);
@@ -249,10 +194,10 @@ describe('Bookings Tests', () => {
         });
     });
 
-    it('DELETE /api/v1/bookings/:id Should not delete a given booking (id = a, not a number )', (done) => {
+    it('DELETE /api/v2/bookings/:id Should not delete a given booking (id = a, not a number )', (done) => {
       chai
         .request(app)
-        .delete('/api/v1/bookings/a')
+        .delete('/api/v2/bookings/a')
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
