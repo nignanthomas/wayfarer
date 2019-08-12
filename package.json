@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=dev npm run createTables && babel-watch ./server/server.js",
     "production": "NODE_ENV=prod babel-watch ./server/server.js",
-    "test": "NODE_ENV=test npm run createTables && mocha --require @babel/register ./server/test/*.test.js --exit --timeout 10000",
+    "test": "NODE_ENV=test npm run clearTestDB && mocha --require @babel/register ./server/test/*.test.js --exit --timeout 10000",
     "build": "rm -rf ./build && babel ./server -d build",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info && nyc report --reporter=html",
     "coveralls-coverage": "coveralls < lcov.info",
@@ -14,7 +14,8 @@
     "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage",
     "start": "npm run build && node build/server.js",
     "createTables": "node db createTables",
-    "dropTables": "node db dropTables"
+    "dropTables": "node db dropTables",
+    "clearTestDB": "NODE_ENV=test npm run dropTables && NODE_ENV=test npm run createTables"
   },
   "repository": {
     "type": "git",
