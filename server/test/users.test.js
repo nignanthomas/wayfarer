@@ -2,7 +2,8 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
-import userModel from '../v1/models/userModel';
+import userModel from '../v2/models/userModel';
+import data from './mockData';
 
 dotenv.config();
 
@@ -16,21 +17,18 @@ describe('Users Tests', () => {
   before((done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send({
-        email: process.env.ADMIN_EMAIL,
-        password: process.env.ADMIN_PASSWORD,
-      })
+      .post('/api/v2/auth/signin')
+      .send(data.adminUser)
       .end((err, res) => {
         const result = JSON.parse(res.text);
         token = result.data.token;
         done();
       });
   });
-  it('GET /api/v1/users should get all users', (done) => {
+  it('GET /api/v2/users should get all users', (done) => {
     chai
       .request(app)
-      .get('/api/v1/users')
+      .get('/api/v2/users')
       .set('token', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -41,10 +39,10 @@ describe('Users Tests', () => {
       });
   });
 
-  it('GET /api/v1/users/:id Should get a specific user (User just created)', (done) => {
+  it('GET /api/v2/users/:id Should get a specific user (User just created)', (done) => {
     chai
       .request(app)
-      .get('/api/v1/users/2')
+      .get('/api/v2/users/2')
       .set('token', token)
       .end((err, res) => {
         res.should.have.status(200);
@@ -55,10 +53,10 @@ describe('Users Tests', () => {
       });
   });
 
-  it('GET /api/v1/users/:id Should not get a specific user (User 11 that does not exist)', (done) => {
+  it('GET /api/v2/users/:id Should not get a specific user (User 11 that does not exist)', (done) => {
     chai
       .request(app)
-      .get('/api/v1/users/11')
+      .get('/api/v2/users/11')
       .set('token', token)
       .end((err, res) => {
         res.should.have.status(404);
@@ -68,10 +66,10 @@ describe('Users Tests', () => {
       });
   });
 
-  it('GET /api/v1/users/:id Should not get a specific user (User \'a\' that does not exist)', (done) => {
+  it('GET /api/v2/users/:id Should not get a specific user (User \'a\' that does not exist)', (done) => {
     chai
       .request(app)
-      .get('/api/v1/users/a')
+      .get('/api/v2/users/a')
       .set('token', token)
       .end((err, res) => {
         res.should.have.status(400);

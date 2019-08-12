@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
+import data from './mockData';
 
 dotenv.config();
 
@@ -11,15 +12,11 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Sign In', () => {
-  it('POST /api/v1/auth/signin Should log in a user', (done) => {
-    const user = {
-      email: process.env.ADMIN_EMAIL,
-      password: process.env.ADMIN_PASSWORD,
-    };
+  it('POST /api/v2/auth/signin Should log in a user', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send(user)
+      .post('/api/v2/auth/signin')
+      .send(data.adminUser)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -28,15 +25,11 @@ describe('Sign In', () => {
       });
   });
 
-  it('POST /api/v1/auth/signin Should not log in a user: Bad Credentials! (User does not exist)', (done) => {
-    const user = {
-      email: 'starlord@gmail.com',
-      password: 'qwerty',
-    };
+  it('POST /api/v2/auth/signin Should not log in a user: Bad Credentials! (User does not exist)', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send(user)
+      .post('/api/v2/auth/signin')
+      .send(data.wrongUser)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
@@ -44,70 +37,46 @@ describe('Sign In', () => {
       });
   });
 
-  it('POST /api/v1/auth/signin Should not log in a user: Bad Credentials! (Wrong password)', (done) => {
-    const user = {
-      email: process.env.ADMIN_EMAIL,
-      password: 'badpassword',
-    };
+  it('POST /api/v2/auth/signin Should not log in a user: Bad Credentials! (Wrong password)', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send(user)
+      .post('/api/v2/auth/signin')
+      .send(data.adminWrongPass)
       .end((err, res) => {
         res.should.have.status(401);
-        // res.body.should.be.a('object');
-        // res.body.status.should.equal(401);
         done();
       });
   });
 
-  it('POST /api/v1/auth/signin Should not log in a user: All Fields are required! (No email)', (done) => {
-    const user = {
-      email: '',
-      password: 'password',
-    };
+  it('POST /api/v2/auth/signin Should not log in a user: All Fields are required! (No email)', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send(user)
+      .post('/api/v2/auth/signin')
+      .send(data.loginNoEmail)
       .end((err, res) => {
         res.should.have.status(400);
-        // res.body.should.be.a('object');
-        // res.body.status.should.equal(400);
         done();
       });
   });
 
-  it('POST /api/v1/auth/signin Should not log in a user: All Fields are required! (No password)', (done) => {
-    const user = {
-      email: 'nignanthomas@gmail.com',
-      password: '',
-    };
+  it('POST /api/v2/auth/signin Should not log in a user: All Fields are required! (No password)', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send(user)
+      .post('/api/v2/auth/signin')
+      .send(data.loginNoPass)
       .end((err, res) => {
         res.should.have.status(400);
-        // res.body.should.be.a('object');
-        // res.body.status.should.equal(400);
         done();
       });
   });
 
-  it('POST /api/v1/auth/signin Should not log in a user: All Fields are required! (No email - Nopassword)', (done) => {
-    const user = {
-      email: '',
-      password: '',
-    };
+  it('POST /api/v2/auth/signin Should not log in a user: All Fields are required! (No email - Nopassword)', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
-      .send(user)
+      .post('/api/v2/auth/signin')
+      .send(data.loginEmpty)
       .end((err, res) => {
         res.should.have.status(400);
-        // res.body.should.be.a('object');
-        // res.body.status.should.equal(400);
         done();
       });
   });
