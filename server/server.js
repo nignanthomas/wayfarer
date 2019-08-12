@@ -42,6 +42,6 @@ app.use((error, req, res, next) => {
 });
 
 // eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Server is running on port ${port}...`));
+app.listen(port);
 
 export default app;

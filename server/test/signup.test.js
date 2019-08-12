@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
+import { query } from '../v1/models/dbQuery';
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
@@ -101,4 +102,8 @@ describe('Sign Up', () => {
         done();
       });
   });
+  after((done) => {
+    query('DELETE FROM users');
+    done();
+  })
 });

@@ -17,7 +17,7 @@ const pool = new Pool({
 });
 
 pool.on('connect', () => {
-  console.log('connected to the db');
+
 });
 
 /**
@@ -37,14 +37,12 @@ const createTables = () => {
 
   pool.query(queryText)
     .then((res) => {
-      console.log(res);
       pool.end();
     })
     .catch((err) => {
-      console.log(err);
       pool.end();
     });
-}
+};
 
 /**
  * Drop Tables
@@ -53,17 +51,14 @@ const dropTables = () => {
   const queryText = 'DROP TABLE IF EXISTS users';
   pool.query(queryText)
     .then((res) => {
-      console.log(res);
       pool.end();
     })
     .catch((err) => {
-      console.log(err);
       pool.end();
     });
-}
+};
 
 pool.on('remove', () => {
-  console.log('client removed');
   process.exit(0);
 });
 

@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": 1,
+    "email": "superuser@gmail.com",
+    "first_name": "Thoni",
+    "last_name": "Winchester",
+    "password": "superuser" ,
+    "is_admin": true
+  },
+  {
+    "id": 2,
+    "email": "usertwo@gmail.com",
+    "first_name": "Cephas",
+    "last_name": "Kazama",
+    "password": "qwerty" ,
+    "is_admin": false
+  }
+]

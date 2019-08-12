@@ -23,17 +23,17 @@ describe('Bookings Tests', () => {
       fare: 5000,
     };
     tripModel.createTrip(trip);
-    chai
-      .request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        email: process.env.ADMIN_EMAIL,
-        first_name: 'Thomas',
-        last_name: 'Nignan',
-        password: process.env.ADMIN_PASSWORD,
-      })
-      .end((err, res) => {
-      });
+    // chai
+    //   .request(app)
+    //   .post('/api/v1/auth/signup')
+    //   .send({
+    //     email: process.env.ADMIN_EMAIL,
+    //     first_name: 'Thomas',
+    //     last_name: 'Nignan',
+    //     password: process.env.ADMIN_PASSWORD,
+    //   })
+    //   .end((err, res) => {
+    //   });
     chai
       .request(app)
       .post('/api/v1/auth/signin')

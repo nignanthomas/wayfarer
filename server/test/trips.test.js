@@ -265,7 +265,6 @@ describe('Trips Tests', () => {
         fare: 5000,
       };
       const tripId = tripModel.createTrip(trip).id;
-      console.log('tripId', tripId);;
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}`)
@@ -297,7 +296,6 @@ describe('Trips Tests', () => {
         fare: '5000',
       };
       const tripId = tripModel.createTrip(trip).id;
-      console.log('tripId failing', tripId);
       chai
         .request(app)
         .patch(`/api/v1/trips/${tripId}/cancel`)

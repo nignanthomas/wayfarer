@@ -42,17 +42,9 @@ describe('Users Tests', () => {
   });
 
   it('GET /api/v1/users/:id Should get a specific user (User just created)', (done) => {
-    const user = {
-      email: 'nignanthomas@gmail.com',
-      first_name: 'Thomas',
-      last_name: 'Nignan',
-      password: 'qwerty',
-      is_admin: true,
-    };
-    const userId = userModel.createUser(user).id;
     chai
       .request(app)
-      .get(`/api/v1/users/${userId}`)
+      .get('/api/v1/users/2')
       .set('token', token)
       .end((err, res) => {
         res.should.have.status(200);
