@@ -63,6 +63,16 @@ const getAllTrips = () => {
   return trips;
 };
 
+const getAllTripsDB = async () => {
+  const findAllQuery = 'SELECT * FROM trips';
+  try {
+    const { rows } = await query(findAllQuery);
+    return rows;
+  } catch (error) {
+    return error;
+  }
+};
+
 const getRepeatTrip = async (bus_license_number, trip_date) => {
   const repeatQuery = 'SELECT * FROM trips WHERE bus_license_number = $1 AND trip_date = $2 ';
   const options = [bus_license_number, trip_date];
@@ -105,4 +115,5 @@ module.exports = {
   deleteTrip,
   getRepeatTrip,
   createTripDS,
+  getAllTripsDB,
 };

@@ -4,7 +4,7 @@ const validateSignup = Joi.object().keys({
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
   first_name: Joi.string().trim().required(),
   last_name: Joi.string().trim().required(),
-  password: Joi.string().trim().required(),
+  password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/).required().label('Password should contain at least 8 characters, lowercase and uppercse and special characters.'),
 });
 
 const validateSignin = Joi.object().keys({

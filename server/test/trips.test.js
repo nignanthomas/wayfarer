@@ -26,20 +26,20 @@ describe('Trips Tests', () => {
       });
   });
 
-  // describe('Trips Tests - Empty Trips', () => {
-  //   it('GET /api/v2/trips Should get all trips', (done) => {
-  //     chai
-  //       .request(app)
-  //       .get('/api/v2/trips')
-  //       .set('token', token)
-  //       .end((err, res) => {
-  //         res.should.have.status(404);
-  //         res.body.should.be.a('object');
-  //         res.body.error.should.match(/There are no Trips yet!/);
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('Trips Tests - Empty Trips', () => {
+    it('GET /api/v2/trips Should get all trips', (done) => {
+      chai
+        .request(app)
+        .get('/api/v2/trips')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.error.should.match(/There are no Trips yet!/);
+          done();
+        });
+    });
+  });
 
   describe('POST trips tests', () => {
     it('POST /api/v2/trips Should create a new trip', (done) => {
@@ -134,7 +134,6 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v2/trips')
-        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -148,7 +147,6 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v2/trips/?origin=Kigali&destination=Nairobi')
-        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -167,7 +165,6 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get(`/api/v2/trips/${tripId}`)
-        .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -179,7 +176,6 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v2/trips/11')
-        .set('token', token)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -192,7 +188,6 @@ describe('Trips Tests', () => {
       chai
         .request(app)
         .get('/api/v2/trips/a')
-        .set('token', token)
         .end((err, res) => {
           res.should.have.status(400);
           res.body.should.be.a('object');

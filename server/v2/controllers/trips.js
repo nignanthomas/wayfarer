@@ -19,19 +19,41 @@ const createTrip = async (req, res) => {
   }
 };
 
-const getAllTrips = (req, res) => {
+const getAllTrips = async (req, res) => {
   try {
-    let trips = tripModel.getAllTrips();
+    let trips = await tripModel.getAllTripsDB();
     const { origin } = req.query;
     const { destination } = req.query;
-    if (origin) {
-      trips = trips.filter(trip => trip.origin.toLowerCase() === origin.toLowerCase());
+    if (trips) {
+      if (origin) {
+        trips = trips.filter(trip => trip.origin.toLowerCase() === origin.toLowerCase());
+      }
+      if (destination) {
+        trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
+      }
     }
-    if (destination) {
-      trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
+    if (!trips.length) {
+      return responseError(res, 404, 'There are no Trips yet!');
     }
-    if (!req.user.is_admin) {
-      trips = trips.filter(trip => trip.status === 1);
+    trips = trips.filter(trip => trip.status === 1);
+    return responseSuccess(res, 200, 'Trips Successfully Fetched', trips);
+  } catch (error) {
+    return responseError(res, 500, 'Oops! Cannot retrieve trips. :(');
+  }
+};
+
+const getAllTripsAdmmin = async (req, res) => {
+  try {
+    let trips = await tripModel.getAllTripsDB();
+    const { origin } = req.query;
+    const { destination } = req.query;
+    if (trips) {
+      if (origin) {
+        trips = trips.filter(trip => trip.origin.toLowerCase() === origin.toLowerCase());
+      }
+      if (destination) {
+        trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
+      }
     }
     if (!trips.length) {
       return responseError(res, 404, 'There are no Trips yet!');
@@ -49,7 +71,7 @@ const getOneTrip = (req, res) => {
   }
   const tripId = parseInt(req.params.id, 10);
   let oneTrip = tripModel.getOneTrip(tripId);
-  if (!req.user.is_admin && oneTrip.status === 9) {
+  if (oneTrip && oneTrip.status === 9) {
     oneTrip = '';
   }
   if (oneTrip) {
@@ -105,6 +127,7 @@ const deleteTrip = (req, res) => {
 module.exports = {
   createTrip,
   getAllTrips,
+  getAllTripsAdmmin,
   getOneTrip,
   updateTrip,
   cancelTrip,
