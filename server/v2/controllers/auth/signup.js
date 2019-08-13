@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import userModel from '../../models/userModel';
 import tokenGenerator from '../../helpers/signToken';
 import { responseSuccess, responseError } from '../../helpers/responseHelpers';
+import { hashPassword } from '../../helpers/passwordHash';
 
 
 dotenv.config();
@@ -16,6 +17,7 @@ const signUp = async (req, res) => {
     if (body.email === process.env.ADMIN_EMAIL) {
       body.is_admin = true;
     }
+    body.password = hashPassword(body.password);
     const newUser = await userModel.createUser(body);
     const token = tokenGenerator.signToken(newUser);
     newUser.token = token;

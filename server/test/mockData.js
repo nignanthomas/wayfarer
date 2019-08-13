@@ -84,28 +84,28 @@ const user = {
   email: 'thomasnignan@gmail.com',
   first_name: 'Thomas',
   last_name: 'Nignan',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoEmail = {
   email: '',
   first_name: 'Thomas',
   last_name: 'Nignan',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoFirstName = {
   email: 'nignanthomas@gmail.com',
   first_name: '',
   last_name: 'Nignan',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoLastName = {
   email: 'nignanthomas@gmail.com',
   first_name: 'Thomas',
   last_name: '',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoPassword = {
@@ -129,17 +129,17 @@ const adminSignUp = {
 
 const wrongUser = {
   email: 'starlord@gmail.com',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const adminWrongPass = {
   email: process.env.ADMIN_EMAIL,
-  password: 'badpassword',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const loginNoEmail = {
   email: '',
-  password: 'password',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const loginNoPass = {
