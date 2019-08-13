@@ -22,8 +22,10 @@ router.get('/users/:id', passportJWT, isAdmin, users.getOneUser);
 
 // Trips routes
 router.post('/trips', passportJWT, isAdmin, isValid, trips.createTrip);
-router.get('/trips', passportJWT, trips.getAllTrips);
-router.get('/trips/:id', passportJWT, trips.getOneTrip);
+router.get('/trips/admin', passportJWT, isAdmin, trips.getAllTrips);
+router.get('/trips', trips.getAllTrips);
+router.get('/trips/:id', trips.getOneTrip);
+router.get('/trips/:id/admin', passportJWT, isAdmin, trips.getOneTrip);
 router.patch('/trips/:id', passportJWT, isAdmin, isValid, trips.updateTrip);
 router.patch('/trips/:id/cancel', passportJWT, isAdmin, trips.cancelTrip);
 router.delete('/trips/:id', passportJWT, isAdmin, trips.deleteTrip);

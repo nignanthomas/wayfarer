@@ -52,10 +52,7 @@ const tripNoFare = {
 };
 
 const tripUpdate = {
-  seating_capacity: 45,
-  bus_license_number: 'KC8 219',
-  trip_date: new Date().setDate(new Date().getDate() + 1),
-  fare: 7500,
+  fare: '7500',
 };
 
 const bookingForPost = {
@@ -84,28 +81,33 @@ const user = {
   email: 'thomasnignan@gmail.com',
   first_name: 'Thomas',
   last_name: 'Nignan',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
+};
+
+const userLog = {
+  email: 'thomasnignan@gmail.com',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoEmail = {
   email: '',
   first_name: 'Thomas',
   last_name: 'Nignan',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoFirstName = {
   email: 'nignanthomas@gmail.com',
   first_name: '',
   last_name: 'Nignan',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoLastName = {
   email: 'nignanthomas@gmail.com',
   first_name: 'Thomas',
   last_name: '',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const userNoPassword = {
@@ -129,17 +131,17 @@ const adminSignUp = {
 
 const wrongUser = {
   email: 'starlord@gmail.com',
-  password: 'qwerty',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const adminWrongPass = {
   email: process.env.ADMIN_EMAIL,
-  password: 'badpassword',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const loginNoEmail = {
   email: '',
-  password: 'password',
+  password: 'qwPOOEJerty145%#$@',
 };
 
 const loginNoPass = {
@@ -160,6 +162,7 @@ module.exports = {
   bookingNoSeatNumber,
   seatNumberUpdate,
   user,
+  userLog,
   userNoEmail,
   userNoFirstName,
   userNoLastName,

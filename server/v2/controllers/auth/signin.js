@@ -1,6 +1,8 @@
 import tokenGenerator from '../../helpers/signToken';
 import userModel from '../../models/userModel';
 import { responseSuccess, responseError } from '../../helpers/responseHelpers';
+import { verifyPassword } from '../../helpers/passwordHash';
+
 
 const signIn = async (req, res) => {
   const { body } = req;
@@ -9,7 +11,7 @@ const signIn = async (req, res) => {
     if (!user) {
       return responseError(res, 404, 'This user email is not registered');
     }
-    const isMatch = user.password === body.password;
+    const isMatch = verifyPassword(body.password, user.password);
     if (!isMatch) {
       return responseError(res, 401, 'Unauthorized! The password is incorrect.');
     }

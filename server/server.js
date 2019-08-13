@@ -3,6 +3,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import apiRoutes from './v2/routes';
 import defaultRoute from './v2/routes/default';
 import swaggerDocument from './api-docs/v2/swagger.json';
@@ -18,15 +19,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
 
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Access to any client
-  res.header('Access-Control-Allow-Headers', '*');
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH DELETE, GET');
-    res.status(200).json({});
-  }
-  next();
-});
+app.use(cors());
 
 app.use('', defaultRoute);
 app.use('/api/v2/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -41,7 +34,6 @@ app.use((error, req, res, next) => {
   next();
 });
 
-// eslint-disable-next-line no-console
 app.listen(port);
 
 export default app;
