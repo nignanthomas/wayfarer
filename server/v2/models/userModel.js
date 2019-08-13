@@ -1,19 +1,6 @@
 import users from '../data/users.json';
-import { nextId } from '../helpers/nextId';
 import { query } from './dbQuery';
 
-class User {
-  constructor({
-    id, email, first_name, last_name, password, is_admin
-  }) {
-    this.id = id;
-    this.email = email;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.password = password;
-    this.is_admin = is_admin;
-  }
-}
 
 const createUser = async (data) => {
   const createQuery = `INSERT INTO
@@ -41,8 +28,9 @@ const getAllUsers = () => users;
 
 const getOneUserDB = async (id) => {
   const oneQuery = 'SELECT * FROM users WHERE id = $1';
+  const ids = [id];
   try {
-    const { rows } = await query(oneQuery, id);
+    const { rows } = await query(oneQuery, ids);
     return rows[0];
   } catch (error) {
     return error;
@@ -61,7 +49,7 @@ const getAllUsersDB = async () => {
 
 const getUserByEmail = async (email) => {
   const oneQuery = 'SELECT * FROM users WHERE email = $1';
-  const emails = [email]
+  const emails = [email];
   try {
     const { rows } = await query(oneQuery, emails);
     return rows[0];
@@ -69,6 +57,7 @@ const getUserByEmail = async (email) => {
     return error;
   }
 };
+
 
 module.exports = {
   createUser,

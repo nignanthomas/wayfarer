@@ -120,6 +120,13 @@ const adminUser = {
   password: process.env.ADMIN_PASSWORD,
 };
 
+const adminSignUp = {
+  email: process.env.ADMIN_EMAIL,
+  first_name: 'Thanos',
+  last_name: 'Inevitable',
+  password: process.env.ADMIN_PASSWORD,
+};
+
 const wrongUser = {
   email: 'starlord@gmail.com',
   password: 'qwerty',
@@ -158,6 +165,7 @@ module.exports = {
   userNoLastName,
   userNoPassword,
   adminUser,
+  adminSignUp,
   wrongUser,
   adminWrongPass,
   loginNoEmail,

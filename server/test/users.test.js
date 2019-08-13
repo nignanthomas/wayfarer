@@ -4,13 +4,13 @@ import chaiHttp from 'chai-http';
 import app from '../server';
 import userModel from '../v2/models/userModel';
 import data from './mockData';
+import { query } from '../v2/models/dbQuery';
 
 dotenv.config();
 
 // eslint-disable-next-line no-unused-vars
 const should = chai.should();
 chai.use(chaiHttp);
-
 
 describe('Users Tests', () => {
   let token = '';
@@ -42,7 +42,7 @@ describe('Users Tests', () => {
   it('GET /api/v2/users/:id Should get a specific user (User just created)', (done) => {
     chai
       .request(app)
-      .get('/api/v2/users/2')
+      .get('/api/v2/users/1')
       .set('token', token)
       .end((err, res) => {
         res.should.have.status(200);

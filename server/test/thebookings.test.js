@@ -19,10 +19,7 @@ describe('Bookings Tests', () => {
     chai
       .request(app)
       .post('/api/v2/auth/signin')
-      .send({
-        email: process.env.ADMIN_EMAIL,
-        password: process.env.ADMIN_PASSWORD,
-      })
+      .send(data.adminUser)
       .end((err, res) => {
         const result = JSON.parse(res.text);
         token = result.data.token;

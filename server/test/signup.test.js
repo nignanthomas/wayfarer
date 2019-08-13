@@ -13,7 +13,7 @@ describe('Sign Up', () => {
     chai
       .request(app)
       .post('/api/v2/auth/signup')
-      .send(data.user)
+      .send(data.adminSignUp)
       .end((err, res) => {
         res.should.have.status(201);
         res.body.should.be.a('object');
@@ -73,8 +73,8 @@ describe('Sign Up', () => {
         done();
       });
   });
-  after((done) => {
-    query('DELETE FROM users');
-    done();
-  })
+  // after((done) => {
+  //   query('DELETE FROM users');
+  //   done();
+  // });
 });
