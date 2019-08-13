@@ -2,17 +2,21 @@ import tripModel from '../models/tripModel';
 import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
-const createTrip = (req, res) => {
+const createTrip = async (req, res) => {
   const { body } = req;
   if (body.origin.toLowerCase() === body.destination.toLowerCase()) {
     return responseError(res, 400, 'The origin and the destination cannot be the same!');
   }
-  const foundTrip = tripModel.getAllTrips().find(trip => trip.bus_license_number === body.bus_license_number && trip.trip_date === body.trip_date);
-  if (foundTrip) {
-    return responseError(res, 403, 'This trip already exists');
+  try {
+    const foundTrip = await tripModel.getRepeatTrip(body.bus_license_number, body.trip_date);
+    if (foundTrip) {
+      return responseError(res, 409, 'This trip already exists');
+    }
+    const trip = await tripModel.createTrip(body);
+    return responseSuccess(res, 201, 'Trip Successfully Created', trip);
+  } catch (err) {
+    return responseError(res, 400, err);
   }
-  const trip = tripModel.createTrip(body);
-  return responseSuccess(res, 201, 'Trip Successfully Created', trip);
 };
 
 const getAllTrips = (req, res) => {

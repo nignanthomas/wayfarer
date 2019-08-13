@@ -23,7 +23,7 @@ pool.on('connect', () => {
 /**
  * Create Tables
  */
-const createTables = () => {
+const createUserTable = () => {
   const queryText =
     `CREATE TABLE IF NOT EXISTS
       users(
@@ -44,10 +44,33 @@ const createTables = () => {
     });
 };
 
+const createTripTable = () => {
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS
+      trips(
+        id SERIAL PRIMARY KEY,
+        seating_capacity INTEGER NOT NULL,
+        bus_license_number VARCHAR(50) NOT NULL,
+        origin VARCHAR(50) NOT NULL,
+        destination VARCHAR(50) NOT NULL,
+        trip_date VARCHAR(50) NOT NULL,
+        fare INTEGER NOT NULL,
+        status INTEGER NOT NULL DEFAULT 1
+      )`;
+
+  pool.query(queryText)
+    .then((res) => {
+      pool.end();
+    })
+    .catch((err) => {
+      pool.end();
+    });
+};
+
 /**
  * Drop Tables
  */
-const dropTables = () => {
+const dropUserTable = () => {
   const queryText = 'DROP TABLE IF EXISTS users';
   pool.query(queryText)
     .then((res) => {
@@ -58,11 +81,41 @@ const dropTables = () => {
     });
 };
 
+const dropTripTable = () => {
+  const queryText = 'DROP TABLE IF EXISTS trips';
+  pool.query(queryText)
+    .then((res) => {
+      pool.end();
+    })
+    .catch((err) => {
+      pool.end();
+    });
+};
+
+/**
+ * Create All Tables
+ */
+const createTables = () => {
+  createUserTable();
+  createTripTable();
+};
+/**
+ * Drop All Tables
+ */
+const dropTables = () => {
+  dropUserTable();
+  dropTripTable();
+};
+
 pool.on('remove', () => {
   process.exit(0);
 });
 
 module.exports = {
+  createUserTable,
+  dropUserTable,
+  createTripTable,
+  dropTripTable,
   createTables,
   dropTables,
 };

@@ -15,7 +15,6 @@ if (NODE_ENV === 'test') {
 const pool = new Pool({
   connectionString,
 });
-console.log('connectionString1', connectionString);
 
 const query = (text, params) => {
   return new Promise((resolve, reject) => {
