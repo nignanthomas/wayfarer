@@ -26,20 +26,20 @@ describe('Trips Tests', () => {
       });
   });
 
-  describe('Trips Tests - Empty Trips', () => {
-    it('GET /api/v2/trips Should get all trips', (done) => {
-      chai
-        .request(app)
-        .get('/api/v2/trips')
-        .set('token', token)
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.be.a('object');
-          res.body.error.should.match(/There are no Trips yet!/);
-          done();
-        });
-    });
-  });
+  // describe('Trips Tests - Empty Trips', () => {
+  //   it('GET /api/v2/trips Should get all trips', (done) => {
+  //     chai
+  //       .request(app)
+  //       .get('/api/v2/trips')
+  //       .set('token', token)
+  //       .end((err, res) => {
+  //         res.should.have.status(404);
+  //         res.body.should.be.a('object');
+  //         res.body.error.should.match(/There are no Trips yet!/);
+  //         done();
+  //       });
+  //   });
+  // });
 
   describe('POST trips tests', () => {
     it('POST /api/v2/trips Should create a new trip', (done) => {
@@ -53,7 +53,7 @@ describe('Trips Tests', () => {
           res.body.should.be.a('object');
           res.body.status.should.equal(201);
           res.body.data.should.a('object');
-          res.body.data.fare.should.equal('5000');
+          res.body.data.fare.should.equal(5000);
           done();
         });
     });
@@ -163,7 +163,7 @@ describe('Trips Tests', () => {
 
   describe('GET one trip tests', () => {
     it('GET /api/v2/trips/:id Should return a specific trip (Trip just created)', (done) => {
-      const tripId = tripModel.createTrip(data.trip).id;
+      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
         .get(`/api/v2/trips/${tripId}`)
@@ -204,7 +204,7 @@ describe('Trips Tests', () => {
 
   describe('PATCH a trip tests', () => {
     it('PATCH /api/v2/trips/:id Should update a given a trip (Trip just created)', (done) => {
-      const tripId = tripModel.createTrip(data.trip).id;
+      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
         .patch(`/api/v2/trips/${tripId}`)
@@ -222,7 +222,7 @@ describe('Trips Tests', () => {
     });
 
     it('PATCH /api/v2/trips/:id/cancel Should cancel a given a trip (Trip just created)', (done) => {
-      const tripId = tripModel.createTrip(data.trip).id;
+      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
         .patch(`/api/v2/trips/${tripId}/cancel`)
@@ -300,7 +300,7 @@ describe('Trips Tests', () => {
 
   describe('DELETE a trip test', () => {
     it('DELETE /api/v2/trips Should delete a given trip', (done) => {
-      const tripId = tripModel.createTrip(data.trip).id;
+      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
         .delete(`/api/v2/trips/${tripId}`)

@@ -1,7 +1,7 @@
 import passport from 'passport';
 import dotenv from 'dotenv';
 import { ExtractJwt } from 'passport-jwt';
-import UserModel from '../models/userModel';
+import userModel from '../models/userModel';
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ passport.use(new JwtStrategy({
   secretOrKey: JWT_SECRET,
 }, async (payload, done) => {
   try {
-    const user = await UserModel.getOneUser(payload.sub);
+    const user = await userModel.getOneUserDB(payload.sub);
     if (!user) {
       return done(null, false);
     }
