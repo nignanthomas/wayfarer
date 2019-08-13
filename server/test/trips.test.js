@@ -42,6 +42,18 @@ describe('Trips Tests', () => {
   });
 
   describe('POST trips tests', () => {
+    let regToken = '';
+    before((done) => {
+      chai
+        .request(app)
+        .post('/api/v2/auth/signin')
+        .send(data.userLog)
+        .end((err, res) => {
+          const result = JSON.parse(res.text);
+          regToken = result.data.token;
+          done();
+        });
+    });
     it('POST /api/v2/trips Should create a new trip', (done) => {
       chai
         .request(app)
@@ -54,6 +66,20 @@ describe('Trips Tests', () => {
           res.body.status.should.equal(201);
           res.body.data.should.a('object');
           res.body.data.fare.should.equal(5000);
+          done();
+        });
+    });
+
+    it('POST /api/v2/trips Should not create a new trip (admin only route)', (done) => {
+      chai
+        .request(app)
+        .post('/api/v2/trips')
+        .set('token', regToken)
+        .send(data.trip)
+        .end((err, res) => {
+          res.should.have.status(401);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(401);
           done();
         });
     });
@@ -161,10 +187,9 @@ describe('Trips Tests', () => {
 
   describe('GET one trip tests', () => {
     it('GET /api/v2/trips/:id Should return a specific trip (Trip just created)', (done) => {
-      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
-        .get(`/api/v2/trips/${tripId}`)
+        .get('/api/v2/trips/1')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -199,17 +224,15 @@ describe('Trips Tests', () => {
 
   describe('PATCH a trip tests', () => {
     it('PATCH /api/v2/trips/:id Should update a given a trip (Trip just created)', (done) => {
-      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
-        .patch(`/api/v2/trips/${tripId}`)
+        .patch('/api/v2/trips/1')
         .set('token', token)
         .send(data.tripUpdate)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.status.should.equal(200);
-          res.body.data.bus_license_number.should.match(/KC8 219/);
           res.body.data.fare.should.equal(7500);
           res.body.data.status.should.equal(1);
           done();
@@ -217,10 +240,9 @@ describe('Trips Tests', () => {
     });
 
     it('PATCH /api/v2/trips/:id/cancel Should cancel a given a trip (Trip just created)', (done) => {
-      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
-        .patch(`/api/v2/trips/${tripId}/cancel`)
+        .patch('/api/v2/trips/1/cancel')
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(200);
@@ -229,8 +251,20 @@ describe('Trips Tests', () => {
           res.body.data.bus_license_number.should.match(/KCK 469/);
           res.body.data.origin.should.match(/Kigali/);
           res.body.data.destination.should.match(/Nairobi/);
-          res.body.data.fare.should.equal('5000');
+          res.body.data.fare.should.equal(7500);
           res.body.data.status.should.equal(9);
+          done();
+        });
+    });
+
+    // try to retrieve a cancelled trip
+    it('GET /api/v2/trips/:id Should return No trip found (The trip has now been cancelled)', (done) => {
+      chai
+        .request(app)
+        .get('/api/v2/trips/1')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.be.a('object');
           done();
         });
     });
@@ -295,14 +329,12 @@ describe('Trips Tests', () => {
 
   describe('DELETE a trip test', () => {
     it('DELETE /api/v2/trips Should delete a given trip', (done) => {
-      const tripId = tripModel.createTripDS(data.trip).id;
       chai
         .request(app)
-        .delete(`/api/v2/trips/${tripId}`)
+        .delete('/api/v2/trips/1')
         .set('token', token)
         .end((err, res) => {
           res.should.have.status(204);
-          res.body.should.be.a('object');
           done();
         });
     });

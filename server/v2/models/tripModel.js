@@ -1,38 +1,6 @@
 import moment from 'moment';
 import trips from '../data/trips.json';
 import { query } from './dbQuery';
-import { nextId } from '../helpers/nextId';
-
-class Trip {
-  constructor({
-    id, seating_capacity, bus_license_number, origin, destination, trip_date, fare, status
-  }) {
-    this.id = id;
-    this.seating_capacity = seating_capacity;
-    this.bus_license_number = bus_license_number;
-    this.origin = origin;
-    this.destination = destination;
-    this.trip_date = trip_date;
-    this.fare = fare;
-    this.status = status;
-  }
-}
-
-const createTripDS = (data) => {
-  const newTrip = new Trip({
-    id: data.id || nextId(trips),
-    seating_capacity: data.seating_capacity,
-    bus_license_number: data.bus_license_number,
-    origin: data.origin,
-    destination: data.destination,
-    trip_date: data.trip_date,
-    fare: data.fare,
-    status: 1,
-  });
-  trips.push(newTrip);
-  return newTrip;
-};
-
 
 const createTrip = async (data) => {
   const createQuery = `INSERT INTO
@@ -59,6 +27,17 @@ const getOneTrip = (id) => {
   return trips.find(trip => trip.id === id);
 };
 
+const getOneTripDB = async (id) => {
+  const oneQuery = 'SELECT * FROM trips WHERE id = $1';
+  const ids = [id];
+  try {
+    const { rows } = await query(oneQuery, ids);
+    return rows[0];
+  } catch (error) {
+    return error;
+  }
+};
+
 const getAllTrips = () => {
   return trips;
 };
@@ -82,22 +61,28 @@ const getRepeatTrip = async (bus_license_number, trip_date) => {
   } catch (error) {
     return error;
   }
-}
+};
 
-const updateTrip = (id, data) => {
-  const trip = getOneTrip(id);
-  const index = trips.indexOf(trip);
-  trips[index] = {
-    id: trips[index].id,
-    seating_capacity: data.seating_capacity || trip.seating_capacity,
-    bus_license_number: data.bus_license_number || trip.bus_license_number,
-    origin: data.origin || trip.origin,
-    destination: data.destination || trip.destination,
-    trip_date: data.trip_date || trip.trip_date,
-    fare: data.fare || trip.fare,
-    status: data.status || trip.status,
-  };
-  return trips[index];
+const updateTrip = async (id, data) => {
+  const cancelQuery = 'UPDATE trips SET fare = $1  WHERE id = $2 returning *;';
+  const values = [data.fare, id];
+  try {
+    const { rows } = await query(cancelQuery, values);
+    return rows[0];
+  } catch (error) {
+    return error;
+  }
+};
+
+const cancelTrip = async (id, data) => {
+  const cancelQuery = 'UPDATE trips SET status = 9  WHERE id = $1 returning *;';
+  const ids = [id];
+  try {
+    const { rows } = await query(cancelQuery, ids);
+    return rows[0];
+  } catch (error) {
+    return error;
+  }
 };
 
 const deleteTrip = (id) => {
@@ -107,13 +92,26 @@ const deleteTrip = (id) => {
   return {};
 };
 
+const deleteTripDB = async (id) => {
+  const deleteQuery = 'DELETE FROM trips WHERE id = $1;';
+  const ids = [id];
+  try {
+    const { rows } = await query(deleteQuery, ids);
+    return {};
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   createTrip,
   getOneTrip,
+  getOneTripDB,
   getAllTrips,
   updateTrip,
   deleteTrip,
   getRepeatTrip,
-  createTripDS,
   getAllTripsDB,
+  cancelTrip,
+  deleteTripDB,
 };

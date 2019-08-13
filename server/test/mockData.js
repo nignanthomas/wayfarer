@@ -52,10 +52,7 @@ const tripNoFare = {
 };
 
 const tripUpdate = {
-  seating_capacity: 45,
-  bus_license_number: 'KC8 219',
-  trip_date: new Date().setDate(new Date().getDate() + 1),
-  fare: 7500,
+  fare: '7500',
 };
 
 const bookingForPost = {
@@ -84,6 +81,11 @@ const user = {
   email: 'thomasnignan@gmail.com',
   first_name: 'Thomas',
   last_name: 'Nignan',
+  password: 'qwPOOEJerty145%#$@',
+};
+
+const userLog = {
+  email: 'thomasnignan@gmail.com',
   password: 'qwPOOEJerty145%#$@',
 };
 
@@ -160,6 +162,7 @@ module.exports = {
   bookingNoSeatNumber,
   seatNumberUpdate,
   user,
+  userLog,
   userNoEmail,
   userNoFirstName,
   userNoLastName,

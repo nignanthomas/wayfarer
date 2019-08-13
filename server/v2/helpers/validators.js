@@ -22,9 +22,6 @@ const validateNewTrip = Joi.object().keys({
 });
 
 const validateUpdateTrip = Joi.object().keys({
-  seating_capacity: Joi.number(),
-  bus_license_number: Joi.string().trim(),
-  trip_date: Joi.date().min('now').raw(),
   fare: Joi.number().integer(),
 });
 
