@@ -4,9 +4,9 @@
   "description": "WayFarer is a public bus transportation booking service. (API)",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev npm run createTables && babel-watch ./server/server.js",
+    "dev": "NODE_ENV=dev npm run createTables && NODE_ENV=dev babel-watch ./server/server.js",
     "production": "NODE_ENV=prod babel-watch ./server/server.js",
-    "test": "NODE_ENV=test npm run clearTestDB && mocha --require @babel/register ./server/test/*.test.js --exit --timeout 10000",
+    "test": "NODE_ENV=test npm run clearTestDB && NODE_ENV=test mocha --require @babel/register ./server/test/*.test.js --exit --timeout 10000",
     "build": "rm -rf ./build && babel ./server -d build",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info && nyc report --reporter=html",
     "coveralls-coverage": "coveralls < lcov.info",
