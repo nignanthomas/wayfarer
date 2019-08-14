@@ -4,31 +4,37 @@ import tripModel from '../models/tripModel';
 import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
 
-const formatBooking = (data) => {
+const formatBooking = async (data) => {
+  const trip = await tripModel.getOneTripDB(data.trip_id);
+  const user = await userModel.getOneUserDB(data.user_id);
   const formatted = {
     id: data.id,
-    bus_license_number: tripModel.getOneTrip(data.trip_id).bus_license_number,
-    trip_date: tripModel.getOneTrip(data.user_id).trip_date,
-    first_name: userModel.getOneUser(data.user_id).first_name,
-    last_name: userModel.getOneUser(data.user_id).last_name,
-    user_email: userModel.getOneUser(data.user_id).email,
+    bus_license_number: trip.bus_license_number,
+    trip_date: trip.trip_date,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    user_email: user.email,
     seat_number: data.seat_number,
   };
   return formatted;
 };
 
-const createBooking = (req, res) => {
+const createBooking = async (req, res) => {
   const { body } = req;
   body.user_id = req.user.id;
-  const foundTrip = tripModel.getOneTrip(body.trip_id);
+  const foundTrip = await tripModel.getOneTripDB(body.trip_id);
   if (!foundTrip || foundTrip.status === 9) {
     return responseError(res, 404, 'Trip Not Found or Cancelled! ');
   }
-  if (tripModel.getAllTrips().find(trip => trip.seat_number === body.seat_number)) {
+  const allBookings = await bookingModel.getAllBookingsDB();
+  console.log('allBookings', allBookings);
+  if (allBookings && allBookings.find(booking => booking.trip_id === body.trip_id && booking.seat_number === body.seat_number)) {
+    console.log('booking', booking);
     return responseError(res, 404, 'This seat number is already booked for this trip!');
   }
-  const booking = bookingModel.book(body);
-  return responseSuccess(res, 201, 'Booking Created Successfully', booking);
+  const booking = await bookingModel.book(body);
+  const formattedBooking = await formatBooking(booking);
+  return responseSuccess(res, 201, 'Booking Created Successfully', formattedBooking);
 };
 
 
