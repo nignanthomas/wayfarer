@@ -9,11 +9,24 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Sign Up', () => {
-  it('POST /api/v2/auth/signup Should create a new user account', (done) => {
+  it('POST /api/v2/auth/signup Should create a new superuser account', (done) => {
     chai
       .request(app)
       .post('/api/v2/auth/signup')
       .send(data.adminSignUp)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.status.should.equal(201);
+        done();
+      });
+  });
+
+  it('POST /api/v2/auth/signup Should create a new regular user account', (done) => {
+    chai
+      .request(app)
+      .post('/api/v2/auth/signup')
+      .send(data.user)
       .end((err, res) => {
         res.should.have.status(201);
         res.body.should.be.a('object');
@@ -73,8 +86,4 @@ describe('Sign Up', () => {
         done();
       });
   });
-  // after((done) => {
-  //   query('DELETE FROM users');
-  //   done();
-  // });
 });
