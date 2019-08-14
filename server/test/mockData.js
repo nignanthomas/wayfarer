@@ -56,7 +56,7 @@ const tripUpdate = {
 };
 
 const bookingForPost = {
-  trip_id: 1,
+  trip_id: 2,
   seat_number: 12,
 };
 

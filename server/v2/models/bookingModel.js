@@ -1,34 +1,50 @@
 import moment from 'moment';
 import bookings from '../data/bookings.json';
-import { nextId } from '../helpers/nextId';
+import { query } from './dbQuery';
 
-class Booking {
-  constructor({
-    id, trip_id, user_id, seat_number, created_on
-  }) {
-    this.id = id;
-    this.trip_id = trip_id;
-    this.user_id = user_id;
-    this.seat_number = seat_number;
-    this.created_on = created_on;
+const book = async (data) => {
+  const createQuery = `INSERT INTO
+      bookings(trip_id, user_id, seat_number, created_on)
+      VALUES($1, $2, $3, $4)
+      returning *`;
+  const values = [
+    data.trip_id,
+    data.user_id,
+    data.seat_number,
+    moment().format('DD-MM-YYYY'),
+  ];
+  try {
+    const { rows } = await query(createQuery, values);
+    return rows[0];
+  } catch (error) {
+    throw error;
   }
-}
-
-const book = (data) => {
-  const newBooking = new Booking({
-    id: nextId(bookings),
-    trip_id: data.trip_id,
-    user_id: data.user_id,
-    seat_number: data.seat_number,
-    created_on: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
-  });
-  bookings.push(newBooking);
-  return newBooking;
 };
 
 const getOneBooking = id => bookings.find(booking => booking.id === id);
 
+const getOneBookingDB = async (id) =>{
+  const oneQuery = 'SELECT * FROM trips WHERE id = $1';
+  const ids = [id];
+  try {
+    const { rows } = await query(oneQuery, ids);
+    return rows[0];
+  } catch (error) {
+    return error;
+  }
+};
+
 const getAllBookings = () => bookings;
+
+const getAllBookingsDB = async () => {
+  const findAllQuery = 'SELECT * FROM bookings';
+  try {
+    const { rows } = await query(findAllQuery);
+    return rows;
+  } catch (error) {
+    return error;
+  }
+}
 
 const updateBooking = (id, data) => {
   const booking = getOneBooking(id);
@@ -47,7 +63,9 @@ const deleteBooking = (id) => {
 module.exports = {
   book,
   getOneBooking,
+  getOneBookingDB,
   getAllBookings,
+  getAllBookingsDB,
   updateBooking,
   deleteBooking,
 };

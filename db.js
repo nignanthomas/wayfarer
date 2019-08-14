@@ -67,6 +67,26 @@ const createTripTable = () => {
     });
 };
 
+const createBookingTable = () => {
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS
+      bookings(
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL,
+        trip_id INTEGER NOT NULL,
+        seat_number INTEGER NOT NULL,
+        created_on VARCHAR(50) NOT NULL
+      )`;
+
+  pool.query(queryText)
+    .then((res) => {
+      pool.end();
+    })
+    .catch((err) => {
+      pool.end();
+    });
+};
+
 /**
  * Drop Tables
  */
@@ -92,12 +112,24 @@ const dropTripTable = () => {
     });
 };
 
+const dropBookingTable = () => {
+  const queryText = 'DROP TABLE IF EXISTS bookings';
+  pool.query(queryText)
+    .then((res) => {
+      pool.end();
+    })
+    .catch((err) => {
+      pool.end();
+    });
+};
+
 /**
  * Create All Tables
  */
 const createTables = () => {
   createUserTable();
   createTripTable();
+  createBookingTable();
 };
 /**
  * Drop All Tables
@@ -105,6 +137,7 @@ const createTables = () => {
 const dropTables = () => {
   dropUserTable();
   dropTripTable();
+  dropBookingTable();
 };
 
 pool.on('remove', () => {
@@ -116,6 +149,8 @@ module.exports = {
   dropUserTable,
   createTripTable,
   dropTripTable,
+  createBookingTable,
+  dropBookingTable,
   createTables,
   dropTables,
 };
