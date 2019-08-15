@@ -1,4 +1,3 @@
-import users from '../data/users.json';
 import { query } from './dbQuery';
 
 
@@ -21,10 +20,6 @@ const createUser = async (data) => {
     throw error;
   }
 };
-
-const getOneUser = id => users.find(user => user.id === id);
-
-const getAllUsers = () => users;
 
 const getOneUserDB = async (id) => {
   const oneQuery = 'SELECT * FROM users WHERE id = $1';
@@ -61,8 +56,6 @@ const getUserByEmail = async (email) => {
 
 module.exports = {
   createUser,
-  getOneUser,
-  getAllUsers,
   getOneUserDB,
   getAllUsersDB,
   getUserByEmail,
