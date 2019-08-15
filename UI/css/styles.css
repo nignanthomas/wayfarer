@@ -317,6 +317,7 @@ header nav li{
   color: #ffffff;
 }
 .pre-footer{
+  margin-top: -150px;
   background: url("../images/footer-bg1.png") center center;
   height: 230px;
 }
