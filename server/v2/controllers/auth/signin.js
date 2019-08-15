@@ -21,7 +21,7 @@ const signIn = async (req, res) => {
     if (user.is_admin) {
       message = 'Superuser Logged in Successfully';
     }
-    return responseSuccess(res, 200, message, { token: user.token });
+    return responseSuccess(res, 200, message, { is_admin: user.is_admin, token: user.token });
   } catch (err) {
     return responseError(res, 400, err);
   }

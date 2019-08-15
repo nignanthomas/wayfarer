@@ -11,7 +11,7 @@ const book = async (data) => {
     data.trip_id,
     data.user_id,
     data.seat_number,
-    moment().format('DD-MM-YYYY'),
+    moment().format('MM-DD-YYYY'),
   ];
   try {
     const { rows } = await query(createQuery, values);
