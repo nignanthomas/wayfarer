@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { query } from './dbQuery';
+import { getAllQuery, getOneQuery } from '../helpers/dbQueriesHelper';
 
 const book = async (data) => {
   const createQuery = `INSERT INTO
@@ -20,26 +21,9 @@ const book = async (data) => {
   }
 };
 
-const getOneBookingDB = async (id) => {
-  const oneQuery = 'SELECT * FROM bookings WHERE id = $1';
-  const ids = [id];
-  try {
-    const { rows } = await query(oneQuery, ids);
-    return rows[0];
-  } catch (error) {
-    return error;
-  }
-};
+const getOneBookingDB = async id => getOneQuery('bookings', id);
 
-const getAllBookingsDB = async () => {
-  const findAllQuery = 'SELECT * FROM bookings';
-  try {
-    const { rows } = await query(findAllQuery);
-    return rows;
-  } catch (error) {
-    return error;
-  }
-};
+const getAllBookingsDB = async () => getAllQuery('bookings');
 
 const updateBookingDB = async (id, data) => {
   const updateQuery = 'UPDATE bookings SET seat_number = $1  WHERE id = $2 returning *;';

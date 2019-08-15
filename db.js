@@ -55,7 +55,7 @@ const createTripTable = () => {
         destination VARCHAR(50) NOT NULL,
         trip_date VARCHAR(50) NOT NULL,
         fare INTEGER NOT NULL,
-        status INTEGER NOT NULL DEFAULT 1
+        status VARCHAR(50) NOT NULL DEFAULT 'active'
       )`;
 
   pool.query(queryText)

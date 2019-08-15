@@ -16,7 +16,7 @@ WayFarer is a public bus transportation booking service.
 
 An Andela Bootcamp Challenge.
 
-For API documentation, please visit https://wayfarer-adc-nthomas.herokuapp.com/api/v1/api-docs/
+For API documentation, please visit https://wayfarer-adc-nthomas.herokuapp.com/api/v2/api-docs/
 
 # Table of Contents
 * [Live Link](#live-link-globe_with_meridians)
@@ -57,34 +57,34 @@ Admin route: https://nignanthomas.github.io/wayfarer/UI/html/admin/admin-booking
 - #### Sign up endpoint
 | Endpoint | Request Method | Request parameter |
 | ---------- |----------- | ------------- |
-| [/api/v1/auth/signup](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/auth/signup) | POST | |
+| [/api/v2/auth/signup](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/auth/signup) | POST | |
 
 - #### Sign in endpoint
 | Endpoint | Request Method | Request parameter |
 | ---------- |----------- | ------------- |
-| [/api/v1/auth/signin](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/auth/signin) | POST | |
+| [/api/v2/auth/signin](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/auth/signin) | POST | |
 
 - #### Trips endpoint
 | Endpoints | Request Method | Request parameter |
 | --------- | ----------- | ------------- |
-| [/api/v1/trips](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips) | POST | Authhorization token|
-| [/api/v1/trips](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips) | GET | Authhorization token|
-| [/api/v1/trips/?origin=Kigali](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/?origin=Kigali) | GET | origin && Authhorization token|
-| [/api/v1/trips/?destination=Nairobi](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/?destination=Nairobi) | GET | destination && Authhorization token|
-| [/api/v1/trips/?origin=Kigali&destination=Nairobi](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/?origin=Kigali&destination=Nairobi) | GET | origin & destination && Authhorization token|
-| [/api/v1/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id) | GET | id && Authhorization token |
-| [/api/v1/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id) | PATCH | id && Authhorization token |
-| [/api/v1/trips/:id/cancel](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id/cancel) | PATCH | id && Authhorization token |
-| [/api/v1/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/trips/:id) | DELETE | id && Authhorization token |
+| [/api/v2/trips](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips) | POST | Authhorization token|
+| [/api/v2/trips](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips) | GET | Authhorization token|
+| [/api/v2/trips/?origin=Kigali](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/?origin=Kigali) | GET | origin && Authhorization token|
+| [/api/v2/trips/?destination=Nairobi](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/?destination=Nairobi) | GET | destination && Authhorization token|
+| [/api/v2/trips/?origin=Kigali&destination=Nairobi](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/?origin=Kigali&destination=Nairobi) | GET | origin & destination && Authhorization token|
+| [/api/v2/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/:id) | GET | id && Authhorization token |
+| [/api/v2/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/:id) | PATCH | id && Authhorization token |
+| [/api/v2/trips/:id/cancel](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/:id/cancel) | PATCH | id && Authhorization token |
+| [/api/v2/trips/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/trips/:id) | DELETE | id && Authhorization token |
 
 - #### Bookings endpoint
 | Endpoints | Request Method | Request parameter |
 | --------- | ----------- | ------------- |
-| [/api/v1/bookings](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings) | POST | Authhorization token |
-| [/api/v1/bookings](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings) | GET | Authhorization token |
-| [/api/v1/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:id) | GET | id && Authhorization token |
-| [/api/v1/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:id) | PATCH | id && Authhorization token |
-| [/api/v1/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v1/bookings/:id) | DELETE | id && Authhorization token |
+| [/api/v2/bookings](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/bookings) | POST | Authhorization token |
+| [/api/v2/bookings](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/bookings) | GET | Authhorization token |
+| [/api/v2/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/bookings/:id) | GET | id && Authhorization token |
+| [/api/v2/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/bookings/:id) | PATCH | id && Authhorization token |
+| [/api/v2/bookings/:id](https://wayfarer-adc-nthomas.herokuapp.com//api/v2/bookings/:id) | DELETE | id && Authhorization token |
 
 # Prerequisites :wrench:
 - Clone this project with `git clone https://github.com/nignanthomas/wayfarer.git`.
