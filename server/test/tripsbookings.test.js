@@ -104,19 +104,19 @@ describe('Bookings Tests', () => {
   });
 
   describe('GET a booking tests', () => {
-    // it('GET /api/v2/bookings/:id Should return a specific booking', (done) => {
-    //   chai
-    //     .request(app)
-    //     .get('/api/v2/bookings/1')
-    //     .set('token', token)
-    //     .end((err, res) => {
-    //       res.should.have.status(200);
-    //       res.body.should.be.a('object');
-    //       res.body.status.should.equal(200);
-    //       res.body.data.seat_number.should.equal(12);
-    //       done();
-    //     });
-    // });
+    it('GET /api/v2/bookings/:id Should return a specific booking', (done) => {
+      chai
+        .request(app)
+        .get('/api/v2/bookings/1')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.status.should.equal(200);
+          res.body.data.seat_number.should.equal(12);
+          done();
+        });
+    });
 
     it('GET /api/v2/bookings/:id Should not get a specific booking (Booking 11 that does not exist)', (done) => {
       chai
@@ -147,18 +147,18 @@ describe('Bookings Tests', () => {
   });
 
   describe('PATCH a booking tests', () => {
-    // it('PATCH /api/v2/bookings/:id Should update a given booking', (done) => {
-    //   chai
-    //     .request(app)
-    //     .patch('/api/v2/bookings/1')
-    //     .set('token', token)
-    //     .send(data.seatNumberUpdate)
-    //     .end((err, res) => {
-    //       res.should.have.status(200);
-    //       res.body.should.be.a('object');
-    //       done();
-    //     });
-    // });
+    it('PATCH /api/v2/bookings/:id Should update a given booking', (done) => {
+      chai
+        .request(app)
+        .patch('/api/v2/bookings/1')
+        .set('token', token)
+        .send(data.seatNumberUpdate)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
 
     it('PATCH /api/v2/bookings/:id Should not update a given booking (id = 41, not exist)', (done) => {
       chai
@@ -176,19 +176,6 @@ describe('Bookings Tests', () => {
   });
 
   describe('DELETE bookings tests', () => {
-    // it('DELETE /api/v2/bookings/:id Should delete a given booking', (done) => {
-    //   const bookingId = bookingModel.book(data.bookingForModel).id;
-    //   chai
-    //     .request(app)
-    //     .delete(`/api/v2/bookings/${bookingId}`)
-    //     .set('token', token)
-    //     .end((err, res) => {
-    //       res.should.have.status(204);
-    //       res.body.should.be.a('object');
-    //       done();
-    //     });
-    // });
-
     it('DELETE /api/v2/bookings/:id Should not delete a given booking (id = a, not a number )', (done) => {
       chai
         .request(app)
@@ -201,9 +188,18 @@ describe('Bookings Tests', () => {
           done();
         });
     });
-  });
-  after((done) => {
-    tripModel.deleteTrip(1);
-    done();
+
+    it('DELETE /api/v2/bookings/:id Should delete a given booking', (done) => {
+      chai
+        .request(app)
+        .delete('/api/v2/bookings/1')
+        .set('token', token)
+        .end((err, res) => {
+          res.should.have.status(204);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
   });
 });

@@ -1,5 +1,4 @@
 import moment from 'moment';
-import bookings from '../data/bookings.json';
 import { query } from './dbQuery';
 
 const book = async (data) => {
@@ -21,10 +20,8 @@ const book = async (data) => {
   }
 };
 
-const getOneBooking = id => bookings.find(booking => booking.id === id);
-
-const getOneBookingDB = async (id) =>{
-  const oneQuery = 'SELECT * FROM trips WHERE id = $1';
+const getOneBookingDB = async (id) => {
+  const oneQuery = 'SELECT * FROM bookings WHERE id = $1';
   const ids = [id];
   try {
     const { rows } = await query(oneQuery, ids);
@@ -34,8 +31,6 @@ const getOneBookingDB = async (id) =>{
   }
 };
 
-const getAllBookings = () => bookings;
-
 const getAllBookingsDB = async () => {
   const findAllQuery = 'SELECT * FROM bookings';
   try {
@@ -44,28 +39,34 @@ const getAllBookingsDB = async () => {
   } catch (error) {
     return error;
   }
-}
-
-const updateBooking = (id, data) => {
-  const booking = getOneBooking(id);
-  const index = bookings.indexOf(booking);
-  bookings[index].seat_number = data.seat_number || booking.seat_number;
-  return bookings[index];
 };
 
-const deleteBooking = (id) => {
-  const booking = getOneBooking(id);
-  const index = bookings.indexOf(booking);
-  bookings.splice(index, 1);
-  return {};
+const updateBookingDB = async (id, data) => {
+  const updateQuery = 'UPDATE bookings SET seat_number = $1  WHERE id = $2 returning *;';
+  const values = [data.seat_number, id];
+  try {
+    const { rows } = await query(updateQuery, values);
+    return rows[0];
+  } catch (error) {
+    return error;
+  }
+};
+
+const deleteBookingDB = async (id) => {
+  const deleteQuery = 'DELETE FROM bookings WHERE id = $1;';
+  const ids = [id];
+  try {
+    const { rows } = await query(deleteQuery, ids);
+    return {};
+  } catch (error) {
+    return error;
+  }
 };
 
 module.exports = {
   book,
-  getOneBooking,
   getOneBookingDB,
-  getAllBookings,
   getAllBookingsDB,
-  updateBooking,
-  deleteBooking,
+  updateBookingDB,
+  deleteBookingDB,
 };

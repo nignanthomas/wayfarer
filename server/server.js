@@ -3,7 +3,6 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import moment from 'moment';
 import cors from 'cors';
 import apiRoutes from './v2/routes';
 import defaultRoute from './v2/routes/default';

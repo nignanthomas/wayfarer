@@ -1,5 +1,3 @@
-import moment from 'moment';
-import trips from '../data/trips.json';
 import { query } from './dbQuery';
 
 const createTrip = async (data) => {
@@ -23,10 +21,6 @@ const createTrip = async (data) => {
   }
 };
 
-const getOneTrip = (id) => {
-  return trips.find(trip => trip.id === id);
-};
-
 const getOneTripDB = async (id) => {
   const oneQuery = 'SELECT * FROM trips WHERE id = $1';
   const ids = [id];
@@ -36,10 +30,6 @@ const getOneTripDB = async (id) => {
   } catch (error) {
     return error;
   }
-};
-
-const getAllTrips = () => {
-  return trips;
 };
 
 const getAllTripsDB = async () => {
@@ -64,10 +54,10 @@ const getRepeatTrip = async (bus_license_number, trip_date) => {
 };
 
 const updateTrip = async (id, data) => {
-  const cancelQuery = 'UPDATE trips SET fare = $1  WHERE id = $2 returning *;';
+  const updateQuery = 'UPDATE trips SET fare = $1  WHERE id = $2 returning *;';
   const values = [data.fare, id];
   try {
-    const { rows } = await query(cancelQuery, values);
+    const { rows } = await query(updateQuery, values);
     return rows[0];
   } catch (error) {
     return error;
@@ -85,13 +75,6 @@ const cancelTrip = async (id, data) => {
   }
 };
 
-const deleteTrip = (id) => {
-  const trip = getOneTrip(id);
-  const index = trips.indexOf(trip);
-  trips.splice(index, 1);
-  return {};
-};
-
 const deleteTripDB = async (id) => {
   const deleteQuery = 'DELETE FROM trips WHERE id = $1;';
   const ids = [id];
@@ -105,11 +88,8 @@ const deleteTripDB = async (id) => {
 
 module.exports = {
   createTrip,
-  getOneTrip,
   getOneTripDB,
-  getAllTrips,
   updateTrip,
-  deleteTrip,
   getRepeatTrip,
   getAllTripsDB,
   cancelTrip,
