@@ -94,6 +94,9 @@ const cancelTrip = async (req, res) => {
   try {
     const oneTrip = await tripModel.getOneTripDB(tripId);
     if (oneTrip) {
+      if (oneTrip.status === 'cancelled') {
+        responseError(res, 400, 'This trip is already cancelled');
+      }
       const cancelledTrip = await tripModel.cancelTrip(tripId);
       return responseSuccess(res, 200, 'Trip Successfully Cancelled', cancelledTrip);
     }
