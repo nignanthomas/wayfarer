@@ -1,4 +1,5 @@
 import { query } from './dbQuery';
+import { getAllQuery, getOneQuery } from '../helpers/dbQueriesHelper';
 
 const createTrip = async (data) => {
   const createQuery = `INSERT INTO
@@ -21,26 +22,9 @@ const createTrip = async (data) => {
   }
 };
 
-const getOneTripDB = async (id) => {
-  const oneQuery = 'SELECT * FROM trips WHERE id = $1';
-  const ids = [id];
-  try {
-    const { rows } = await query(oneQuery, ids);
-    return rows[0];
-  } catch (error) {
-    return error;
-  }
-};
+const getOneTripDB = async id => getOneQuery('trips', id);
 
-const getAllTripsDB = async () => {
-  const findAllQuery = 'SELECT * FROM trips';
-  try {
-    const { rows } = await query(findAllQuery);
-    return rows;
-  } catch (error) {
-    return error;
-  }
-};
+const getAllTripsDB = async () => getAllQuery('trips');
 
 const getRepeatTrip = async (bus_license_number, trip_date) => {
   const repeatQuery = 'SELECT * FROM trips WHERE bus_license_number = $1 AND trip_date = $2 ';
@@ -64,8 +48,8 @@ const updateTrip = async (id, data) => {
   }
 };
 
-const cancelTrip = async (id, data) => {
-  const cancelQuery = 'UPDATE trips SET status = 9  WHERE id = $1 returning *;';
+const cancelTrip = async (id) => {
+  const cancelQuery = `UPDATE trips SET status = 'cancelled'  WHERE id = $1 returning *;`;
   const ids = [id];
   try {
     const { rows } = await query(cancelQuery, ids);

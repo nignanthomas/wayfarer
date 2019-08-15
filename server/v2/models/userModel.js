@@ -1,4 +1,5 @@
 import { query } from './dbQuery';
+import { getAllQuery, getOneQuery } from '../helpers/dbQueriesHelper';
 
 
 const createUser = async (data) => {
@@ -21,26 +22,9 @@ const createUser = async (data) => {
   }
 };
 
-const getOneUserDB = async (id) => {
-  const oneQuery = 'SELECT * FROM users WHERE id = $1';
-  const ids = [id];
-  try {
-    const { rows } = await query(oneQuery, ids);
-    return rows[0];
-  } catch (error) {
-    return error;
-  }
-};
+const getOneUserDB = async id => getOneQuery('users', id);
 
-const getAllUsersDB = async () => {
-  const findAllQuery = 'SELECT * FROM users';
-  try {
-    const { rows } = await query(findAllQuery);
-    return rows;
-  } catch (error) {
-    return error;
-  }
-};
+const getAllUsersDB = async () => getAllQuery('users');
 
 const getUserByEmail = async (email) => {
   const oneQuery = 'SELECT * FROM users WHERE email = $1';

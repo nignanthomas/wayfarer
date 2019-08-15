@@ -8,7 +8,7 @@
       "email" : "nignanthomas@gmail.com"
     }
   },
-  "host" : "localhost:3000",
+  "host" : "wayfarer-adc-nthomas.herokuapp.com",
   "basePath" : "/api/v2/",
   "tags" : [ {
     "name" : "authentication",
@@ -157,7 +157,7 @@
           "200" : {
             "description" : "Booking fetched successfully",
             "schema": {
-              "$ref": "#/definitions/Booking"
+              "$ref": "#/definitions/BookingOutput"
             }
           },
           "400" : {
@@ -254,13 +254,7 @@
         "summary" : "Get all trips",
         "description" : "All bookings",
         "operationId" : "getAllTrips",
-        "parameters" : [ {
-          "in" : "header",
-          "name" : "token",
-          "description" : "An token header",
-          "required" : true,
-          "type": "string"
-        } ],
+        "parameters" : [],
         "responses" : {
           "200" : {
             "description" : "Trips fetched successfully"
@@ -308,13 +302,6 @@
         "operationId" : "getOneTrip",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "header",
-          "name" : "token",
-          "description" : "An token header",
-          "required" : true,
-          "type": "string"
-        },
-        {
           "name" : "id",
           "in" : "path",
           "description" : "ID of trip to return",
@@ -395,7 +382,7 @@
           "description" : "Trip object to be created",
           "required" : true,
           "schema" : {
-            "$ref" : "#/definitions/Trip"
+            "$ref" : "#/definitions/TripUpdate"
           }
         } ],
         "responses" : {
@@ -455,13 +442,9 @@
     "Signup" : {
       "type" : "object",
       "properties" : {
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
         "email" : {
           "type" : "string",
-          "example" : "johndoe@website.com"
+          "example" : "johndoe@email.com"
         },
         "first_name" : {
           "type" : "string",
@@ -471,13 +454,9 @@
           "type" : "string",
           "example" : "Doe"
         },
-        "is_admin" : {
-          "type" : "boolean",
-          "example" : false
-        },
         "password" : {
           "type" : "string",
-          "example" : "password1234"
+          "example" : "P@ssW0rD"
         }
       },
       "xml" : {
@@ -489,11 +468,11 @@
       "properties" : {
         "email" : {
           "type" : "string",
-          "example" : "nignanthomas@gmail.com"
+          "example" : "johndoe@email.com"
         },
         "password" : {
           "type" : "string",
-          "example" : "qwerty"
+          "example" : "P@ssW0rD"
         }
       },
       "xml" : {
@@ -501,6 +480,22 @@
       }
     },
     "Booking" : {
+      "type" : "object",
+      "properties" : {
+        "trip_id" : {
+          "type" : "integer",
+          "example" : "1"
+        },
+        "seat_number" : {
+          "type" : "integer",
+          "example" : 11
+        }
+      },
+      "xml" : {
+        "name" : "Booking"
+      }
+    },
+    "BookingOutput" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -533,10 +528,50 @@
         }
       },
       "xml" : {
-        "name" : "Booking"
+        "name" : "BookingOutput"
       }
     },
     "Trip" : {
+      "type" : "object",
+      "properties" : {
+        "seating_capacity" : {
+          "type" : "integer",
+          "example" : 24
+        },
+        "origin" : {
+          "type" : "string",
+          "example" : "Ouagadougou"
+        },
+        "destination" : {
+          "type" : "string",
+          "example" : "Kigali"
+        },
+        "trip_date" : {
+          "type" : "string",
+          "example" : "05/08/2020"
+        },
+        "fare" : {
+          "type" : "number",
+          "example" : 7000
+        }
+      },
+      "xml" : {
+        "name" : "Trip"
+      }
+    },
+    "TripUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "fare" : {
+          "type" : "number",
+          "example" : 7000
+        }
+      },
+      "xml" : {
+        "name" : "TripUpdate"
+      }
+    },
+    "TripOutput" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -581,7 +616,7 @@
         }
       },
       "xml" : {
-        "name" : "Trip"
+        "name" : "TripOutput"
       }
     }
   }
