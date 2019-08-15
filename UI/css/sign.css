@@ -2,10 +2,13 @@
   box-shadow: none;
   margin-bottom: -50px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 .main-body{
   min-height: 500px;
-  margin-top: -500px;
+  margin-top: -400px;
 }
 .main-content{
   text-align: center;
