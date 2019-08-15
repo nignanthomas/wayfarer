@@ -234,7 +234,7 @@ describe('Trips Tests', () => {
           res.body.should.be.a('object');
           res.body.status.should.equal(200);
           res.body.data.fare.should.equal(7500);
-          res.body.data.status.should.equal(1);
+          res.body.data.status.should.match(/active/);
           done();
         });
     });
@@ -252,7 +252,7 @@ describe('Trips Tests', () => {
           res.body.data.origin.should.match(/Kigali/);
           res.body.data.destination.should.match(/Nairobi/);
           res.body.data.fare.should.equal(7500);
-          res.body.data.status.should.equal(9);
+          res.body.data.status.should.match(/cancelled/);
           done();
         });
     });

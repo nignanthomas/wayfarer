@@ -3,6 +3,7 @@ import userModel from '../models/userModel';
 import tripModel from '../models/tripModel';
 import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
+import { response400Error } from '../helpers/response400err';
 
 const formatBooking = async (data) => {
   const trip = await tripModel.getOneTripDB(data.trip_id);
@@ -24,7 +25,7 @@ const createBooking = async (req, res) => {
   body.user_id = req.user.id;
   try {
     const foundTrip = await tripModel.getOneTripDB(body.trip_id);
-    if (!foundTrip || foundTrip.status === 9) {
+    if (!foundTrip || foundTrip.status === 'cancelled') {
       return responseError(res, 404, 'Trip Not Found or Cancelled! ');
     }
     const allBookings = await bookingModel.getAllBookingsDB();
@@ -35,7 +36,7 @@ const createBooking = async (req, res) => {
     const formattedBooking = await formatBooking(booking);
     return responseSuccess(res, 201, 'Booking Created Successfully', formattedBooking);
   } catch (err) {
-    return responseError(res, 400, err);
+    return response400Error(res, err);
   }
 };
 
@@ -57,7 +58,7 @@ const getAllBookings = async (req, res) => {
     }
     return responseSuccess(res, 200, 'Bookings Successfully Fetched', formattedBookings);
   } catch (err) {
-    return responseError(res, 400, err);
+    return response400Error(res, err);
   }
 };
 
@@ -79,7 +80,7 @@ const getOneBooking = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   } catch (err) {
-    return responseError(res, 400, err);
+    return response400Error(res, err);
   }
 };
 
@@ -102,7 +103,7 @@ const updateBooking = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   } catch (err) {
-    return responseError(res, 400, err);
+    return response400Error(res, err);
   }
 };
 
@@ -123,7 +124,7 @@ const deleteBooking = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   } catch (err) {
-    return responseError(res, 400, err);
+    return response400Error(res, err);
   }
 };
 
