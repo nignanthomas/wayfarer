@@ -6,7 +6,7 @@
     <meta name="description" content="Bus Ticket Booking WebApp">
     <meta name="keywords" content="bus, ticket, booking, travel">
     <meta name="author" content="nignanthomas">
-    <title>WayFarer | Homepage</title>
+    <title>WayFarer | Booking Details</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/one-trip.css">
     <link rel="stylesheet" href="../css/seat.css">
@@ -60,17 +60,252 @@
                 <p class="trip-passenger"><span class="trip-cat">Passenger: </span>Harry Zona</p>
                 <p class="trip-boarding"><span class="trip-cat">Boarding Time: </span>4:30pm</p>
                 <p class="trip-time"><span class="trip-cat">Departure Time: </span>5:00pm</p>
-                <p class="trip-available"><span class="trip-cat">Seat Number: </span>21</p>
+                <p class="trip-available"><span class="trip-cat">Seat Number: </span>21 <span class="change-seat"><button type="button" name="button" onclick="displayBook();">Change seat</button>
+</span></p>
               </div>
               <div class="trip-more">
                 <p><b>$100</b></p>
-                <button type="button" name="button" onclick="deleteBook();">Delete</button>
+                <button type="button" name="button" onclick="displayBook();">Delete</button>
+              </div>
+            </div>
+            <div class="container seat-block">
+              <div>
+                <div class="seat-selector">
+                  <h2>Choose A Seat</h2>
+                  <div class="left-row">
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="1A" disabled>
+                        <br>
+                        <label for="1A">1A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="2A">
+                        <br>
+                        <label for="2A">2A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="3A" checked>
+                        <br>
+                        <label for="3A">3A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="4A">
+                        <br>
+                        <label for="4A">4A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="5A">
+                        <br>
+                        <label for="5A">5A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="6A">
+                        <br>
+                        <label for="6A">6A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="7A">
+                        <br>
+                        <label for="7A">7A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+
+                    <div class="one-seat">
+                      <div class="num">
+                        <input type="radio" name="seat-selection" value="8A">
+                        <br>
+                        <label for="8A">8A</label>
+                      </div>
+                      <img src="../images/seat-icon.png" alt="">
+                    </div>
+                  </div>
+
+                  <div class="right-rows">
+                    <div class="b-row">
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="1B">
+                          <br>
+                          <label for="1B">1B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="2B">
+                          <br>
+                          <label for="2B">2B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="3B">
+                          <br>
+                          <label for="3B">3B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="4B">
+                          <br>
+                          <label for="4B">4B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="5B">
+                          <br>
+                          <label for="5B">5B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="6B">
+                          <br>
+                          <label for="6B">6B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="7B">
+                          <br>
+                          <label for="7B">7B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="8B">
+                          <br>
+                          <label for="8B">8B</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+                    </div>
+                    <div class="c-row">
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="1C">
+                          <br>
+                          <label for="1C">1C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="2C">
+                          <br>
+                          <label for="2C">2C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="3C">
+                          <br>
+                          <label for="3C">3C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="4C">
+                          <br>
+                          <label for="4C">4C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="5C">
+                          <br>
+                          <label for="5C">5C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="6C">
+                          <br>
+                          <label for="6C">6C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="7C">
+                          <br>
+                          <label for="7C">7C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+
+                      <div class="one-seat">
+                        <div class="num">
+                          <input type="radio" name="seat-selection" value="8C">
+                          <br>
+                          <label for="8C">8C</label>
+                        </div>
+                        <img src="../images/seat-icon.png" alt="">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="container seat-confirm">
+                <button class="cancel-button" type="button" name="button" onclick="cancelBook();">Cancel</button>
+                <button class="confirm-button"type="button" name="button" onclick="confirmBook();">Confirm</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 

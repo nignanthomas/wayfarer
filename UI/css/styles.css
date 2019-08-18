@@ -24,8 +24,8 @@ ul {
 /* Header */
 header{
   background: #f4f4f4;
-  padding-top: 10px;
-  min-height: 60px;
+  /* padding-top: 10px; */
+  min-height: 40px;
   border-bottom: #e8491d 3px solid;
 }
 header a{
