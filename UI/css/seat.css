@@ -68,6 +68,13 @@ button:active{
   text-align: center;
   padding-bottom: 20px;
 }
+.change-seat{
+  padding-left: 10px;
+}
+.change-seat button{
+  font-size: 12px;
+  height: 30px;
+}
 /* Media Queries */
 @media(max-width: 767px){
   .seat-block{
