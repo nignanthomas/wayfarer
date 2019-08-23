@@ -16,8 +16,27 @@ const formatBooking = async (data) => {
     last_name: user.last_name,
     user_email: user.email,
     seat_number: data.seat_number,
+    created_on: data.created_on,
   };
   return formatted;
+};
+
+const availableSeats = (allBookings) => {
+  let bookedSeats = [];
+  let availableSeats = [];
+  let booking = '';
+  if (allBookings) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (booking of allBookings) {
+      bookedSeats.push(booking.seat_number);
+    }
+    for (let i = 1; i <= 24; i++) {
+      if (!bookedSeats.includes(i)) {
+        availableSeats.push(i);
+      }
+    }
+  }
+  return availableSeats;
 };
 
 const createBooking = async (req, res) => {
@@ -30,7 +49,8 @@ const createBooking = async (req, res) => {
     }
     const allBookings = await bookingModel.getAllBookingsDB();
     if (allBookings && allBookings.find(booking => booking.trip_id === body.trip_id && booking.seat_number === body.seat_number)) {
-      return responseError(res, 409, 'This seat number is already booked for this trip!');
+      const seatsAvailable = availableSeats(allBookings);
+      return responseError(res, 409, `Seat already taken! Available seats = ${seatsAvailable}`);
     }
     const booking = await bookingModel.book(body);
     const formattedBooking = await formatBooking(booking);
