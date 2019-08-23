@@ -22,18 +22,16 @@ const formatBooking = async (data) => {
 };
 
 const availableSeats = (allBookings) => {
-  let bookedSeats = [];
-  let availableSeats = [];
+  const bookedSeats = [];
+  const availableSeat = [];
   let booking = '';
-  if (allBookings) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (booking of allBookings) {
-      bookedSeats.push(booking.seat_number);
-    }
-    for (let i = 1; i <= 24; i++) {
-      if (!bookedSeats.includes(i)) {
-        availableSeats.push(i);
-      }
+  // eslint-disable-next-line no-restricted-syntax
+  for (booking of allBookings) {
+    bookedSeats.push(booking.seat_number);
+  }
+  for (let i = 1; i <= 24; i++) {
+    if (!bookedSeats.includes(i)) {
+      availableSeat.push(i);
     }
   }
   return availableSeats;
@@ -56,7 +54,7 @@ const createBooking = async (req, res) => {
     const formattedBooking = await formatBooking(booking);
     return responseSuccess(res, 201, 'Booking Created Successfully', formattedBooking);
   } catch (err) {
-    return response400Error(res, err);
+    response400Error(res, err);
   }
 };
 
@@ -78,7 +76,7 @@ const getAllBookings = async (req, res) => {
     }
     return responseSuccess(res, 200, 'Bookings Successfully Fetched', formattedBookings);
   } catch (err) {
-    return response400Error(res, err);
+    response400Error(res, err);
   }
 };
 
@@ -100,7 +98,7 @@ const getOneBooking = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   } catch (err) {
-    return response400Error(res, err);
+    response400Error(res, err);
   }
 };
 
@@ -123,7 +121,7 @@ const updateBooking = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   } catch (err) {
-    return response400Error(res, err);
+    response400Error(res, err);
   }
 };
 
@@ -144,7 +142,7 @@ const deleteBooking = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find booking of id: ${bookingId}`);
   } catch (err) {
-    return response400Error(res, err);
+    response400Error(res, err);
   }
 };
 

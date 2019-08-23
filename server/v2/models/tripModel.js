@@ -1,5 +1,5 @@
 import { query } from './dbQuery';
-import { getAllQuery, getOneQuery } from '../helpers/dbQueriesHelper';
+import { getAllQuery, getOneQuery, deleteOneQuery } from '../helpers/dbQueriesHelper';
 
 const createTrip = async (data) => {
   const createQuery = `INSERT INTO
@@ -59,16 +59,7 @@ const cancelTrip = async (id) => {
   }
 };
 
-const deleteTripDB = async (id) => {
-  const deleteQuery = 'DELETE FROM trips WHERE id = $1;';
-  const ids = [id];
-  try {
-    const { rows } = await query(deleteQuery, ids);
-    return {};
-  } catch (error) {
-    return error;
-  }
-};
+const deleteTripDB = async id => deleteOneQuery('trips', id);
 
 module.exports = {
   createTrip,

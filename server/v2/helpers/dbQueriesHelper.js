@@ -21,7 +21,19 @@ const getOneQuery = async (table, id) => {
   }
 };
 
+const deleteOneQuery = async (table, id) => {
+  const deleteQuery = `DELETE FROM ${table} WHERE id = $1;`;
+  const ids = [id];
+  try {
+    const { rows } = await query(deleteQuery, ids);
+    return {};
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getAllQuery,
   getOneQuery,
+  deleteOneQuery,
 };

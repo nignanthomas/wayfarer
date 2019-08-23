@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { query } from './dbQuery';
-import { getAllQuery, getOneQuery } from '../helpers/dbQueriesHelper';
+import { getAllQuery, getOneQuery, deleteOneQuery } from '../helpers/dbQueriesHelper';
 
 const book = async (data) => {
   const createQuery = `INSERT INTO
@@ -36,16 +36,8 @@ const updateBookingDB = async (id, data) => {
   }
 };
 
-const deleteBookingDB = async (id) => {
-  const deleteQuery = 'DELETE FROM bookings WHERE id = $1;';
-  const ids = [id];
-  try {
-    const { rows } = await query(deleteQuery, ids);
-    return {};
-  } catch (error) {
-    return error;
-  }
-};
+const deleteBookingDB = async id => deleteOneQuery('bookings', id);
+
 
 module.exports = {
   book,

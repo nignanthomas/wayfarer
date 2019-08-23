@@ -1,6 +1,9 @@
 import tripModel from '../models/tripModel';
 import { idValidator } from '../helpers/idValidator';
 import { responseSuccess, responseError } from '../helpers/responseHelpers';
+import { response400Error } from '../helpers/response400err';
+import { filter } from '../helpers/filterHelper';
+
 
 const createTrip = async (req, res) => {
   const { body } = req;
@@ -15,21 +18,15 @@ const createTrip = async (req, res) => {
     const trip = await tripModel.createTrip(body);
     return responseSuccess(res, 201, 'Trip Successfully Created', trip);
   } catch (err) {
-    return responseError(res, 400, err);
+    response400Error(res, err);
   }
 };
 
 const getAllTrips = async (req, res) => {
   try {
     let trips = await tripModel.getAllTripsDB();
-    const { origin } = req.query;
-    const { destination } = req.query;
-    if (trips && origin) {
-      trips = trips.filter(trip => trip.origin.toLowerCase() === origin.toLowerCase());
-    }
-    if (trips && destination) {
-      trips = trips.filter(trip => trip.destination.toLowerCase() === destination.toLowerCase());
-    }
+    const { origin, destination } = req.query;
+    trips = filter(trips, origin, destination);
     if (!trips.length) {
       return responseError(res, 404, 'There are no Trips yet!');
     }
@@ -59,7 +56,7 @@ const getOneTrip = async (req, res) => {
     }
     return responseSuccess(res, 200, 'Trip Successfully Fetched', oneTrip);
   } catch (err) {
-    return responseError(res, 400, err);
+    response400Error(res, err);
   }
 };
 
@@ -81,7 +78,7 @@ const updateTrip = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   } catch (err) {
-    return responseError(res, 400, err);
+    response400Error(res, err);
   }
 };
 
@@ -95,14 +92,14 @@ const cancelTrip = async (req, res) => {
     const oneTrip = await tripModel.getOneTripDB(tripId);
     if (oneTrip) {
       if (oneTrip.status === 'cancelled') {
-        responseError(res, 400, 'This trip is already cancelled');
+        return responseError(res, 400, 'This trip is already cancelled');
       }
       const cancelledTrip = await tripModel.cancelTrip(tripId);
       return responseSuccess(res, 200, 'Trip Successfully Cancelled', cancelledTrip);
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   } catch (err) {
-    return responseError(res, 400, err);
+    response400Error(res, err);
   }
 };
 
@@ -120,7 +117,7 @@ const deleteTrip = async (req, res) => {
     }
     return responseError(res, 404, `Cannot find trip of id: ${tripId}`);
   } catch (err) {
-    return responseError(res, 400, err);
+    response400Error(res, err);
   }
 };
 
