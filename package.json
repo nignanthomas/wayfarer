@@ -36,7 +36,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "@babel/runtime": "^7.5.5",
-    "@hapi/joi": "^15.1.0",
+    "@hapi/joi": "^15.1.1",
     "babel-watch": "^7.0.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
